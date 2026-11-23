@@ -3,8 +3,9 @@ unit Daisy.FMX.Dock;
 {
   TDaisyFmxDock - the DaisyUI "dock": a bar of icon + label buttons fixed to an edge of the screen.
   Unlike the web component it can sit at the bottom, top, left or right, and its items are either
-  spread evenly along the whole bar (dspEven) or packed from the start with a standard gap
-  (dspNormal).
+  spread evenly along the whole bar (dspEven) or packed from the start with IconSpacing between
+  them (dspNormal). The items flow in the DirectionFlow, and a left / right dock can be
+  collapsed to a thin strip holding just the expand button.
 }
 
 interface
@@ -20,15 +21,25 @@ type
       FItems: TDaisyDockItems;
       FPlacement: TDaisyDockPlacement;
       FSpacing: TDaisyDockSpacing;
+      FIconSpacing: Integer;
+      FDirectionFlow: TDaisyDockFlow;
+      FShowExpandCollapse: Boolean;
+      FCollapsed: Boolean;
+      FExpandedSize: Single;
       FShowLabels: Boolean;
       FAutoThickness: Boolean;
       FItemIndex: Integer;
       FUpdating: Boolean;
       FOnChange: TNotifyEvent;
+      FOnCollapsedChange: TNotifyEvent;
       FOnItemClick: TDaisyItemClickEvent;
     procedure SetItems(const Value: TDaisyDockItems);
     procedure SetPlacement(const Value: TDaisyDockPlacement);
     procedure SetSpacing(const Value: TDaisyDockSpacing);
+    procedure SetIconSpacing(const Value: Integer);
+    procedure SetDirectionFlow(const Value: TDaisyDockFlow);
+    procedure SetShowExpandCollapse(const Value: Boolean);
+    procedure SetCollapsed(const Value: Boolean);
     procedure SetShowLabels(const Value: Boolean);
     procedure SetAutoThickness(const Value: Boolean);
     procedure SetItemIndex(const Value: Integer);
@@ -39,6 +50,12 @@ type
     function ItemSlots: TArray<TDaisyDockSlot>;
     function ItemEnabled(AIndex: Integer): Boolean;
     function OuterOnLeft: Boolean;
+    function IsCollapsed: Boolean;
+    function ToggleVisible: Boolean;
+    function ToggleRect: TRectF;
+    function CanResize(AWidth: Boolean): Boolean;
+    procedure DrawItems(const AColors: TDaisyColors);
+    procedure DrawToggle(const AColors: TDaisyColors);
     procedure UpdateThickness;
     procedure ActivateItem(AIndex: Integer);
     procedure MoveSelection(ADelta: Integer);
@@ -67,10 +84,22 @@ type
     property Placement: TDaisyDockPlacement read FPlacement write SetPlacement default ddpBottom;
     // dspEven spreads the items along the whole bar, dspNormal packs them from the start
     property Spacing: TDaisyDockSpacing read FSpacing write SetSpacing default dspEven;
+    // The gap between the items when Spacing = dspNormal
+    property IconSpacing: Integer read FIconSpacing write SetIconSpacing default 4;
+    // The direction the items flow in: difTopToBottom / difBottomToTop for a left or right dock,
+    // difLeftToRight / difRightToLeft for a top or bottom dock
+    property DirectionFlow: TDaisyDockFlow read FDirectionFlow write SetDirectionFlow
+      default difLeftToRight;
+    // Left / right docks only: shows the < > button that collapses and expands the dock
+    property ShowExpandCollapse: Boolean read FShowExpandCollapse write SetShowExpandCollapse
+      default True;
+    // Left / right docks only: True shrinks the dock to a thin strip holding just the expand button
+    property Collapsed: Boolean read FCollapsed write SetCollapsed default False;
     property ShowLabels: Boolean read FShowLabels write SetShowLabels default True;
     // The thickness of the bar (its height, or its width when docked left/right) follows SizeKind
     property AutoThickness: Boolean read FAutoThickness write SetAutoThickness default True;
     property OnChange: TNotifyEvent read FOnChange write FOnChange;
+    property OnCollapsedChange: TNotifyEvent read FOnCollapsedChange write FOnCollapsedChange;
     property OnItemClick: TDaisyItemClickEvent read FOnItemClick write FOnItemClick;
   end;
 
@@ -82,6 +111,10 @@ const
   CBarLength = 24;
   CBarThickness = 2;
   CInactiveOpacity = 0.6;
+  CToggleSize = 16;
+  CToggleMargin = 4;
+  // TrackedItem value while the mouse is over the collapse / expand button
+  CToggleItem = -2;
 
 { TDaisyFmxDock }
 
@@ -93,6 +126,9 @@ begin
   inherited Create(AOwner);
   FPlacement := ddpBottom;
   FSpacing := dspEven;
+  FIconSpacing := CNormalGap;
+  FDirectionFlow := difLeftToRight;
+  FShowExpandCollapse := True;
   FShowLabels := True;
   FAutoThickness := True;
   FItemIndex := 0;
@@ -176,6 +212,47 @@ begin
   Result := DaisyDockThickness(SizeKind);
 end;
 
+function TDaisyFmxDock.IsCollapsed: Boolean;
+begin
+  Result := FCollapsed and IsVertical;
+end;
+
+function TDaisyFmxDock.ToggleVisible: Boolean;
+begin
+  Result := FShowExpandCollapse and IsVertical;
+end;
+
+function TDaisyFmxDock.ToggleRect: TRectF;
+var
+  LLeft, LTop: Single;
+begin
+  // the button sits on the inner edge, at the end the items do not flow from
+  if OuterOnLeft then
+    LLeft := Width - CToggleSize
+  else
+    LLeft := 0;
+  if DaisyDockFlowReversed(FDirectionFlow) then
+    LTop := CToggleMargin
+  else
+    LTop := Height - CToggleMargin - CToggleSize;
+  Result := RectF(LLeft, LTop, LLeft + CToggleSize, LTop + CToggleSize);
+end;
+
+// The dimension an Align already dictates is left alone
+function TDaisyFmxDock.CanResize(AWidth: Boolean): Boolean;
+begin
+  if AWidth then
+    Result := not (Align in [TAlignLayout.Top, TAlignLayout.Bottom, TAlignLayout.Client,
+      TAlignLayout.Contents, TAlignLayout.MostTop, TAlignLayout.MostBottom,
+      TAlignLayout.Horizontal, TAlignLayout.Scale, TAlignLayout.Fit, TAlignLayout.FitLeft,
+      TAlignLayout.FitRight])
+  else
+    Result := not (Align in [TAlignLayout.Left, TAlignLayout.Right, TAlignLayout.Client,
+      TAlignLayout.Contents, TAlignLayout.MostLeft, TAlignLayout.MostRight,
+      TAlignLayout.Vertical, TAlignLayout.Scale, TAlignLayout.Fit, TAlignLayout.FitLeft,
+      TAlignLayout.FitRight]);
+end;
+
 procedure TDaisyFmxDock.SetItems(const Value: TDaisyDockItems);
 begin
   FItems.Assign(Value);
@@ -185,7 +262,11 @@ procedure TDaisyFmxDock.SetPlacement(const Value: TDaisyDockPlacement);
 begin
   if FPlacement = Value then
     Exit;
+  // only a left / right dock can be collapsed
+  if FCollapsed and not (Value in [ddpLeft, ddpRight]) then
+    SetCollapsed(False);
   FPlacement := Value;
+  FDirectionFlow := DaisyDockFlowFor(Value, FDirectionFlow);
   if not (csLoading in ComponentState) then
   begin
     case Align of
@@ -209,6 +290,76 @@ begin
     FSpacing := Value;
     Repaint;
   end;
+end;
+
+procedure TDaisyFmxDock.SetIconSpacing(const Value: Integer);
+var
+  LValue: Integer;
+begin
+  LValue := Max(0, Value);
+  if FIconSpacing <> LValue then
+  begin
+    FIconSpacing := LValue;
+    Repaint;
+  end;
+end;
+
+procedure TDaisyFmxDock.SetDirectionFlow(const Value: TDaisyDockFlow);
+var
+  LValue: TDaisyDockFlow;
+begin
+  LValue := DaisyDockFlowFor(FPlacement, Value);
+  if FDirectionFlow <> LValue then
+  begin
+    FDirectionFlow := LValue;
+    Repaint;
+  end;
+end;
+
+procedure TDaisyFmxDock.SetShowExpandCollapse(const Value: Boolean);
+begin
+  if FShowExpandCollapse <> Value then
+  begin
+    FShowExpandCollapse := Value;
+    Repaint;
+  end;
+end;
+
+procedure TDaisyFmxDock.SetCollapsed(const Value: Boolean);
+var
+  LRight: Single;
+begin
+  if FCollapsed = Value then
+    Exit;
+  if csLoading in ComponentState then
+  begin
+    FCollapsed := Value;
+    Exit;
+  end;
+  // remember a width that does not follow SizeKind so that expanding can restore it
+  if Value and IsVertical and not FAutoThickness and (Width > CToggleSize) then
+    FExpandedSize := Width;
+  LRight := Position.X + Width;
+  FCollapsed := Value;
+  if IsVertical then
+  begin
+    if (not Value) and (not FAutoThickness) and (FExpandedSize > 0) and CanResize(True) then
+    begin
+      FUpdating := True;
+      try
+        Width := FExpandedSize;
+      finally
+        FUpdating := False;
+      end;
+    end;
+    UpdateThickness;
+    // a free-standing right dock keeps its right edge in place
+    if (FPlacement = ddpRight) and (Align = TAlignLayout.None) then
+      Position.X := LRight - Width;
+  end;
+  Repaint;
+  if Assigned(FOnCollapsedChange) then
+    FOnCollapsedChange(Self);
 end;
 
 procedure TDaisyFmxDock.SetShowLabels(const Value: Boolean);
@@ -254,24 +405,22 @@ procedure TDaisyFmxDock.UpdateThickness;
 var
   LThickness: Single;
 begin
-  if (not FAutoThickness) or FUpdating or (csLoading in ComponentState) then
+  if FUpdating or (csLoading in ComponentState) then
     Exit;
-  LThickness := Thickness;
+  if IsCollapsed then
+    LThickness := CToggleSize
+  else if FAutoThickness then
+    LThickness := Thickness
+  else
+    Exit;
   FUpdating := True;
   try
-    // the dimension an Align already dictates is left alone
     if IsVertical then
     begin
-      if not SameValue(Width, LThickness) and not (Align in [TAlignLayout.Top, TAlignLayout.Bottom,
-        TAlignLayout.Client, TAlignLayout.Contents, TAlignLayout.MostTop, TAlignLayout.MostBottom,
-        TAlignLayout.Horizontal, TAlignLayout.Scale, TAlignLayout.Fit, TAlignLayout.FitLeft,
-        TAlignLayout.FitRight]) then
+      if not SameValue(Width, LThickness) and CanResize(True) then
         Width := LThickness;
     end
-    else if not SameValue(Height, LThickness) and not (Align in [TAlignLayout.Left,
-      TAlignLayout.Right, TAlignLayout.Client, TAlignLayout.Contents, TAlignLayout.MostLeft,
-      TAlignLayout.MostRight, TAlignLayout.Vertical, TAlignLayout.Scale, TAlignLayout.Fit,
-      TAlignLayout.FitLeft, TAlignLayout.FitRight]) then
+    else if not SameValue(Height, LThickness) and CanResize(False) then
       Height := LThickness;
   finally
     FUpdating := False;
@@ -299,23 +448,39 @@ end;
 
 function TDaisyFmxDock.ItemSlots: TArray<TDaisyDockSlot>;
 var
-  LTotal, LLength: Single;
+  LTotal, LLength, LStart, LReserved: Single;
+  LReverse: Boolean;
   I: Integer;
 begin
   if IsVertical then
     LTotal := Height
   else
     LTotal := Width;
-  LLength := DaisyDockThickness(SizeKind) * 3 div 2;
+  LReverse := DaisyDockFlowReversed(FDirectionFlow);
+  // the collapse button takes the end of the dock the items flow towards
+  LStart := 0;
+  if ToggleVisible then
+  begin
+    LReserved := CToggleSize + 2 * CToggleMargin;
+    LTotal := LTotal - LReserved;
+    if LReverse then
+      LStart := LReserved;
+  end;
+  // a left / right dock has square cells; a top / bottom dock has wider ones
+  if IsVertical then
+    LLength := DaisyDockThickness(SizeKind)
+  else
+    LLength := DaisyDockThickness(SizeKind) * 3 div 2;
   if FSpacing = dspEven then
-    Result := DaisyDockSlots(FItems.Count, LTotal, LLength, 0, dspEven)
+    Result := DaisyDockSlots(FItems.Count, LTotal, LLength, 0, dspEven, LReverse)
   else
   begin
-    Result := DaisyDockSlots(FItems.Count, LTotal - 2 * CEdgePadding, LLength, CNormalGap,
-      dspNormal);
-    for I := 0 to High(Result) do
-      Result[I].Start := Result[I].Start + CEdgePadding;
+    Result := DaisyDockSlots(FItems.Count, LTotal - 2 * CEdgePadding, LLength, FIconSpacing,
+      dspNormal, LReverse);
+    LStart := LStart + CEdgePadding;
   end;
+  for I := 0 to High(Result) do
+    Result[I].Start := Result[I].Start + LStart;
 end;
 
 function TDaisyFmxDock.ItemRect(AIndex: Integer): TRectF;
@@ -339,6 +504,10 @@ var
   I: Integer;
 begin
   Result := -1;
+  if ToggleVisible and ToggleRect.Contains(APoint) then
+    Exit(CToggleItem);
+  if IsCollapsed then
+    Exit;
   for I := 0 to FItems.Count - 1 do
     if ItemRect(I).Contains(APoint) then
       Exit(I);
@@ -346,7 +515,7 @@ end;
 
 procedure TDaisyFmxDock.TrackedItemChanged;
 begin
-  SetItemCursor(ItemEnabled(TrackedItem));
+  SetItemCursor((TrackedItem = CToggleItem) and Enabled or ItemEnabled(TrackedItem));
   inherited;
 end;
 
@@ -377,12 +546,21 @@ begin
 end;
 
 procedure TDaisyFmxDock.MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: Single);
+var
+  LItem: Integer;
 begin
   inherited MouseUp(Button, Shift, X, Y);
   if (Button = TMouseButton.mbLeft) and not (csDesigning in ComponentState) then
   begin
     SetFocus;
-    ActivateItem(TrackedItemAt(PointF(X, Y)));
+    LItem := TrackedItemAt(PointF(X, Y));
+    if LItem = CToggleItem then
+    begin
+      if Enabled then
+        SetCollapsed(not FCollapsed);
+    end
+    else
+      ActivateItem(LItem);
   end;
 end;
 
@@ -423,6 +601,57 @@ begin
 end;
 
 procedure TDaisyFmxDock.DrawContent(const AColors: TDaisyColors; const ARect: TRectF);
+begin
+  if not IsCollapsed then
+    DrawItems(AColors);
+  if ToggleVisible then
+    DrawToggle(AColors);
+end;
+
+procedure TDaisyFmxDock.DrawToggle(const AColors: TDaisyColors);
+var
+  LRect: TRectF;
+  LCenterX, LCenterY: Single;
+  LPointsLeft, LHot: Boolean;
+  LColor: TAlphaColor;
+begin
+  LRect := ToggleRect;
+  LHot := Enabled and (TrackedItem = CToggleItem);
+  if not Enabled then
+    LColor := DaisyWithAlpha(AColors.Text, 0.3)
+  else if LHot then
+    LColor := AColors.Text
+  else
+    LColor := DaisyWithAlpha(AColors.Text, CInactiveOpacity);
+  // the arrow points to the outer edge while expanded, to the inner edge while collapsed
+  LPointsLeft := OuterOnLeft <> IsCollapsed;
+  LCenterX := (LRect.Left + LRect.Right) / 2;
+  LCenterY := (LRect.Top + LRect.Bottom) / 2;
+  if LHot then
+    FillRound(LRect, 4, DaisyWithAlpha(AColors.Text, 0.1));
+  Canvas.Stroke.Kind := TBrushKind.Solid;
+  Canvas.Stroke.Color := LColor;
+  Canvas.Stroke.Thickness := 1.5;
+  Canvas.Stroke.Cap := TStrokeCap.Round;
+  Canvas.Stroke.Join := TStrokeJoin.Round;
+  Canvas.Stroke.Dash := TStrokeDash.Solid;
+  if LPointsLeft then
+  begin
+    Canvas.DrawLine(PointF(LCenterX + 2.5, LCenterY - 4), PointF(LCenterX - 2.5, LCenterY),
+      AbsoluteOpacity);
+    Canvas.DrawLine(PointF(LCenterX - 2.5, LCenterY), PointF(LCenterX + 2.5, LCenterY + 4),
+      AbsoluteOpacity);
+  end
+  else
+  begin
+    Canvas.DrawLine(PointF(LCenterX - 2.5, LCenterY - 4), PointF(LCenterX + 2.5, LCenterY),
+      AbsoluteOpacity);
+    Canvas.DrawLine(PointF(LCenterX + 2.5, LCenterY), PointF(LCenterX - 2.5, LCenterY + 4),
+      AbsoluteOpacity);
+  end;
+end;
+
+procedure TDaisyFmxDock.DrawItems(const AColors: TDaisyColors);
 var
   LRect, LIconBox, LLabelRect, LBar: TRectF;
   LIconSize, LLabelHeight, LGroupHeight, LTop: Single;

@@ -259,6 +259,8 @@
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.IconButton.pas"/>
         <DCCReference Include="..\..\Source\Common\Daisy.Widgets.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Select.pas"/>
+        <DCCReference Include="..\..\Source\FMX\Daisy.FMX.PageControl.pas"/>
+        <DCCReference Include="..\..\Source\FMX\Daisy.FMX.CheckBox.pas"/>
         <DCCReference Include="MainFMX.pas">
             <Form>Form15</Form>
             <FormType>fmx</FormType>

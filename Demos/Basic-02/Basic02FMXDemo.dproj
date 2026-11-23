@@ -266,6 +266,8 @@
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Accordion.pas"/>
         <DCCReference Include="..\..\Source\Common\Daisy.Widgets.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Select.pas"/>
+        <DCCReference Include="..\..\Source\Common\Daisy.Toasts.pas"/>
+        <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Toast.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.PageControl.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.CheckBox.pas"/>
         <BuildConfiguration Include="Base">

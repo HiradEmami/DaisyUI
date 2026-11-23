@@ -25,6 +25,12 @@ type
   // standard gap and leaves the rest of the dock blank
   TDaisyDockSpacing = (dspEven, dspNormal);
 
+  // The direction the dock items flow in. Left / right docks use difTopToBottom or
+  // difBottomToTop, top / bottom docks use difLeftToRight or difRightToLeft; a value of the other
+  // axis is converted to its equivalent (and back again when the Placement changes).
+  // Left and right follow the reading direction, so they are swapped in a right-to-left layout.
+  TDaisyDockFlow = (difTopToBottom, difBottomToTop, difLeftToRight, difRightToLeft);
+
   TDaisyStepsOrientation = (dsoHorizontal, dsoVertical);
 
   TDaisyBreadcrumbSeparator = (dbsChevron, dbsSlash);
@@ -139,8 +145,15 @@ function DaisyPaginationPages(ACurrent, ACount, ASiblings, ABoundary: Integer): 
 
 // Positions ACount dock items along ATotal. dspEven gives every item ATotal / ACount;
 // dspNormal gives each AItemLength (shrunk to fit if needed) separated by AGap.
+// AReverse starts the first item at the far end of ATotal instead of the near end.
 function DaisyDockSlots(ACount: Integer; ATotal, AItemLength, AGap: Single;
-  ASpacing: TDaisyDockSpacing): TArray<TDaisyDockSlot>;
+  ASpacing: TDaisyDockSpacing; AReverse: Boolean = False): TArray<TDaisyDockSlot>;
+
+// AFlow converted to the axis of APlacement (top to bottom <-> left to right)
+function DaisyDockFlowFor(APlacement: TDaisyDockPlacement; AFlow: TDaisyDockFlow): TDaisyDockFlow;
+
+// True when the items start at the end (bottom / right) of the dock
+function DaisyDockFlowReversed(AFlow: TDaisyDockFlow): Boolean;
 
 // How far content of AContent may be scrolled inside a view of AView (0 when it fits)
 function DaisyClampScroll(AOffset, AContent, AView: Single): Single;
@@ -385,8 +398,30 @@ end;
 
 { Dock }
 
+function DaisyDockFlowFor(APlacement: TDaisyDockPlacement; AFlow: TDaisyDockFlow): TDaisyDockFlow;
+begin
+  Result := AFlow;
+  if APlacement in [ddpLeft, ddpRight] then
+  begin
+    case AFlow of
+      difLeftToRight: Result := difTopToBottom;
+      difRightToLeft: Result := difBottomToTop;
+    end;
+  end
+  else
+    case AFlow of
+      difTopToBottom: Result := difLeftToRight;
+      difBottomToTop: Result := difRightToLeft;
+    end;
+end;
+
+function DaisyDockFlowReversed(AFlow: TDaisyDockFlow): Boolean;
+begin
+  Result := AFlow in [difBottomToTop, difRightToLeft];
+end;
+
 function DaisyDockSlots(ACount: Integer; ATotal, AItemLength, AGap: Single;
-  ASpacing: TDaisyDockSpacing): TArray<TDaisyDockSlot>;
+  ASpacing: TDaisyDockSpacing; AReverse: Boolean): TArray<TDaisyDockSlot>;
 var
   I: Integer;
   LLength: Single;
@@ -406,6 +441,8 @@ begin
       Result[I].Start := I * LLength
     else
       Result[I].Start := I * (LLength + AGap);
+    if AReverse then
+      Result[I].Start := ATotal - Result[I].Start - LLength;
   end;
 end;
 

@@ -183,7 +183,6 @@
         <DCCReference Include="..\..\Source\VCL\Daisy.VCL.Button.pas"/>
         <DCCReference Include="..\..\Source\Common\Daisy.Calendars.pas"/>
         <DCCReference Include="..\..\Source\VCL\Daisy.VCL.Calendar.pas"/>
-        <DCCReference Include="..\..\Source\VCL\Daisy.VCL.DatePicker.pas"/>
         <DCCReference Include="MainVCL.pas">
             <Form>FormEdits</Form>
             <FormType>dfm</FormType>

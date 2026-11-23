@@ -49,7 +49,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyCircleButton, TDaisyFmxCircleButton:** a round icon-only button.
 - **TDaisyCountdown, TDaisyFmxCountdown:** a segmented countdown display with animated digits.
 - **TDaisyDatePicker, TDaisyFmxDatePicker:** a text input that drops down a calendar and writes the chosen date back into the text.
-- **TDaisyDock, TDaisyFmxDock:** a bottom navigation bar of icon buttons with labels. It can also dock left, right or top, and spaces its items evenly or with a normal gap.
+- **TDaisyDock, TDaisyFmxDock:** a bottom navigation bar of icon buttons with labels. It can also dock left, right or top. `Spacing` spaces its items evenly or normally (packed with an `IconSpacing` gap), and `DirectionFlow` makes them flow top to bottom, bottom to top, left to right or right to left. A left or right dock shows a `<` / `>` button (`ShowExpandCollapse`) that collapses it to a 16 px strip (`Collapsed`) and expands it back to its `SizeKind` width.
 - **TDaisyDropdownMenu, TDaisyFmxDropdownMenu:** a button that opens a popup list of items.
 - **TDaisyFieldSet, TDaisyFmxFieldSet:** a grouping container with a legend and description.
 - **TDaisyFloatingActionButton, TDaisyFmxFloatingActionButton:** a round button that expands into a set of action buttons.

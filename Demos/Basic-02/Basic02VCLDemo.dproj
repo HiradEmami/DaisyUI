@@ -175,6 +175,8 @@
         <DCCReference Include="..\..\Source\VCL\Daisy.VCL.Accordion.pas"/>
         <DCCReference Include="..\..\Source\Common\Daisy.Widgets.pas"/>
         <DCCReference Include="..\..\Source\VCL\Daisy.VCL.Select.pas"/>
+        <DCCReference Include="..\..\Source\Common\Daisy.Toasts.pas"/>
+        <DCCReference Include="..\..\Source\VCL\Daisy.VCL.Toast.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

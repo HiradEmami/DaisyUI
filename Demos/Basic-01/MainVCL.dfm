@@ -93,334 +93,6 @@ object Form10: TForm10
     TabOrder = 1
     TabStop = True
     ActivePageIndex = 0
-    object tsAlerts: TDaisyTabSheet
-      Left = 1
-      Top = 41
-      Width = 966
-      Height = 470
-      TabOrder = 4
-      Caption = 'Alerts'
-      object lblAlerts: TLabel
-        Left = 16
-        Top = 8
-        Width = 44
-        Height = 21
-        Caption = 'Alerts'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object alertStatus: TDaisyAlert
-        Left = 16
-        Top = 40
-        Width = 560
-        Height = 48
-        Variant = dvInfo
-        TabOrder = 0
-        Caption = 'Click "Buy Now" on a card to update this alert.'
-      end
-      object alertSuccess: TDaisyAlert
-        Left = 16
-        Top = 100
-        Width = 560
-        Height = 48
-        Variant = dvSuccess
-        TabOrder = 1
-        Caption = 'Your purchase has been confirmed!'
-      end
-      object alertWarning: TDaisyAlert
-        Left = 16
-        Top = 160
-        Width = 560
-        Height = 48
-        Variant = dvWarning
-        Style = dsSoft
-        TabOrder = 2
-        Caption = 'Warning: Invalid email address!'
-      end
-      object alertError: TDaisyAlert
-        Left = 16
-        Top = 220
-        Width = 560
-        Height = 48
-        Variant = dvError
-        Style = dsOutline
-        TabOrder = 3
-        Caption = 'Error! Task failed successfully.'
-      end
-      object alertDefault: TDaisyAlert
-        Left = 16
-        Top = 280
-        Width = 560
-        Height = 48
-        TabOrder = 4
-        Caption = 'New software update available.'
-      end
-    end
-    object tsIndicator: TDaisyTabSheet
-      Left = 1
-      Top = 41
-      Width = 966
-      Height = 470
-      TabOrder = 5
-      Caption = 'Indicator'
-      object lblIndicator: TLabel
-        Left = 16
-        Top = 8
-        Width = 69
-        Height = 21
-        Caption = 'Indicator'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object lblIndicatorPlacement: TLabel
-        Left = 16
-        Top = 148
-        Width = 160
-        Height = 15
-        Caption = 'Placement: start / center / end'
-      end
-      object lblIndicatorResult: TLabel
-        Left = 16
-        Top = 280
-        Width = 245
-        Height = 15
-        Caption = 'Click the Inbox button item to update this text.'
-      end
-      object indBadge: TDaisyIndicator
-        Left = 16
-        Top = 40
-        Width = 120
-        Height = 88
-        TabOrder = 0
-        ItemText = '99'
-        object pnlBadge: TDaisyPanel
-          Left = 0
-          Top = 10
-          Width = 106
-          Height = 78
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indStatus: TDaisyIndicator
-        Left = 156
-        Top = 40
-        Width = 120
-        Height = 88
-        TabOrder = 1
-        ItemKind = ikStatus
-        ItemText = '99'
-        ItemVariant = dvSuccess
-        object pnlStatus: TDaisyPanel
-          Left = 0
-          Top = 4
-          Width = 116
-          Height = 84
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indButton: TDaisyIndicator
-        Left = 296
-        Top = 40
-        Width = 160
-        Height = 88
-        TabOrder = 2
-        ItemKind = ikButton
-        ItemText = 'Inbox'
-        ItemVariant = dvPrimary
-        OnItemClick = IndicatorItemClick
-        object pnlButton: TDaisyPanel
-          Left = 0
-          Top = 20
-          Width = 130
-          Height = 68
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indLarge: TDaisyIndicator
-        Left = 476
-        Top = 40
-        Width = 120
-        Height = 88
-        TabOrder = 3
-        ItemText = '12'
-        ItemVariant = dvError
-        ItemSize = dzLG
-        object pnlLarge: TDaisyPanel
-          Left = 0
-          Top = 14
-          Width = 104
-          Height = 74
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indNew: TDaisyIndicator
-        Left = 616
-        Top = 40
-        Width = 140
-        Height = 88
-        TabOrder = 4
-        ItemText = 'NEW'
-        ItemVariant = dvInfo
-        ItemSize = dzSM
-        object pnlNew: TDaisyPanel
-          Left = 0
-          Top = 10
-          Width = 124
-          Height = 78
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indP1: TDaisyIndicator
-        Left = 16
-        Top = 172
-        Width = 104
-        Height = 72
-        TabOrder = 5
-        ItemKind = ikStatus
-        ItemText = '99'
-        ItemVariant = dvPrimary
-        HorizontalPlacement = ihStart
-        object pnlP1: TDaisyPanel
-          Left = 4
-          Top = 4
-          Width = 96
-          Height = 64
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indP2: TDaisyIndicator
-        Left = 136
-        Top = 172
-        Width = 104
-        Height = 72
-        TabOrder = 6
-        ItemKind = ikStatus
-        ItemText = '99'
-        HorizontalPlacement = ihCenter
-        object pnlP2: TDaisyPanel
-          Left = 4
-          Top = 4
-          Width = 96
-          Height = 64
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indP3: TDaisyIndicator
-        Left = 256
-        Top = 172
-        Width = 104
-        Height = 72
-        TabOrder = 7
-        ItemKind = ikStatus
-        ItemText = '99'
-        ItemVariant = dvAccent
-        VerticalPlacement = ivMiddle
-        object pnlP3: TDaisyPanel
-          Left = 4
-          Top = 4
-          Width = 96
-          Height = 64
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indP4: TDaisyIndicator
-        Left = 376
-        Top = 172
-        Width = 104
-        Height = 72
-        TabOrder = 8
-        ItemKind = ikStatus
-        ItemText = '99'
-        ItemVariant = dvWarning
-        HorizontalPlacement = ihStart
-        VerticalPlacement = ivBottom
-        object pnlP4: TDaisyPanel
-          Left = 4
-          Top = 4
-          Width = 96
-          Height = 64
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indP5: TDaisyIndicator
-        Left = 496
-        Top = 172
-        Width = 104
-        Height = 72
-        TabOrder = 9
-        ItemKind = ikStatus
-        ItemText = '99'
-        ItemVariant = dvInfo
-        HorizontalPlacement = ihCenter
-        VerticalPlacement = ivBottom
-        object pnlP5: TDaisyPanel
-          Left = 4
-          Top = 4
-          Width = 96
-          Height = 64
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-      object indP6: TDaisyIndicator
-        Left = 616
-        Top = 172
-        Width = 104
-        Height = 72
-        TabOrder = 10
-        ItemKind = ikStatus
-        ItemText = '99'
-        ItemVariant = dvError
-        VerticalPlacement = ivBottom
-        object pnlP6: TDaisyPanel
-          Left = 4
-          Top = 4
-          Width = 96
-          Height = 64
-          Variant = dvNeutral
-          Style = dsSoft
-          ShadowSize = 0
-          TabOrder = 0
-        end
-      end
-    end
     object tsFieldSet: TDaisyTabSheet
       Left = 1
       Top = 41
@@ -1409,7 +1081,7 @@ object Form10: TForm10
       object lblNavCrumbs: TLabel
         Left = 16
         Top = 8
-        Width = 92
+        Width = 100
         Height = 21
         Caption = 'Breadcrumbs'
         Font.Charset = DEFAULT_CHARSET
@@ -1422,7 +1094,7 @@ object Form10: TForm10
       object lblNavLink: TLabel
         Left = 16
         Top = 176
-        Width = 31
+        Width = 32
         Height = 21
         Caption = 'Link'
         Font.Charset = DEFAULT_CHARSET
@@ -1435,7 +1107,7 @@ object Form10: TForm10
       object lblNavPagination: TLabel
         Left = 480
         Top = 8
-        Width = 75
+        Width = 84
         Height = 21
         Caption = 'Pagination'
         Font.Charset = DEFAULT_CHARSET
@@ -1448,7 +1120,7 @@ object Form10: TForm10
       object lblNavSteps: TLabel
         Left = 16
         Top = 280
-        Width = 38
+        Width = 41
         Height = 21
         Caption = 'Steps'
         Font.Charset = DEFAULT_CHARSET
@@ -1465,12 +1137,26 @@ object Form10: TForm10
         Height = 15
         Caption = 'Click a crumb or a page'
       end
+      object lblCrumbsScroll: TLabel
+        Left = 272
+        Top = 128
+        Width = 201
+        Height = 15
+        Caption = 'Too wide: scroll with the mouse wheel'
+      end
+      object lblStepsResponsive: TLabel
+        Left = 730
+        Top = 240
+        Width = 203
+        Height = 15
+        Caption = 'Vertical because it is narrower than 300'
+      end
       object crumbsIcons: TDaisyBreadcrumbs
         Left = 16
         Top = 40
         Width = 440
         Height = 32
-        OnItemClick = CrumbClick
+        TabOrder = 12
         Items = <
           item
             Caption = 'Home'
@@ -1500,14 +1186,14 @@ object Form10: TForm10
                 '<path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1' +
                 ' -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/></svg>')
           end>
+        OnItemClick = CrumbClick
       end
       object crumbsSlash: TDaisyBreadcrumbs
         Left = 16
         Top = 80
         Width = 440
         Height = 32
-        Separator = dbsSlash
-        OnItemClick = CrumbClick
+        TabOrder = 13
         Items = <
           item
             Caption = 'Home'
@@ -1518,6 +1204,8 @@ object Form10: TForm10
           item
             Caption = 'Data'
           end>
+        Separator = dbsSlash
+        OnItemClick = CrumbClick
       end
       object crumbsScroll: TDaisyBreadcrumbs
         Left = 16
@@ -1525,7 +1213,7 @@ object Form10: TForm10
         Width = 240
         Height = 32
         Variant = dvPrimary
-        OnItemClick = CrumbClick
+        TabOrder = 14
         Items = <
           item
             Caption = 'Home'
@@ -1542,19 +1230,14 @@ object Form10: TForm10
           item
             Caption = 'Details'
           end>
-      end
-      object lblCrumbsScroll: TLabel
-        Left = 272
-        Top = 128
-        Width = 188
-        Height = 15
-        Caption = 'Too wide: scroll with the mouse wheel'
+        OnItemClick = CrumbClick
       end
       object lnkDefault: TDaisyLink
         Left = 16
         Top = 208
-        Width = 86
-        Height = 24
+        Width = 73
+        Height = 23
+        Cursor = crHandPoint
         TabOrder = 0
         TabStop = True
         Caption = 'Default link'
@@ -1562,8 +1245,9 @@ object Form10: TForm10
       object lnkPrimary: TDaisyLink
         Left = 130
         Top = 208
-        Width = 86
-        Height = 24
+        Width = 76
+        Height = 23
+        Cursor = crHandPoint
         Variant = dvPrimary
         TabOrder = 1
         TabStop = True
@@ -1572,8 +1256,9 @@ object Form10: TForm10
       object lnkHover: TDaisyLink
         Left = 260
         Top = 208
-        Width = 120
-        Height = 24
+        Width = 122
+        Height = 23
+        Cursor = crHandPoint
         Variant = dvSecondary
         TabOrder = 2
         TabStop = True
@@ -1583,8 +1268,9 @@ object Form10: TForm10
       object lnkAccent: TDaisyLink
         Left = 400
         Top = 208
-        Width = 86
-        Height = 24
+        Width = 70
+        Height = 23
+        Cursor = crHandPoint
         Variant = dvAccent
         TabOrder = 3
         TabStop = True
@@ -1593,8 +1279,9 @@ object Form10: TForm10
       object lnkSuccess: TDaisyLink
         Left = 16
         Top = 240
-        Width = 86
-        Height = 24
+        Width = 75
+        Height = 23
+        Cursor = crHandPoint
         Variant = dvSuccess
         TabOrder = 4
         TabStop = True
@@ -1603,8 +1290,9 @@ object Form10: TForm10
       object lnkWarning: TDaisyLink
         Left = 130
         Top = 240
-        Width = 86
-        Height = 24
+        Width = 81
+        Height = 23
+        Cursor = crHandPoint
         Variant = dvWarning
         TabOrder = 5
         TabStop = True
@@ -1613,8 +1301,9 @@ object Form10: TForm10
       object lnkError: TDaisyLink
         Left = 260
         Top = 240
-        Width = 86
-        Height = 24
+        Width = 59
+        Height = 23
+        Cursor = crHandPoint
         Variant = dvError
         TabOrder = 6
         TabStop = True
@@ -1623,8 +1312,9 @@ object Form10: TForm10
       object lnkUrl: TDaisyLink
         Left = 400
         Top = 240
-        Width = 100
-        Height = 24
+        Width = 113
+        Height = 23
+        Cursor = crHandPoint
         Variant = dvInfo
         TabOrder = 7
         TabStop = True
@@ -1639,6 +1329,8 @@ object Form10: TForm10
         TabOrder = 8
         TabStop = True
         CurrentPage = 4
+        PrevCaption = #171
+        NextCaption = #187
         OnChange = PageChange
       end
       object pagSmall: TDaisyPagination
@@ -1652,6 +1344,8 @@ object Form10: TForm10
         TabStop = True
         PageCount = 20
         CurrentPage = 10
+        PrevCaption = #171
+        NextCaption = #187
         OnChange = PageChange
       end
       object pagPrevNext: TDaisyPagination
@@ -1661,11 +1355,10 @@ object Form10: TForm10
         Height = 40
         TabOrder = 10
         TabStop = True
+        PageCount = 5
         ShowPageNumbers = False
         PrevCaption = 'Previous'
         NextCaption = 'Next'
-        PageCount = 5
-        CurrentPage = 1
         OnChange = PageChange
       end
       object pagSeparate: TDaisyPagination
@@ -1676,9 +1369,11 @@ object Form10: TForm10
         Variant = dvSecondary
         TabOrder = 11
         TabStop = True
-        Joined = False
         PageCount = 7
         CurrentPage = 2
+        PrevCaption = #171
+        NextCaption = #187
+        Joined = False
         OnChange = PageChange
       end
       object stepsIcons: TDaisySteps
@@ -1686,7 +1381,7 @@ object Form10: TForm10
         Top = 312
         Width = 440
         Height = 64
-        ActiveStep = 2
+        TabOrder = 15
         Items = <
           item
             Caption = 'Register'
@@ -1713,17 +1408,17 @@ object Form10: TForm10
                 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
                 'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
               
-                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
-                '9 6l9 -6"/></svg>')
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9' +
+                ' 6l9 -6"/></svg>')
           end>
+        ActiveStep = 2
       end
       object stepsColors: TDaisySteps
         Left = 16
         Top = 392
         Width = 440
         Height = 64
-        ActiveStep = 3
-        ActiveVariant = dvSecondary
+        TabOrder = 16
         Items = <
           item
             Caption = 'Step 1'
@@ -1742,15 +1437,15 @@ object Form10: TForm10
             Content = '!'
             Variant = dvError
           end>
+        ActiveStep = 3
+        ActiveVariant = dvSecondary
       end
       object stepsVertical: TDaisySteps
         Left = 480
         Top = 264
         Width = 220
         Height = 192
-        Orientation = dsoVertical
-        ActiveStep = 2
-        ActiveVariant = dvAccent
+        TabOrder = 17
         Items = <
           item
             Caption = 'Register'
@@ -1761,15 +1456,16 @@ object Form10: TForm10
           item
             Caption = 'Purchase'
           end>
+        Orientation = dsoVertical
+        ActiveStep = 2
+        ActiveVariant = dvAccent
       end
       object stepsResponsive: TDaisySteps
         Left = 730
         Top = 264
         Width = 220
         Height = 192
-        ActiveStep = 2
-        ActiveVariant = dvSuccess
-        BreakWidth = 300
+        TabOrder = 18
         Items = <
           item
             Caption = 'Cart'
@@ -1780,13 +1476,9 @@ object Form10: TForm10
           item
             Caption = 'Payment'
           end>
-      end
-      object lblStepsResponsive: TLabel
-        Left = 730
-        Top = 240
-        Width = 211
-        Height = 15
-        Caption = 'Vertical because it is narrower than 300'
+        ActiveStep = 2
+        ActiveVariant = dvSuccess
+        BreakWidth = 300
       end
     end
     object tsDock: TDaisyTabSheet
@@ -1799,7 +1491,7 @@ object Form10: TForm10
       object lblDock: TLabel
         Left = 16
         Top = 8
-        Width = 36
+        Width = 39
         Height = 21
         Caption = 'Dock'
         Font.Charset = DEFAULT_CHARSET
@@ -1812,63 +1504,63 @@ object Form10: TForm10
       object lblDockEven: TLabel
         Left = 16
         Top = 40
-        Width = 134
+        Width = 120
         Height = 15
         Caption = 'Bottom, evenly spaced'
       end
       object lblDockNormal: TLabel
         Left = 16
         Top = 144
-        Width = 142
+        Width = 128
         Height = 15
-        Caption = 'Bottom, normal spacing'
+        Caption = 'Bottom, normal spacing (IconSpacing 16)'
       end
       object lblDockSmall: TLabel
         Left = 16
         Top = 248
-        Width = 209
+        Width = 203
         Height = 15
         Caption = 'Small (SM) with labels hidden, Primary'
       end
       object lblDockLarge: TLabel
         Left = 16
         Top = 340
-        Width = 119
+        Width = 97
         Height = 15
-        Caption = 'Large (LG), Accent'
+        Caption = 'Large (LG), Accent, right to left'
       end
       object lblDockLeft: TLabel
         Left = 520
         Top = 40
-        Width = 63
+        Width = 56
         Height = 15
         Caption = 'Left (even)'
       end
       object lblDockLeftNormal: TLabel
         Left = 620
         Top = 40
-        Width = 76
+        Width = 69
         Height = 15
-        Caption = 'Left (normal)'
+        Caption = 'Left, bottom-up'
       end
       object lblDockRight: TLabel
         Left = 720
         Top = 40
-        Width = 69
+        Width = 64
         Height = 15
         Caption = 'Right (even)'
       end
       object lblDockRightNormal: TLabel
         Left = 820
         Top = 40
-        Width = 82
+        Width = 77
         Height = 15
-        Caption = 'Right (normal)'
+        Caption = 'Right (gap 12)'
       end
       object lblDockResult: TLabel
         Left = 16
         Top = 444
-        Width = 94
+        Width = 91
         Height = 15
         Caption = 'Click a dock item'
       end
@@ -1879,7 +1571,6 @@ object Form10: TForm10
         Height = 64
         TabOrder = 0
         TabStop = True
-        OnChange = DockChange
         Items = <
           item
             Caption = 'Home'
@@ -1904,8 +1595,8 @@ object Form10: TForm10
                 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
                 'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
               
-                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
-                '9 6l9 -6"/></svg>')
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9' +
+                ' 6l9 -6"/></svg>')
           end
           item
             Caption = 'Settings'
@@ -1917,16 +1608,15 @@ object Form10: TForm10
                 '<path d="M4 8h4m4 0h8"/><circle cx="10" cy="8" r="2"/><path d="M' +
                 '4 16h10m4 0h2"/><circle cx="16" cy="16" r="2"/></svg>')
           end>
+        OnChange = DockChange
       end
       object dockBottomNormal: TDaisyDock
         Left = 16
         Top = 168
         Width = 440
         Height = 64
-        Spacing = dspNormal
         TabOrder = 1
         TabStop = True
-        OnChange = DockChange
         Items = <
           item
             Caption = 'Home'
@@ -1951,9 +1641,12 @@ object Form10: TForm10
                 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
                 'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
               
-                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
-                '9 6l9 -6"/></svg>')
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9' +
+                ' 6l9 -6"/></svg>')
           end>
+        Spacing = dspNormal
+        IconSpacing = 16
+        OnChange = DockChange
       end
       object dockSmall: TDaisyDock
         Left = 16
@@ -1964,8 +1657,6 @@ object Form10: TForm10
         SizeKind = dzSM
         TabOrder = 2
         TabStop = True
-        ShowLabels = False
-        OnChange = DockChange
         Items = <
           item
             Caption = 'Home'
@@ -1993,6 +1684,8 @@ object Form10: TForm10
                 '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
                 '8 6"/></svg>')
           end>
+        ShowLabels = False
+        OnChange = DockChange
       end
       object dockLarge: TDaisyDock
         Left = 16
@@ -2003,7 +1696,6 @@ object Form10: TForm10
         SizeKind = dzLG
         TabOrder = 3
         TabStop = True
-        OnChange = DockChange
         Items = <
           item
             Caption = 'Home'
@@ -2020,8 +1712,8 @@ object Form10: TForm10
                 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
                 'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
               
-                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
-                '9 6l9 -6"/></svg>')
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9' +
+                ' 6l9 -6"/></svg>')
           end
           item
             Caption = 'Settings'
@@ -2033,16 +1725,16 @@ object Form10: TForm10
                 '<path d="M4 8h4m4 0h8"/><circle cx="10" cy="8" r="2"/><path d="M' +
                 '4 16h10m4 0h2"/><circle cx="16" cy="16" r="2"/></svg>')
           end>
+        DirectionFlow = difRightToLeft
+        OnChange = DockChange
       end
       object dockLeft: TDaisyDock
         Left = 520
         Top = 64
         Width = 64
         Height = 300
-        Placement = ddpLeft
         TabOrder = 4
         TabStop = True
-        OnChange = DockChange
         Items = <
           item
             Caption = 'Home'
@@ -2070,18 +1762,17 @@ object Form10: TForm10
                 '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
                 '8 6"/></svg>')
           end>
+        Placement = ddpLeft
+        OnChange = DockChange
       end
       object dockLeftNormal: TDaisyDock
         Left = 620
         Top = 64
         Width = 64
         Height = 300
-        Placement = ddpLeft
-        Spacing = dspNormal
         Variant = dvSecondary
         TabOrder = 5
         TabStop = True
-        OnChange = DockChange
         Items = <
           item
             Caption = 'Home'
@@ -2109,17 +1800,19 @@ object Form10: TForm10
                 '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
                 '8 6"/></svg>')
           end>
+        Placement = ddpLeft
+        Spacing = dspNormal
+        DirectionFlow = difBottomToTop
+        OnChange = DockChange
       end
       object dockRight: TDaisyDock
         Left = 720
         Top = 64
         Width = 64
         Height = 300
-        Placement = ddpRight
         Variant = dvInfo
         TabOrder = 6
         TabStop = True
-        OnChange = DockChange
         Items = <
           item
             Caption = 'Home'
@@ -2147,18 +1840,17 @@ object Form10: TForm10
                 '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
                 '8 6"/></svg>')
           end>
+        Placement = ddpRight
+        OnChange = DockChange
       end
       object dockRightNormal: TDaisyDock
         Left = 820
         Top = 64
         Width = 64
         Height = 300
-        Placement = ddpRight
-        Spacing = dspNormal
         Variant = dvSuccess
         TabOrder = 7
         TabStop = True
-        OnChange = DockChange
         Items = <
           item
             Caption = 'Home'
@@ -2186,6 +1878,338 @@ object Form10: TForm10
                 '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
                 '8 6"/></svg>')
           end>
+        Placement = ddpRight
+        Spacing = dspNormal
+        IconSpacing = 12
+        OnChange = DockChange
+      end
+    end
+    object tsAlerts: TDaisyTabSheet
+      Left = 1
+      Top = 41
+      Width = 966
+      Height = 470
+      TabOrder = 4
+      Caption = 'Alerts'
+      object lblAlerts: TLabel
+        Left = 16
+        Top = 8
+        Width = 44
+        Height = 21
+        Caption = 'Alerts'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object alertStatus: TDaisyAlert
+        Left = 16
+        Top = 40
+        Width = 560
+        Height = 48
+        Variant = dvInfo
+        TabOrder = 0
+        Caption = 'Click "Buy Now" on a card to update this alert.'
+      end
+      object alertSuccess: TDaisyAlert
+        Left = 16
+        Top = 100
+        Width = 560
+        Height = 48
+        Variant = dvSuccess
+        TabOrder = 1
+        Caption = 'Your purchase has been confirmed!'
+      end
+      object alertWarning: TDaisyAlert
+        Left = 16
+        Top = 160
+        Width = 560
+        Height = 48
+        Variant = dvWarning
+        Style = dsSoft
+        TabOrder = 2
+        Caption = 'Warning: Invalid email address!'
+      end
+      object alertError: TDaisyAlert
+        Left = 16
+        Top = 220
+        Width = 560
+        Height = 48
+        Variant = dvError
+        Style = dsOutline
+        TabOrder = 3
+        Caption = 'Error! Task failed successfully.'
+      end
+      object alertDefault: TDaisyAlert
+        Left = 16
+        Top = 280
+        Width = 560
+        Height = 48
+        TabOrder = 4
+        Caption = 'New software update available.'
+      end
+    end
+    object tsIndicator: TDaisyTabSheet
+      Left = 1
+      Top = 41
+      Width = 966
+      Height = 470
+      TabOrder = 5
+      Caption = 'Indicator'
+      object lblIndicator: TLabel
+        Left = 16
+        Top = 8
+        Width = 69
+        Height = 21
+        Caption = 'Indicator'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblIndicatorPlacement: TLabel
+        Left = 16
+        Top = 148
+        Width = 160
+        Height = 15
+        Caption = 'Placement: start / center / end'
+      end
+      object lblIndicatorResult: TLabel
+        Left = 16
+        Top = 280
+        Width = 245
+        Height = 15
+        Caption = 'Click the Inbox button item to update this text.'
+      end
+      object indBadge: TDaisyIndicator
+        Left = 16
+        Top = 40
+        Width = 120
+        Height = 88
+        TabOrder = 0
+        ItemText = '99'
+        object pnlBadge: TDaisyPanel
+          Left = 0
+          Top = 10
+          Width = 106
+          Height = 78
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indStatus: TDaisyIndicator
+        Left = 156
+        Top = 40
+        Width = 120
+        Height = 88
+        TabOrder = 1
+        ItemKind = ikStatus
+        ItemText = '99'
+        ItemVariant = dvSuccess
+        object pnlStatus: TDaisyPanel
+          Left = 0
+          Top = 4
+          Width = 116
+          Height = 84
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indButton: TDaisyIndicator
+        Left = 296
+        Top = 40
+        Width = 160
+        Height = 88
+        TabOrder = 2
+        ItemKind = ikButton
+        ItemText = 'Inbox'
+        ItemVariant = dvPrimary
+        OnItemClick = IndicatorItemClick
+        object pnlButton: TDaisyPanel
+          Left = 0
+          Top = 20
+          Width = 130
+          Height = 68
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indLarge: TDaisyIndicator
+        Left = 476
+        Top = 40
+        Width = 120
+        Height = 88
+        TabOrder = 3
+        ItemText = '12'
+        ItemVariant = dvError
+        ItemSize = dzLG
+        object pnlLarge: TDaisyPanel
+          Left = 0
+          Top = 14
+          Width = 104
+          Height = 74
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indNew: TDaisyIndicator
+        Left = 616
+        Top = 40
+        Width = 140
+        Height = 88
+        TabOrder = 4
+        ItemText = 'NEW'
+        ItemVariant = dvInfo
+        ItemSize = dzSM
+        object pnlNew: TDaisyPanel
+          Left = 0
+          Top = 10
+          Width = 124
+          Height = 78
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indP1: TDaisyIndicator
+        Left = 16
+        Top = 172
+        Width = 104
+        Height = 72
+        TabOrder = 5
+        ItemKind = ikStatus
+        ItemText = '99'
+        ItemVariant = dvPrimary
+        HorizontalPlacement = ihStart
+        object pnlP1: TDaisyPanel
+          Left = 4
+          Top = 4
+          Width = 96
+          Height = 64
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indP2: TDaisyIndicator
+        Left = 136
+        Top = 172
+        Width = 104
+        Height = 72
+        TabOrder = 6
+        ItemKind = ikStatus
+        ItemText = '99'
+        HorizontalPlacement = ihCenter
+        object pnlP2: TDaisyPanel
+          Left = 4
+          Top = 4
+          Width = 96
+          Height = 64
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indP3: TDaisyIndicator
+        Left = 256
+        Top = 172
+        Width = 104
+        Height = 72
+        TabOrder = 7
+        ItemKind = ikStatus
+        ItemText = '99'
+        ItemVariant = dvAccent
+        VerticalPlacement = ivMiddle
+        object pnlP3: TDaisyPanel
+          Left = 4
+          Top = 4
+          Width = 96
+          Height = 64
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indP4: TDaisyIndicator
+        Left = 376
+        Top = 172
+        Width = 104
+        Height = 72
+        TabOrder = 8
+        ItemKind = ikStatus
+        ItemText = '99'
+        ItemVariant = dvWarning
+        HorizontalPlacement = ihStart
+        VerticalPlacement = ivBottom
+        object pnlP4: TDaisyPanel
+          Left = 4
+          Top = 4
+          Width = 96
+          Height = 64
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indP5: TDaisyIndicator
+        Left = 496
+        Top = 172
+        Width = 104
+        Height = 72
+        TabOrder = 9
+        ItemKind = ikStatus
+        ItemText = '99'
+        ItemVariant = dvInfo
+        HorizontalPlacement = ihCenter
+        VerticalPlacement = ivBottom
+        object pnlP5: TDaisyPanel
+          Left = 4
+          Top = 4
+          Width = 96
+          Height = 64
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
+      end
+      object indP6: TDaisyIndicator
+        Left = 616
+        Top = 172
+        Width = 104
+        Height = 72
+        TabOrder = 10
+        ItemKind = ikStatus
+        ItemText = '99'
+        ItemVariant = dvError
+        VerticalPlacement = ivBottom
+        object pnlP6: TDaisyPanel
+          Left = 4
+          Top = 4
+          Width = 96
+          Height = 64
+          Variant = dvNeutral
+          Style = dsSoft
+          ShadowSize = 0
+          TabOrder = 0
+        end
       end
     end
   end

@@ -42,12 +42,12 @@ begin
     TDaisyFmxBadgeButton, TDaisyFmxDropdownMenu, TDaisyFmxFloatingActionButton, TDaisyFmxSwap,
     TDaisyFmxThemeController]);
   RegisterComponents(CPageDisplay, [TDaisyFmxAccordion, TDaisyFmxBadge, TDaisyFmxCard,
-    TDaisyFmxChatBubble, TDaisyFmxCountdown, TDaisyFmxList, TDaisyFmxStat, TDaisyFmxStatus,
-    TDaisyFmxSVGImage, TDaisyFmxTable]);
+    TDaisyFmxChatBubble, TDaisyFmxCountdown, TDaisyFmxLabel, TDaisyFmxList, TDaisyFmxStat,
+    TDaisyFmxStatus, TDaisyFmxSVGImage, TDaisyFmxTable]);
   RegisterComponents(CPageFeedback, [TDaisyFmxAlert, TDaisyFmxProgress, TDaisyFmxRadialProgress,
     TDaisyFmxToast]);
   RegisterComponents(CPageInput, [TDaisyFmxCalendar, TDaisyFmxCheckBox, TDaisyFmxDatePicker,
-    TDaisyFmxFieldSet, TDaisyFmxLabel, TDaisyFmxRange, TDaisyFmxRating, TDaisyFmxSelect,
+    TDaisyFmxFieldSet, TDaisyFmxRange, TDaisyFmxRating, TDaisyFmxSelect,
     TDaisyFmxTextArea, TDaisyFmxTextInput, TDaisyFmxToggle]);
   RegisterComponents(CPageNavigation, [TDaisyFmxBreadcrumbs, TDaisyFmxDock, TDaisyFmxLink,
     TDaisyFmxMainMenu, TDaisyFmxMenu, TDaisyFmxPageControl, TDaisyFmxPagination,

@@ -170,6 +170,8 @@
         <DCCReference Include="..\..\Source\VCL\Daisy.VCL.List.pas"/>
         <DCCReference Include="..\..\Source\VCL\Daisy.VCL.Stat.pas"/>
         <DCCReference Include="..\..\Source\VCL\Daisy.VCL.Select.pas"/>
+        <DCCReference Include="..\..\Source\VCL\Daisy.VCL.Progress.pas"/>
+        <DCCReference Include="..\..\Source\VCL\Daisy.VCL.RadialProgress.pas"/>
         <DCCReference Include="MainVCL.pas">
             <Form>Form16</Form>
             <FormType>dfm</FormType>

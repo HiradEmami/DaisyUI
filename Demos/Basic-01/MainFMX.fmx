@@ -1889,10 +1889,10 @@ object Form11: TForm11
         AutoSize = True
         Position.X = 16
         Position.Y = 144
-        Size.Width = 150
+        Size.Width = 260
         Size.Height = 17
         Size.PlatformDefault = False
-        Text = 'Bottom, normal spacing'
+        Text = 'Bottom, normal spacing (IconSpacing 16)'
         TabOrder = 2
       end
       object lblDockSmall: TLabel
@@ -1909,10 +1909,10 @@ object Form11: TForm11
         AutoSize = True
         Position.X = 16
         Position.Y = 340
-        Size.Width = 130
+        Size.Width = 240
         Size.Height = 17
         Size.PlatformDefault = False
-        Text = 'Large (LG), Accent'
+        Text = 'Large (LG), Accent, right to left'
         TabOrder = 4
       end
       object lblDockLeft: TLabel
@@ -1932,7 +1932,7 @@ object Form11: TForm11
         Size.Width = 85
         Size.Height = 17
         Size.PlatformDefault = False
-        Text = 'Left (normal)'
+        Text = 'Left, bottom-up'
         TabOrder = 6
       end
       object lblDockRight: TLabel
@@ -1952,7 +1952,7 @@ object Form11: TForm11
         Size.Width = 90
         Size.Height = 17
         Size.PlatformDefault = False
-        Text = 'Right (normal)'
+        Text = 'Right (gap 12)'
         TabOrder = 8
       end
       object lblDockResult: TLabel
@@ -2013,6 +2013,7 @@ object Form11: TForm11
       end
       object dockBottomNormal: TDaisyFmxDock
         Spacing = dspNormal
+        IconSpacing = 16
         Position.X = 16
         Position.Y = 168
         Size.Width = 440
@@ -2089,6 +2090,7 @@ object Form11: TForm11
       end
       object dockLarge: TDaisyFmxDock
         Variant = dvAccent
+        DirectionFlow = difRightToLeft
         SizeKind = dzLG
         Position.X = 16
         Position.Y = 364
@@ -2168,6 +2170,7 @@ object Form11: TForm11
         Variant = dvSecondary
         Placement = ddpLeft
         Spacing = dspNormal
+        DirectionFlow = difBottomToTop
         Position.X = 620
         Position.Y = 64
         Size.Width = 64
@@ -2245,6 +2248,7 @@ object Form11: TForm11
         Variant = dvSuccess
         Placement = ddpRight
         Spacing = dspNormal
+        IconSpacing = 12
         Position.X = 820
         Position.Y = 64
         Size.Width = 64

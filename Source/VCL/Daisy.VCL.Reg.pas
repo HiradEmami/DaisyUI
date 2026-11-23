@@ -41,11 +41,12 @@ begin
     TDaisyLoadingButton, TDaisyAnimationButton, TDaisyBadgeButton, TDaisyDropdownMenu,
     TDaisyFloatingActionButton, TDaisySwap, TDaisyThemeController]);
   RegisterComponents(CPageDisplay, [TDaisyAccordion, TDaisyBadge, TDaisyCard, TDaisyChatBubble,
-    TDaisyCountdown, TDaisyList, TDaisyStat, TDaisyStatus, TDaisySVGImage, TDaisyTable]);
+    TDaisyCountdown, TDaisyLabel, TDaisyList, TDaisyStat, TDaisyStatus, TDaisySVGImage,
+    TDaisyTable]);
   RegisterComponents(CPageFeedback, [TDaisyAlert, TDaisyProgress, TDaisyRadialProgress,
     TDaisyToast]);
   RegisterComponents(CPageInput, [TDaisyCalendar, TDaisyCheckBox, TDaisyDatePicker,
-    TDaisyFieldSet, TDaisyLabel, TDaisyRange, TDaisyRating, TDaisySelect, TDaisyTextArea,
+    TDaisyFieldSet, TDaisyRange, TDaisyRating, TDaisySelect, TDaisyTextArea,
     TDaisyTextInput, TDaisyToggle]);
   RegisterComponents(CPageNavigation, [TDaisyBreadcrumbs, TDaisyDock, TDaisyLink, TDaisyMainMenu,
     TDaisyMenu, TDaisyPageControl, TDaisyPagination, TDaisyPopupMenu, TDaisySteps,

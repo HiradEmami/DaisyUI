@@ -271,6 +271,9 @@
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.PopupMenu.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.CheckBox.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.PageControl.pas"/>
+        <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Button.pas"/>
+        <DCCReference Include="..\..\Source\Common\Daisy.Calendars.pas"/>
+        <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Calendar.pas"/>
         <DCCReference Include="MainFMX.pas">
             <Form>FormEdits</Form>
             <FormType>fmx</FormType>

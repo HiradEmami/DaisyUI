@@ -261,6 +261,8 @@
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.List.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Stat.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Select.pas"/>
+        <DCCReference Include="..\..\Source\FMX\Daisy.FMX.Progress.pas"/>
+        <DCCReference Include="..\..\Source\FMX\Daisy.FMX.RadialProgress.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.CheckBox.pas"/>
         <DCCReference Include="..\..\Source\FMX\Daisy.FMX.PageControl.pas"/>
         <DCCReference Include="MainFMX.pas">
