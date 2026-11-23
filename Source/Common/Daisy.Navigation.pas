@@ -31,6 +31,11 @@ type
   // Left and right follow the reading direction, so they are swapped in a right-to-left layout.
   TDaisyDockFlow = (difTopToBottom, difBottomToTop, difLeftToRight, difRightToLeft);
 
+  // How much of a left / right dock is showing: vsExpanded is the full SizeKind width,
+  // vsCollapsed is a narrow strip of icons without labels, vsFullyCollapsed is a 16 px strip
+  // holding just the expand button
+  TDaisyDockVisibleState = (vsFullyCollapsed, vsCollapsed, vsExpanded);
+
   TDaisyStepsOrientation = (dsoHorizontal, dsoVertical);
 
   TDaisyBreadcrumbSeparator = (dbsChevron, dbsSlash);
@@ -162,6 +167,8 @@ function DaisyClampScroll(AOffset, AContent, AView: Single): Single;
 function DaisyDockThickness(ASize: TDaisySize): Integer;
 function DaisyDockIconSize(ASize: TDaisySize): Integer;
 function DaisyDockFontSize(ASize: TDaisySize): Integer;
+// The width of a left / right dock whose VisibleState is vsCollapsed
+function DaisyDockCollapsedThickness(ASize: TDaisySize): Integer;
 
 // Diameter of a step circle and thickness of the line joining the circles
 function DaisyStepCircle(ASize: TDaisySize): Integer;
@@ -470,6 +477,11 @@ const
   C: array[TDaisySize] of Integer = (9, 10, 11, 12, 14);
 begin
   Result := C[ASize];
+end;
+
+function DaisyDockCollapsedThickness(ASize: TDaisySize): Integer;
+begin
+  Result := DaisyDockIconSize(ASize) + 24;
 end;
 
 function DaisyStepCircle(ASize: TDaisySize): Integer;

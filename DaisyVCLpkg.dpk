@@ -31,6 +31,8 @@ package DaisyVCLpkg;
 requires
   rtl,
   vcl,
+  vclwinx,
+  designide,
   DaisyCommonpkg;
 
 contains
@@ -81,6 +83,7 @@ contains
   Daisy.VCL.Link in 'Source\VCL\Daisy.VCL.Link.pas',
   Daisy.VCL.Pagination in 'Source\VCL\Daisy.VCL.Pagination.pas',
   Daisy.VCL.Steps in 'Source\VCL\Daisy.VCL.Steps.pas',
+  Daisy.VCL.TitleBarPanel in 'Source\VCL\Daisy.VCL.TitleBarPanel.pas',
   Daisy.VCL.ThemeController in 'Source\VCL\Daisy.VCL.ThemeController.pas';
 
 end.

@@ -134,6 +134,7 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
+        <DCCReference Include="designide.dcp"/>
         <DCCReference Include="DaisyCommonpkg.dcp"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Card.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Reg.pas"/>
@@ -182,6 +183,7 @@
         <DCCReference Include="Source\FMX\Daisy.FMX.Link.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Pagination.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Steps.pas"/>
+        <DCCReference Include="Source\FMX\Daisy.FMX.TitleBarPanel.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.ThemeController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

@@ -11,7 +11,7 @@ uses
   Daisy.FMX.TextInput, Daisy.FMX.Indicator, Daisy.FMX.FieldSet,
   Daisy.FMX.Swap, Daisy.FMX.Stack, Daisy.FMX.ThemeController,
   Daisy.Navigation, Daisy.FMX.Breadcrumbs, Daisy.FMX.Dock, Daisy.FMX.Link, Daisy.FMX.Pagination,
-  Daisy.FMX.Steps,
+  Daisy.FMX.Steps, Daisy.FMX.Badge, Daisy.FMX.Toggle, Daisy.FMX.TitleBarPanel,
   FMX.Controls.Presentation;
 
 type
@@ -19,6 +19,10 @@ type
     lblTheme: TLabel;
     selTheme: TDaisyFmxSelect;
     Styler: TDaisyFmxFormStyler;
+    tbpMain: TDaisyFmxTitleBarPanel;
+    badgeTitle: TDaisyFmxBadge;
+    edtTitleSearch: TDaisyFmxTextInput;
+    togTitle: TDaisyFmxToggle;
     pcMain: TDaisyFmxPageControl;
     tsVariants: TDaisyFmxTabSheet;
     tsStyles: TDaisyFmxTabSheet;

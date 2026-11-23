@@ -134,6 +134,8 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="vcl.dcp"/>
+        <DCCReference Include="vclwinx.dcp"/>
+        <DCCReference Include="designide.dcp"/>
         <DCCReference Include="DaisyCommonpkg.dcp"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.Reg.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.Control.pas"/>
@@ -182,6 +184,7 @@
         <DCCReference Include="Source\VCL\Daisy.VCL.Link.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.Pagination.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.Steps.pas"/>
+        <DCCReference Include="Source\VCL\Daisy.VCL.TitleBarPanel.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.ThemeController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

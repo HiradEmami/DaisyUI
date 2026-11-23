@@ -412,6 +412,13 @@ A single-line text input.
 
 A toggle that switches the form between two themes, for example *Corporate* and *Dim*. Place it on a form and choose the two themes; it updates the theme of the form and every control that inherits it. The demos each include one.
 
+### TDaisyTitleBarPanel, TDaisyFmxTitleBarPanel
+
+Not a daisyUI component: a themed title bar that can host other controls (dock, text input, toggle, swap, buttons, badges, labels).
+
+- **VCL**: a `TTitleBarPanel` (it descends from `TCustomTitleBarPanel`, so it is not a `TDaisyControl`). Drop it on the form; the form's `CustomTitleBar.Control` is set to it and `CustomTitleBar.Enabled` to True at run time when `AutoAttach` is True and the form has no title bar control yet. While the form styler's `ThemedTitleBar` is True it colours `CustomTitleBar` from the theme (the base-100 caption; there is no `Variant`) and recolours it when the theme changes. When it is False the system colours are used. Colours are only applied at run time. The panel overlays the top of the form's client area, so place the other controls below it. `CustomButtons` and `OnPaint` work as on `TTitleBarPanel`.
+- **FMX**: FMX has no custom title bar, so this is one: a bar aligned to the top that draws the form's caption and the minimize, maximize and close buttons, drags the window and maximises on double-click. `HideNativeTitleBar` (default True) sets the form's `BorderStyle` to `None` at run time, so a form with it cannot be resized from its edges; set it to False to keep the native title bar and use the panel as a themed container. `ShowCaption`, `CaptionAlignment`, `SystemButtons` adjust the bar.
+
 ### TDaisyToast, TDaisyFmxToast
 
 Transient messages that appear in a corner of the parent and disappear after a delay. Place the toast on the parent that should host the messages (for example a tab sheet) and call `Post(Text, Variant)` (or `Post(Text, Variant, Seconds)`) to show a message. `Clear` removes all messages.

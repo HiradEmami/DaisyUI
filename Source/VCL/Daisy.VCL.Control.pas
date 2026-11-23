@@ -156,8 +156,12 @@ type
     procedure Invalidate; override;
     // Re-colours the caption of every open form from the current theme
     class procedure ApplyTitleBars;
+    // Called at the end of ApplyTitleBars (the theme changed or ThemedTitleBar was switched), so
+    // title bar controls can restyle themselves
+    class procedure AddTitleBarListener(AListener: TNotifyEvent);
+    class procedure RemoveTitleBarListener(AListener: TNotifyEvent);
     // Switches a form's BiDiMode (and optionally flips its children) with painting suspended, so the
-    // many child windows are not repainted one by one (which flickers); repaints once at the end.
+    // Switches a form's BiDiMode BiDiMode (and optionally flips its children) with painting suspended, so the    // many child windows are not repainted one by one (which flickers); repaints once at the end.
     class procedure ApplyBiDiMode(AForm: TWinControl; AMode: TBiDiMode; AFlipChildren: Boolean = True);
     // When True, form title bars (Windows 11+) follow the current Daisy theme
     class property ThemedTitleBar: Boolean read FThemedTitleBar write SetThemedTitleBar;
@@ -219,21 +223,41 @@ type
 
 var
   GTitleBarHook: TTitleBarHook = nil;
+  GTitleBarListeners: TArray<TNotifyEvent> = nil;
 
 procedure TTitleBarHook.ThemeChanged(Sender: TObject);
 begin
   TDaisyControl.ApplyTitleBars;
 end;
 
+class procedure TDaisyControl.AddTitleBarListener(AListener: TNotifyEvent);
+begin
+  GTitleBarListeners := GTitleBarListeners + [AListener];
+end;
+
+class procedure TDaisyControl.RemoveTitleBarListener(AListener: TNotifyEvent);
+var
+  I: Integer;
+begin
+  for I := High(GTitleBarListeners) downto 0 do
+    if (TMethod(GTitleBarListeners[I]).Code = TMethod(AListener).Code) and
+      (TMethod(GTitleBarListeners[I]).Data = TMethod(AListener).Data) then
+      Delete(GTitleBarListeners, I, 1);
+end;
+
 class procedure TDaisyControl.ApplyTitleBars;
 var
   I: Integer;
   LTheme: TDaisyTheme;
+  LListeners: TArray<TNotifyEvent>;
 begin
   LTheme := DaisyGetTheme(dtInherit);
   for I := 0 to Screen.FormCount - 1 do
     if Screen.Forms[I].HandleAllocated then
       DaisySetTitleBarColors(Screen.Forms[I].Handle, FThemedTitleBar, LTheme);
+  LListeners := Copy(GTitleBarListeners);
+  for I := 0 to High(LListeners) do
+    LListeners[I](nil);
 end;
 
 class procedure TDaisyControl.SetThemedTitleBar(const Value: Boolean);
@@ -1273,10 +1297,10 @@ begin
 end;
 
 // Repaint without erasing on screen: the double buffer already paints the parent
-// background into memory, so a screen erase only causes flicker.
+// background into memory, so a screen erase only causes flicker (at design time too).
 procedure TDaisyControl.Invalidate;
 begin
-  if HandleAllocated and Visible and not (csDesigning in ComponentState) then
+  if HandleAllocated and Visible then
     InvalidateRect(Handle, nil, False)
   else
     inherited Invalidate;
@@ -1296,7 +1320,7 @@ begin
       SetViewportOrgEx(Message.DC, LOrigin.X - Left, LOrigin.Y - Top, nil);
       IntersectClipRect(Message.DC, 0, 0, Parent.ClientWidth, Parent.ClientHeight);
       Parent.Perform(WM_ERASEBKGND, WPARAM(Message.DC), 0);
-      if Parent is TCustomControl then
+      if (Parent is TCustomControl) and not (csDestroying in Parent.ComponentState) then
         Parent.Perform(WM_PRINTCLIENT, WPARAM(Message.DC), PRF_CLIENT);
     finally
       RestoreDC(Message.DC, LSaved);

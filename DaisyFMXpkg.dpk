@@ -31,6 +31,7 @@ package DaisyFMXpkg;
 requires
   rtl,
   fmx,
+  designide,
   DaisyCommonpkg;
 
 contains
@@ -81,6 +82,7 @@ contains
   Daisy.FMX.Link in 'Source\FMX\Daisy.FMX.Link.pas',
   Daisy.FMX.Pagination in 'Source\FMX\Daisy.FMX.Pagination.pas',
   Daisy.FMX.Steps in 'Source\FMX\Daisy.FMX.Steps.pas',
+  Daisy.FMX.TitleBarPanel in 'Source\FMX\Daisy.FMX.TitleBarPanel.pas',
   Daisy.FMX.ThemeController in 'Source\FMX\Daisy.FMX.ThemeController.pas';
 
 end.

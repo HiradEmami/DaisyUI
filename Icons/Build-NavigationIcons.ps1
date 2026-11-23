@@ -1,4 +1,5 @@
-﻿# Builds the palette icons of the navigation components (Breadcrumbs, Dock, Link, Pagination, Steps).
+﻿# Builds the palette icons of the navigation components (Breadcrumbs, Dock, Link, Pagination, Steps)
+# and the title bar panel.
 #   Icons\<Name>.bmp                        (24 x 24, magenta transparent key)
 #   Source\VCL\Daisy.VCL.Reg3.dcr           (TDAISY<NAME>)
 #   Source\FMX\Daisy.FMX.Reg3.dcr           (TDAISYFMX<NAME>)
@@ -177,12 +178,38 @@ function Draw-Steps {
     $g.Dispose()
     return $b
 }
+
+# TDaisyTitleBarPanel: a window whose title bar carries a control and the caption buttons
+function Draw-TitleBarPanel {
+    $base = [System.Drawing.Color]::FromArgb(13, 148, 136)
+    $b = New-Tile $base
+    $g = New-Gfx $b
+    Fill-Round $g $white 3.5 4.5 17 15 2
+    $bar = [System.Drawing.Color]::FromArgb(45, 55, 72)
+    Fill-Round $g $bar 3.5 4.5 17 5.4 2
+    $bar2 = New-Object System.Drawing.SolidBrush $bar
+    $g.FillRectangle($bar2, 3.5, 7, 17, 2.9)
+    $bar2.Dispose()
+    Fill-Round $g ([System.Drawing.Color]::FromArgb(251, 191, 36)) 5 5.9 5 2.6 1.3
+    Fill-Round $g (Alpha 200) 11.2 6.7 3.2 1 0.5
+    $x = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(248, 113, 113))
+    $g.FillEllipse($x, 15.2, 6.1, 2.2, 2.2)
+    $x.Dispose()
+    $x = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(134, 239, 172))
+    $g.FillEllipse($x, 17.8, 6.1, 2.2, 2.2)
+    $x.Dispose()
+    Fill-Round $g ([System.Drawing.Color]::FromArgb(153, 246, 228)) 5 12 10 1.8 0.9
+    Fill-Round $g ([System.Drawing.Color]::FromArgb(153, 246, 228)) 5 15.2 7 1.8 0.9
+    $g.Dispose()
+    return $b
+}
 $icons = [ordered]@{
     'Breadcrumbs' = (Draw-Breadcrumbs)
     'Dock'        = (Draw-Dock)
     'Link'        = (Draw-Link)
     'Pagination'  = (Draw-Pagination)
     'Steps'       = (Draw-Steps)
+    'TitleBarPanel' = (Draw-TitleBarPanel)
 }
 
 function Build-Dcr($prefix, $dcr) {

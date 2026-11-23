@@ -151,6 +151,10 @@ type
     function LocalToAbsolute(const APoint: TPointF): TPointF; override;
     // Re-colours the caption of every visible form from the current theme (Windows only)
     class procedure ApplyTitleBars;
+    // Called at the end of ApplyTitleBars (the theme changed or ThemedTitleBar was switched), so
+    // title bar controls can restyle themselves
+    class procedure AddTitleBarListener(AListener: TNotifyEvent);
+    class procedure RemoveTitleBarListener(AListener: TNotifyEvent);
     // Sets the form's BiDiMode (and optionally flips its child controls) and refreshes every Daisy control
     class procedure ApplyBiDiMode(AForm: TCommonCustomForm; AMode: TBiDiMode;
       AFlipChildren: Boolean = True);
@@ -213,19 +217,38 @@ type
 
 var
   GTitleBarHook: TTitleBarHook = nil;
+  GTitleBarListeners: TArray<TNotifyEvent> = nil;
 
 procedure TTitleBarHook.ThemeChanged(Sender: TObject);
 begin
   TDaisyControl.ApplyTitleBars;
 end;
 
-class procedure TDaisyControl.ApplyTitleBars;
-{$IFDEF MSWINDOWS}
+class procedure TDaisyControl.AddTitleBarListener(AListener: TNotifyEvent);
+begin
+  GTitleBarListeners := GTitleBarListeners + [AListener];
+end;
+
+class procedure TDaisyControl.RemoveTitleBarListener(AListener: TNotifyEvent);
 var
   I: Integer;
+begin
+  for I := High(GTitleBarListeners) downto 0 do
+    if (TMethod(GTitleBarListeners[I]).Code = TMethod(AListener).Code) and
+      (TMethod(GTitleBarListeners[I]).Data = TMethod(AListener).Data) then
+      Delete(GTitleBarListeners, I, 1);
+end;
+
+class procedure TDaisyControl.ApplyTitleBars;
+var
+  I: Integer;
+  LListeners: TArray<TNotifyEvent>;
+{$IFDEF MSWINDOWS}
   LTheme: TDaisyTheme;
   LForm: TCommonCustomForm;
+{$ENDIF}
 begin
+{$IFDEF MSWINDOWS}
   LTheme := DaisyGetTheme(dtInherit);
   for I := 0 to Screen.FormCount - 1 do
   begin
@@ -233,11 +256,11 @@ begin
     if LForm.Visible then
       DaisySetTitleBarColors(NativeUInt(FormToHWND(LForm)), FThemedTitleBar, LTheme);
   end;
-end;
-{$ELSE}
-begin
-end;
 {$ENDIF}
+  LListeners := Copy(GTitleBarListeners);
+  for I := 0 to High(LListeners) do
+    LListeners[I](nil);
+end;
 
 class procedure TDaisyControl.SetThemedTitleBar(const Value: Boolean);
 begin

@@ -10,13 +10,18 @@ uses
   Daisy.VCL.TextInput, Daisy.VCL.Indicator, Daisy.VCL.FieldSet,
   Daisy.VCL.Swap, Daisy.VCL.Stack, Daisy.VCL.ThemeController, System.Actions,
   Daisy.Navigation, Daisy.VCL.Breadcrumbs, Daisy.VCL.Dock, Daisy.VCL.Link, Daisy.VCL.Pagination,
-  Daisy.VCL.Steps;
+  Daisy.VCL.Steps, Daisy.VCL.Badge, Daisy.VCL.Toggle, Daisy.VCL.TitleBarPanel,
+  Vcl.TitleBarCtrls;
 
 type
   TForm10 = class(TForm)
     lblTheme: TLabel;
     selTheme: TDaisySelect;
     Styler: TDaisyFormStyler;
+    tbpMain: TDaisyTitleBarPanel;
+    badgeTitle: TDaisyBadge;
+    edtTitleSearch: TDaisyTextInput;
+    togTitle: TDaisyToggle;
     pcMain: TDaisyPageControl;
     tsVariants: TDaisyTabSheet;
     tsStyles: TDaisyTabSheet;

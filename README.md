@@ -49,7 +49,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyCircleButton, TDaisyFmxCircleButton:** a round icon-only button.
 - **TDaisyCountdown, TDaisyFmxCountdown:** a segmented countdown display with animated digits.
 - **TDaisyDatePicker, TDaisyFmxDatePicker:** a text input that drops down a calendar and writes the chosen date back into the text.
-- **TDaisyDock, TDaisyFmxDock:** a bottom navigation bar of icon buttons with labels. It can also dock left, right or top. `Spacing` spaces its items evenly or normally (packed with an `IconSpacing` gap), and `DirectionFlow` makes them flow top to bottom, bottom to top, left to right or right to left. A left or right dock shows a `<` / `>` button (`ShowExpandCollapse`) that collapses it to a 16 px strip (`Collapsed`) and expands it back to its `SizeKind` width.
+- **TDaisyDock, TDaisyFmxDock:** a bottom navigation bar of icon buttons with labels. It can also dock left, right or top. `Spacing` spaces its items evenly or normally (packed with an `IconSpacing` gap), and `DirectionFlow` makes them flow top to bottom, bottom to top, left to right or right to left. A left or right dock shows a `<` / `>` button (`ShowExpandCollapse`) that steps `VisibleState` between `vsExpanded` (the `SizeKind` width), `vsCollapsed` (a narrow strip of icons without labels) and `vsFullyCollapsed` (a 16 px strip with only the expand button). `VisibleBorder` shows or hides the dock's border.
 - **TDaisyDropdownMenu, TDaisyFmxDropdownMenu:** a button that opens a popup list of items.
 - **TDaisyFieldSet, TDaisyFmxFieldSet:** a grouping container with a legend and description.
 - **TDaisyFloatingActionButton, TDaisyFmxFloatingActionButton:** a round button that expands into a set of action buttons.
@@ -82,6 +82,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyTextArea, TDaisyFmxTextArea:** a multi-line text input.
 - **TDaisyTextInput, TDaisyFmxTextInput:** a single-line text input with label, legend and icons.
 - **TDaisyThemeController, TDaisyFmxThemeController:** a toggle that switches a form between two themes.
+- **TDaisyTitleBarPanel, TDaisyFmxTitleBarPanel:** (not in daisyUI, Layout page) a themed title bar that hosts other controls. VCL: a `TTitleBarPanel` that follows the Daisy theme through the form's `CustomTitleBar` and the form styler's `ThemedTitleBar`. FMX: draws the caption and window buttons itself, drags the window and replaces the native title bar (`HideNativeTitleBar`).
 - **TDaisyToast, TDaisyFmxToast:** transient popup messages stacked in a corner of the parent.
 - **TDaisyToggle, TDaisyFmxToggle:** an on/off switch.
 
@@ -111,7 +112,7 @@ Each demo exists as a VCL and an FMX application with identical content.
 
 | Demo | Content |
 | --- | --- |
-| `Basic-01` | Styles, sizes, cards, alerts, indicators, field sets, stacks, swaps, variants, navigation (breadcrumbs, links, pagination, steps) and docks |
+| `Basic-01` | Styles, sizes, cards, alerts, indicators, field sets, stacks, swaps, variants, navigation (breadcrumbs, links, pagination, steps) and docks; the title bar is a `TDaisyTitleBarPanel` / `TDaisyFmxTitleBarPanel` hosting a badge, text input and toggle |
 | `Basic-02` | FAB, toasts, accordion, loading buttons, dropdown, rating, range, buttons |
 | `Basic-03` | Badges, styles, badge buttons, SVG icons |
 | `Basic-04` | Countdown, list, stat, chat, progress |

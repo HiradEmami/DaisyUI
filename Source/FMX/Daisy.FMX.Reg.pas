@@ -11,7 +11,7 @@ implementation
 {$R Daisy.FMX.Reg3.dcr}
 
 uses
-  System.Classes, FMX.Types, Daisy.FMX.Control, Daisy.FMX.Button, Daisy.FMX.Card, Daisy.FMX.Alert,
+  System.Classes, DesignIntf, FMX.Types, Daisy.FMX.Control, Daisy.FMX.Button, Daisy.FMX.Card, Daisy.FMX.Alert,
   Daisy.FMX.Progress, Daisy.FMX.RadialProgress, Daisy.FMX.Toast, Daisy.FMX.Calendar, Daisy.FMX.DatePicker,
   Daisy.FMX.IconButton, Daisy.FMX.LoadingButton, Daisy.FMX.Dropdown, Daisy.FMX.Fab,
   Daisy.FMX.Accordion, Daisy.FMX.Badge,
@@ -22,7 +22,8 @@ uses
   Daisy.FMX.PopupMenu, Daisy.FMX.CheckBox, Daisy.FMX.PageControl,
   Daisy.FMX.Indicator, Daisy.FMX.FieldSet, Daisy.FMX.Range, Daisy.FMX.Rating,
   Daisy.FMX.Swap, Daisy.FMX.Stack, Daisy.FMX.ThemeController,
-  Daisy.FMX.Breadcrumbs, Daisy.FMX.Dock, Daisy.FMX.Link, Daisy.FMX.Pagination, Daisy.FMX.Steps;
+  Daisy.FMX.Breadcrumbs, Daisy.FMX.Dock, Daisy.FMX.Link, Daisy.FMX.Pagination, Daisy.FMX.Steps,
+  Daisy.FMX.TitleBarPanel;
 
 const
   // Pages follow the component groups in the daisyUI documentation
@@ -37,6 +38,9 @@ procedure Register;
 begin
   // a plain TComponent is offered by every designer, so tie it to the FMX one
   GroupDescendentsWith(TDaisyFmxFormStyler, TFmxObject);
+  // the dock and the title bar panel always use the default (base) colours
+  UnlistPublishedProperty(TDaisyFmxDock, 'Variant');
+  UnlistPublishedProperty(TDaisyFmxTitleBarPanel, 'Variant');
   RegisterComponents(CPageActions, [TDaisyFmxButton, TDaisyFmxSquareButton,
     TDaisyFmxCircleButton, TDaisyFmxLoadingButton, TDaisyFmxAnimationButton,
     TDaisyFmxBadgeButton, TDaisyFmxDropdownMenu, TDaisyFmxFloatingActionButton, TDaisyFmxSwap,
@@ -53,7 +57,7 @@ begin
     TDaisyFmxMainMenu, TDaisyFmxMenu, TDaisyFmxPageControl, TDaisyFmxPagination,
     TDaisyFmxPopupMenu, TDaisyFmxSteps, TDaisyFmxTabSheet]);
   RegisterComponents(CPageLayout, [TDaisyFmxFormStyler, TDaisyFmxIndicator, TDaisyFmxPanel,
-    TDaisyFmxStack]);
+    TDaisyFmxStack, TDaisyFmxTitleBarPanel]);
 end;
 
 end.
