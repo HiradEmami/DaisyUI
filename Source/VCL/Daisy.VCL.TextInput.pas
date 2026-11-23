@@ -92,8 +92,6 @@ type
     procedure ScrollBarTo(Y: Integer);
     procedure MoveVertical(ALines: Integer; AExtend: Boolean);
     function ImeString(AContext: HIMC; AType: DWORD): string;
-    procedure ApplyComposition(const AText: string; ACursor: Integer);
-    procedure CommitComposition(const AText: string);
     procedure CompleteComposition;
     procedure UpdateImeWindows;
     procedure DrawCompositionUnderline;
@@ -105,6 +103,9 @@ type
     procedure CMFontChanged(var Message: TMessage); message CM_FONTCHANGED;
     procedure CMCursorChanged(var Message: TMessage); message CM_CURSORCHANGED;
   protected
+    // IME composition, driven by the WM_IME_* handlers; the text and attributes come from the IME
+    procedure ApplyComposition(const AText: string; ACursor: Integer; const AAttrs: TBytes);
+    procedure CommitComposition(const AText: string);
     function IsInteractive: Boolean; override;
     function DrawsFocusRing: Boolean; override;
     function DefaultCornerRadius: Integer; override;
@@ -859,7 +860,7 @@ begin
   ImmGetCompositionStringW(AContext, AType, PChar(Result), LBytes);
 end;
 
-procedure TDaisyCustomTextEdit.ApplyComposition(const AText: string; ACursor: Integer);
+procedure TDaisyCustomTextEdit.ApplyComposition(const AText: string; ACursor: Integer; const AAttrs: TBytes);
 var
   LEnd: Integer;
 begin
@@ -878,7 +879,9 @@ begin
   else
     FCompLen := 0;
   FCompActive := FCompLen > 0;
-  if not FCompActive then
+  if FCompActive then
+    FCompAttrs := AAttrs
+  else
     SetLength(FCompAttrs, 0);
   // Korean IMEs report 0 while a syllable is being built; the caret belongs after it
   if (ACursor <= 0) or (ACursor > FCompLen) then
@@ -901,7 +904,7 @@ var
 begin
   if AText = '' then
   begin
-    ApplyComposition('', 0);
+    ApplyComposition('', 0, nil);
     Exit;
   end;
   if FCompActive then
@@ -998,6 +1001,7 @@ var
   LContext: HIMC;
   LBytes: Integer;
   LText: string;
+  LAttrs: TBytes;
 begin
   Message.Result := 0;
   LFlags := Cardinal(Message.LParam);
@@ -1015,20 +1019,19 @@ begin
     if (LFlags and GCS_COMPSTR) <> 0 then
     begin
       LText := ImeString(LContext, GCS_COMPSTR);
-      SetLength(FCompAttrs, 0);
       if (LFlags and GCS_COMPATTR) <> 0 then
       begin
         LBytes := ImmGetCompositionStringW(LContext, GCS_COMPATTR, nil, 0);
         if LBytes > 0 then
         begin
-          SetLength(FCompAttrs, LBytes);
-          ImmGetCompositionStringW(LContext, GCS_COMPATTR, @FCompAttrs[0], LBytes);
+          SetLength(LAttrs, LBytes);
+          ImmGetCompositionStringW(LContext, GCS_COMPATTR, @LAttrs[0], LBytes);
         end;
       end;
-      ApplyComposition(LText, ImmGetCompositionStringW(LContext, GCS_CURSORPOS, nil, 0));
+      ApplyComposition(LText, ImmGetCompositionStringW(LContext, GCS_CURSORPOS, nil, 0), LAttrs);
     end
     else if LFlags = 0 then
-      ApplyComposition('', 0); // the composition was cancelled
+      ApplyComposition('', 0, nil); // the composition was cancelled
   finally
     ImmReleaseContext(Handle, LContext);
   end;
@@ -1037,7 +1040,7 @@ end;
 procedure TDaisyCustomTextEdit.WMImeEndComposition(var Message: TMessage);
 begin
   if FCompActive then
-    ApplyComposition('', 0);
+    ApplyComposition('', 0, nil);
   FComposing := False;
   Message.Result := 0;
 end;
