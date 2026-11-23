@@ -7,7 +7,8 @@
   The control paints and edits its own text: caret, selection, clipboard, undo,
   word / line navigation and mouse selection come from Daisy.TextEdit; text is
   drawn through DrawRichText so colour emoji work (Direct2D). The focused state
-  only darkens the border - it never gets thicker.
+  only darkens the border - it never gets thicker. Input method (IME) text, for
+  example Korean, Japanese or Chinese, is composed inline at the caret.
 
   TDaisyTextInput - the DaisyUI "input": a single line with variants, sizes,
   ghost / soft styles, SVG or emoji icons at either end, a before / after /
@@ -19,7 +20,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, Winapi.GDIPAPI, Winapi.GDIPOBJ,
   System.SysUtils, System.Classes, System.Types, System.UITypes, System.Math,
-  Vcl.Controls, Vcl.Graphics, Vcl.Clipbrd, Daisy.Theme, Daisy.Widgets, Daisy.Animation,
+  Winapi.Imm, Vcl.Controls, Vcl.Graphics, Vcl.Clipbrd, Daisy.Theme, Daisy.Widgets, Daisy.Animation,
   Daisy.TextEdit, Daisy.VCL.Control;
 
 type
@@ -42,6 +43,12 @@ type
     FTopLine: Integer;
     FDesiredX: Single;
     FPendingHigh: Char;
+    // IME composition: the in-progress string lives in the model at FCompStart..FCompStart + FCompLen
+    FComposing: Boolean;
+    FCompActive: Boolean;
+    FCompStart, FCompLen: Integer;
+    FCompOrig: string;
+    FCompAttrs: TBytes;
     FDragging: Boolean;
     FBarDrag: Boolean;
     FBarGrab: Integer;
@@ -84,10 +91,21 @@ type
     procedure StopTicking;
     procedure ScrollBarTo(Y: Integer);
     procedure MoveVertical(ALines: Integer; AExtend: Boolean);
+    function ImeString(AContext: HIMC; AType: DWORD): string;
+    procedure CompleteComposition;
+    procedure UpdateImeWindows;
+    procedure DrawCompositionUnderline;
+    procedure WMImeSetContext(var Message: TMessage); message WM_IME_SETCONTEXT;
+    procedure WMImeStartComposition(var Message: TMessage); message WM_IME_STARTCOMPOSITION;
+    procedure WMImeComposition(var Message: TMessage); message WM_IME_COMPOSITION;
+    procedure WMImeEndComposition(var Message: TMessage); message WM_IME_ENDCOMPOSITION;
     procedure WMGetDlgCode(var Message: TWMGetDlgCode); message WM_GETDLGCODE;
     procedure CMFontChanged(var Message: TMessage); message CM_FONTCHANGED;
     procedure CMCursorChanged(var Message: TMessage); message CM_CURSORCHANGED;
   protected
+    // IME composition, driven by the WM_IME_* handlers; the text and attributes come from the IME
+    procedure ApplyComposition(const AText: string; ACursor: Integer; const AAttrs: TBytes);
+    procedure CommitComposition(const AText: string);
     function IsInteractive: Boolean; override;
     function DrawsFocusRing: Boolean; override;
     function DefaultCornerRadius: Integer; override;
@@ -313,6 +331,8 @@ begin
   if GetModelText = Value then
     Exit;
   FModel.MultiLine := IsMultiLine;
+  FCompActive := False;
+  FCompLen := 0;
   FModel.Text := Value;
   FModel.Caret := Length(FModel.Text);
   FScrollPos := 0;
@@ -728,10 +748,12 @@ begin
   ResetBlink;
   StartTicking;
   Invalidate;
+  UpdateImeWindows;
 end;
 
 procedure TDaisyCustomTextEdit.DoExit;
 begin
+  CompleteComposition;
   StopTicking;
   FDragging := False;
   FBarDrag := False;
@@ -818,6 +840,266 @@ begin
   else
     FModel.SetCaretPos(FModel.PosAtX(LTarget, FDesiredX, FMeasureFn), AExtend);
   CaretMoved(True);
+end;
+
+{ IME composition }
+
+{ Windows draws an IME's in-progress text in its own window unless the application paints it. The control keeps
+  that text in the model, between FCompStart and FCompStart + FCompLen, so layout, scrolling and the caret
+  treat it like any other text; it is swapped for the final string when the IME commits. }
+
+function TDaisyCustomTextEdit.ImeString(AContext: HIMC; AType: DWORD): string;
+var
+  LBytes: Integer;
+begin
+  Result := '';
+  LBytes := ImmGetCompositionStringW(AContext, AType, nil, 0);
+  if LBytes <= 0 then
+    Exit;
+  SetLength(Result, LBytes div SizeOf(Char));
+  ImmGetCompositionStringW(AContext, AType, PChar(Result), LBytes);
+end;
+
+procedure TDaisyCustomTextEdit.ApplyComposition(const AText: string; ACursor: Integer; const AAttrs: TBytes);
+var
+  LEnd: Integer;
+begin
+  if not FCompActive then
+  begin
+    if AText = '' then
+      Exit;
+    FCompOrig := FModel.Text;
+    FCompStart := FModel.SelStart; // the first composed character replaces the selection
+    LEnd := FModel.SelEnd;
+  end
+  else
+    LEnd := FCompStart + FCompLen;
+  if FModel.ReplaceText(FCompStart, LEnd, AText) then
+    FCompLen := FModel.Caret - FCompStart
+  else
+    FCompLen := 0;
+  FCompActive := FCompLen > 0;
+  if FCompActive then
+    FCompAttrs := AAttrs
+  else
+    SetLength(FCompAttrs, 0);
+  // Korean IMEs report 0 while a syllable is being built; the caret belongs after it
+  if (ACursor <= 0) or (ACursor > FCompLen) then
+    ACursor := FCompLen;
+  FModel.Caret := FCompStart + ACursor;
+  FLayoutDirty := True;
+  if (not FCompActive) and (FModel.Text <> FCompOrig) then
+    Edited
+  else
+  begin
+    CaretMoved;
+    TextEdited;
+  end;
+  UpdateImeWindows;
+end;
+
+procedure TDaisyCustomTextEdit.CommitComposition(const AText: string);
+var
+  LEnd: Integer;
+begin
+  if AText = '' then
+  begin
+    ApplyComposition('', 0, nil);
+    Exit;
+  end;
+  if FCompActive then
+    LEnd := FCompStart + FCompLen
+  else
+  begin
+    FCompOrig := FModel.Text;
+    FCompStart := FModel.SelStart;
+    LEnd := FModel.SelEnd;
+  end;
+  FModel.ReplaceText(FCompStart, LEnd, AText);
+  FCompActive := False;
+  FCompLen := 0;
+  SetLength(FCompAttrs, 0);
+  Edited;
+  UpdateImeWindows;
+end;
+
+procedure TDaisyCustomTextEdit.CompleteComposition;
+var
+  LContext: HIMC;
+begin
+  if not (FComposing or FCompActive) then
+    Exit;
+  if HandleAllocated then
+  begin
+    LContext := ImmGetContext(Handle);
+    if LContext <> 0 then
+      try
+        ImmNotifyIME(LContext, NI_COMPOSITIONSTR, CPS_COMPLETE, 0); // sends the result string back to us
+      finally
+        ImmReleaseContext(Handle, LContext);
+      end;
+  end;
+  if FCompActive then // an IME that did not hand the text back: keep what is shown
+  begin
+    FCompActive := False;
+    FCompLen := 0;
+    SetLength(FCompAttrs, 0);
+    Edited;
+  end;
+end;
+
+procedure TDaisyCustomTextEdit.UpdateImeWindows;
+var
+  LContext: HIMC;
+  LForm: TCompositionForm;
+  LCand: TCandidateForm;
+  LPoint: TPoint;
+  LTop: Integer;
+begin
+  if not HandleAllocated then
+    Exit;
+  ComputeGeometry;
+  if IsMultiLine then
+    LTop := FTextBox.Top + EnsureRange(FModel.LineOfPos(FModel.Caret) - FTopLine, 0, FRows - 1) * FLineH
+  else
+    LTop := FTextBox.Top;
+  LPoint := MirrorPoint(Point(FTextBox.Left + Round(PosToX(FModel.Caret)), LTop));
+  LContext := ImmGetContext(Handle);
+  if LContext = 0 then
+    Exit;
+  try
+    FillChar(LForm, SizeOf(LForm), 0);
+    LForm.dwStyle := CFS_POINT;
+    LForm.ptCurrentPos := LPoint;
+    ImmSetCompositionWindow(LContext, @LForm);
+    FillChar(LCand, SizeOf(LCand), 0);
+    LCand.dwStyle := CFS_CANDIDATEPOS;
+    LCand.ptCurrentPos := Point(LPoint.X, LPoint.Y + FLineH);
+    ImmSetCandidateWindow(LContext, @LCand);
+  finally
+    ImmReleaseContext(Handle, LContext);
+  end;
+end;
+
+procedure TDaisyCustomTextEdit.WMImeSetContext(var Message: TMessage);
+begin
+  // the composition is painted by the control, so the IME's own composition window stays hidden
+  Message.LParam := Message.LParam and $7FFFFFFF;
+  inherited;
+end;
+
+procedure TDaisyCustomTextEdit.WMImeStartComposition(var Message: TMessage);
+begin
+  FComposing := True;
+  UpdateImeWindows;
+  Message.Result := 0;
+end;
+
+procedure TDaisyCustomTextEdit.WMImeComposition(var Message: TMessage);
+var
+  LFlags: Cardinal;
+  LContext: HIMC;
+  LBytes: Integer;
+  LText: string;
+  LAttrs: TBytes;
+begin
+  Message.Result := 0;
+  LFlags := Cardinal(Message.LParam);
+  LContext := ImmGetContext(Handle);
+  if LContext = 0 then
+    Exit;
+  try
+    if FReadOnly or (not Enabled) then
+    begin
+      ImmNotifyIME(LContext, NI_COMPOSITIONSTR, CPS_CANCEL, 0);
+      Exit;
+    end;
+    if (LFlags and GCS_RESULTSTR) <> 0 then
+      CommitComposition(ImeString(LContext, GCS_RESULTSTR));
+    if (LFlags and GCS_COMPSTR) <> 0 then
+    begin
+      LText := ImeString(LContext, GCS_COMPSTR);
+      if (LFlags and GCS_COMPATTR) <> 0 then
+      begin
+        LBytes := ImmGetCompositionStringW(LContext, GCS_COMPATTR, nil, 0);
+        if LBytes > 0 then
+        begin
+          SetLength(LAttrs, LBytes);
+          ImmGetCompositionStringW(LContext, GCS_COMPATTR, @LAttrs[0], LBytes);
+        end;
+      end;
+      ApplyComposition(LText, ImmGetCompositionStringW(LContext, GCS_CURSORPOS, nil, 0), LAttrs);
+    end
+    else if LFlags = 0 then
+      ApplyComposition('', 0, nil); // the composition was cancelled
+  finally
+    ImmReleaseContext(Handle, LContext);
+  end;
+end;
+
+procedure TDaisyCustomTextEdit.WMImeEndComposition(var Message: TMessage);
+begin
+  if FCompActive then
+    ApplyComposition('', 0, nil);
+  FComposing := False;
+  Message.Result := 0;
+end;
+
+procedure TDaisyCustomTextEdit.DrawCompositionUnderline;
+var
+  A, B: Integer;
+
+  function IsTarget(AIndex: Integer): Boolean;
+  begin
+    Result := (AIndex < Length(FCompAttrs)) and
+      (FCompAttrs[AIndex] in [ATTR_TARGET_CONVERTED, ATTR_TARGET_NOTCONVERTED]);
+  end;
+
+  procedure Underline(AFrom, ATo: Integer; AThick: Boolean);
+  var
+    R, LLineIdx, S, E, LX1, LX2, LBottom, LThick: Integer;
+    LLine: TDaisyTextLine;
+  begin
+    LThick := Max(1, ScaleValue(IfThen(AThick, 2, 1)));
+    for R := 0 to FRows - 1 do
+    begin
+      if IsMultiLine then
+        LLineIdx := FTopLine + R
+      else
+        LLineIdx := 0;
+      if LLineIdx >= FModel.LineCount then
+        Break;
+      LLine := FModel.Line(LLineIdx);
+      S := Max(AFrom, LLine.Start);
+      E := Min(ATo, LLine.Start + LLine.Length);
+      if E <= S then
+        Continue;
+      LX1 := FTextBox.Left + Round(MeasureStr(Copy(FModel.Text, LLine.Start + 1, S - LLine.Start)) - ScrollOffsetPx);
+      LX2 := FTextBox.Left + Round(MeasureStr(Copy(FModel.Text, LLine.Start + 1, E - LLine.Start)) - ScrollOffsetPx);
+      LX1 := Max(LX1, FTextBox.Left);
+      LX2 := Min(LX2, FTextBox.Right);
+      if LX2 <= LX1 then
+        Continue;
+      if IsMultiLine then
+        LBottom := FTextBox.Top + (R + 1) * FLineH - 2
+      else
+        LBottom := FTextBox.Bottom - 2;
+      Canvas.FillRect(MirrorRect(Rect(LX1, LBottom - LThick, LX2, LBottom)));
+    end;
+  end;
+
+begin
+  Canvas.Brush.Style := bsSolid;
+  Canvas.Brush.Color := DaisyToColor(Theme.BaseContent);
+  A := 0;
+  while A < FCompLen do
+  begin
+    B := A + 1;
+    while (B < FCompLen) and (IsTarget(B) = IsTarget(A)) do
+      Inc(B);
+    Underline(FCompStart + A, FCompStart + B, IsTarget(A));
+    A := B;
+  end;
 end;
 
 { Keyboard }
@@ -1012,6 +1294,7 @@ begin
     Exit;
   if CanFocus and not Focused then
     SetFocus;
+  CompleteComposition;
   ComputeGeometry;
   if IsMultiLine and FHasBar and (X >= FTextBox.Right) then
   begin
@@ -1241,6 +1524,10 @@ begin
     DrawRichText(LShown, FTextBox, LText, FFontSize, False, LFlags);
   end;
 
+  // composition underline and caret
+  if FCompActive then
+    DrawCompositionUnderline;
+
   // caret
   if LActive and FBlinkOn and Enabled then
   begin
@@ -1260,7 +1547,7 @@ begin
     begin
       Canvas.Brush.Style := bsSolid;
       Canvas.Brush.Color := DaisyToColor(Theme.BaseContent);
-      Canvas.FillRect(LCaretRect);
+      Canvas.FillRect(MirrorRect(LCaretRect));
     end;
   end;
   LSel := Rect(0, 0, 0, 0);

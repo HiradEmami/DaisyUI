@@ -1,4 +1,4 @@
-unit MainVCL;
+﻿unit MainVCL;
 
 interface
 
@@ -18,6 +18,7 @@ type
     themeCtl: TDaisyThemeController;
     Styler: TDaisyFormStyler;
     chkTitleBar: TDaisyCheckBox;
+    chkRTL: TDaisyCheckBox;
     alMain: TActionList;
     actTitleBar: TAction;
     actProgAdd: TAction;
@@ -97,6 +98,7 @@ type
     procedure ProgressAddClick(Sender: TObject);
     procedure ProgressResetClick(Sender: TObject);
     procedure actProgResetUpdate(Sender: TObject);
+    procedure RTLChange(Sender: TObject);
     procedure ThemeSelectChange(Sender: TObject);
     procedure ThemeControllerChange(Sender: TObject);
     procedure chkTitleBarClick(Sender: TObject);
@@ -114,6 +116,15 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm16.RTLChange(Sender: TObject);
+const
+  Modes: array[Boolean] of TBiDiMode = (bdLeftToRight, bdRightToLeft);
+begin
+  if BiDiMode = Modes[chkRTL.Checked] then
+    Exit;
+  TDaisyControl.ApplyBiDiMode(Self, Modes[chkRTL.Checked]);
+end;
 
 procedure TForm16.FormShow(Sender: TObject);
 begin

@@ -75,6 +75,9 @@ type
 
     // Editing. All return True when the text changed.
     function InsertText(const AText: string): Boolean;
+    // Replaces the characters AStart..AEnd (0-based offsets) and puts the caret after the new text.
+    // Used for IME composition, which is swapped in and out as the user types.
+    function ReplaceText(AStart, AEnd: Integer; const AText: string): Boolean;
     function DeleteBackward(AByWord: Boolean): Boolean;
     function DeleteForward(AByWord: Boolean): Boolean;
     function DeleteSelection: Boolean;
@@ -399,6 +402,13 @@ begin
   Result := ReplaceRange(SelStart, SelEnd, Clean(AText));
   if Result and (Pos(#10, AText) > 0) then
     BreakUndo;
+end;
+
+function TDaisyTextModel.ReplaceText(AStart, AEnd: Integer; const AText: string): Boolean;
+begin
+  AStart := EnsureRange(AStart, 0, Length(FText));
+  AEnd := EnsureRange(AEnd, AStart, Length(FText));
+  Result := ReplaceRange(AStart, AEnd, Clean(AText));
 end;
 
 function TDaisyTextModel.DeleteSelection: Boolean;
