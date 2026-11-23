@@ -31,6 +31,16 @@ Every tab of each VCL demo application, captured with the **Corporate** theme on
 ### Variants
 ![Variants](Screenshots/Basic-01-VCL-Tab09.png)
 
+### Navigation
+Breadcrumbs, links, pagination and steps.
+
+![Navigation](Screenshots/Basic-01-VCL-Tab10.png)
+
+### Dock
+Docks at the bottom, left and right, with evenly spaced and normally spaced items.
+
+![Dock](Screenshots/Basic-01-VCL-Tab11.png)
+
 ## Basic-02
 
 ### FAB
@@ -147,6 +157,12 @@ Selected tabs from the demos using the Dim theme.
 ### Basic-01 - Cards
 ![Cards (Dim)](Screenshots/Basic-01-VCL-Dark-Tab03.png)
 
+### Basic-01 - Navigation
+![Navigation (Dim)](Screenshots/Basic-01-VCL-Dark-Tab10.png)
+
+### Basic-01 - Dock
+![Dock (Dim)](Screenshots/Basic-01-VCL-Dark-Tab11.png)
+
 ### Basic-02 - FAB
 ![FAB (Dim)](Screenshots/Basic-02-VCL-Dark-Tab01.png)
 
@@ -180,3 +196,11 @@ The demos have a "Right-to-left" check box that sets `BiDiMode` on the form.
 
 ### Basic-05 - Select
 ![Select (RTL)](Screenshots/Basic-05-FMX-RTL-Select.png)
+
+### Basic-01 - Navigation
+![Navigation (RTL)](Screenshots/Basic-01-FMX-RTL-Navigation.png)
+
+### Basic-01 - Dock
+In right-to-left mode the dock items run right to left, and the left and right docks swap sides.
+
+![Dock (RTL)](Screenshots/Basic-01-FMX-RTL-Dock.png)
