@@ -35,6 +35,8 @@ type
     procedure SetHideNativeTitleBar(const Value: Boolean);
     procedure TitleBarThemeChanged(Sender: TObject);
     function ParentForm: TCommonCustomForm;
+    // Gives the borderless form back the drop shadow and thin border of a normal window
+    procedure ApplyWindowFrame;
     function DrawsChrome: Boolean;
     function ButtonRect(AButton: TDaisyFmxTitleButton): TRectF;
     function ButtonsWidth: Single;
@@ -68,6 +70,9 @@ type
 implementation
 
 uses
+{$IFDEF MSWINDOWS}
+  Winapi.Windows, Winapi.Dwmapi, Winapi.UxTheme, FMX.Platform.Win,
+{$ENDIF}
   System.Math;
 
 const
@@ -109,8 +114,54 @@ begin
     LForm := ParentForm;
     if (LForm <> nil) and (LForm.BorderStyle <> TFmxFormBorderStyle.None) then
       LForm.BorderStyle := TFmxFormBorderStyle.None;
+    ApplyWindowFrame;
   end;
 end;
+
+procedure TDaisyFmxTitleBarPanel.ApplyWindowFrame;
+{$IFDEF MSWINDOWS}
+const
+  DWMWA_WINDOW_CORNER_PREFERENCE = 33;
+  DWMWA_BORDER_COLOR = 34;
+  DWMWCP_ROUND = 2;
+  DWMWA_COLOR_DEFAULT = $FFFFFFFF;
+var
+  LForm: TCommonCustomForm;
+  LWnd: HWND;
+  LMargins: TMargins;
+  LCorner: Integer;
+  LBorder: DWORD;
+  LColor: TAlphaColorRec;
+begin
+  if (csDesigning in ComponentState) or not DrawsChrome then
+    Exit;
+  LForm := ParentForm;
+  if LForm = nil then
+    Exit;
+  LWnd := FormToHWND(LForm);
+  if LWnd = 0 then
+    Exit;
+  // a one pixel frame extension is what makes DWM draw the shadow of a window without a frame
+  LMargins.cxLeftWidth := 1;
+  LMargins.cxRightWidth := 1;
+  LMargins.cyTopHeight := 1;
+  LMargins.cyBottomHeight := 1;
+  DwmExtendFrameIntoClientArea(LWnd, LMargins);
+  LCorner := DWMWCP_ROUND;
+  DwmSetWindowAttribute(LWnd, DWMWA_WINDOW_CORNER_PREFERENCE, @LCorner, SizeOf(LCorner));
+  if TDaisyControl.ThemedTitleBar then
+  begin
+    LColor := TAlphaColorRec(Theme.BorderColor);
+    LBorder := DWORD(LColor.R) or (DWORD(LColor.G) shl 8) or (DWORD(LColor.B) shl 16);
+  end
+  else
+    LBorder := DWMWA_COLOR_DEFAULT;
+  DwmSetWindowAttribute(LWnd, DWMWA_BORDER_COLOR, @LBorder, SizeOf(LBorder));
+end;
+{$ELSE}
+begin
+end;
+{$ENDIF}
 
 function TDaisyFmxTitleBarPanel.ParentForm: TCommonCustomForm;
 begin
@@ -132,6 +183,7 @@ end;
 
 procedure TDaisyFmxTitleBarPanel.TitleBarThemeChanged(Sender: TObject);
 begin
+  ApplyWindowFrame;
   Repaint;
 end;
 
@@ -321,13 +373,6 @@ var
   LCaption: TRectF;
   LForm: TCommonCustomForm;
 begin
-  // the line that separates the bar from the form
-  Canvas.Stroke.Kind := TBrushKind.Solid;
-  Canvas.Stroke.Color := Theme.BorderColor;
-  Canvas.Stroke.Thickness := 1;
-  Canvas.Stroke.Dash := TStrokeDash.Solid;
-  Canvas.DrawLine(PointF(0, Height - 0.5), PointF(Width, Height - 0.5), AbsoluteOpacity);
-
   if not DrawsChrome then
     Exit;
   for LButton in FSystemButtons do
