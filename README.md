@@ -40,6 +40,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyAnimationButton, TDaisyFmxAnimationButton:** a loading button that plays a short busy animation when clicked.
 - **TDaisyBadge, TDaisyFmxBadge:** a small pill label for counts, tags and status text, with optional icon.
 - **TDaisyBadgeButton, TDaisyFmxBadgeButton:** a button with a badge attached to its corner.
+- **TDaisyBreadcrumbs, TDaisyFmxBreadcrumbs:** a navigation trail of items with optional icons, chevron or slash separators, and mouse-wheel scrolling when it is too wide.
 - **TDaisyButton, TDaisyFmxButton:** the standard button, with variants, styles, sizes and an optional SVG icon.
 - **TDaisyCalendar, TDaisyFmxCalendar:** a month calendar with single date or date range selection.
 - **TDaisyCard, TDaisyFmxCard:** a titled container with body text and a soft shadow.
@@ -48,17 +49,20 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyCircleButton, TDaisyFmxCircleButton:** a round icon-only button.
 - **TDaisyCountdown, TDaisyFmxCountdown:** a segmented countdown display with animated digits.
 - **TDaisyDatePicker, TDaisyFmxDatePicker:** a text input that drops down a calendar and writes the chosen date back into the text.
+- **TDaisyDock, TDaisyFmxDock:** a bottom navigation bar of icon buttons with labels. It can also dock left, right or top, and spaces its items evenly or with a normal gap.
 - **TDaisyDropdownMenu, TDaisyFmxDropdownMenu:** a button that opens a popup list of items.
 - **TDaisyFieldSet, TDaisyFmxFieldSet:** a grouping container with a legend and description.
 - **TDaisyFloatingActionButton, TDaisyFmxFloatingActionButton:** a round button that expands into a set of action buttons.
 - **TDaisyFormStyler, TDaisyFmxFormStyler:** non-visual component that applies a theme to a whole form.
 - **TDaisyIndicator, TDaisyFmxIndicator:** attaches a badge, status dot or button to the corner of another control.
 - **TDaisyLabel, TDaisyFmxLabel:** a themed text label.
+- **TDaisyLink, TDaisyFmxLink:** a text link coloured by variant, underlined always or only on hover, with an optional URL.
 - **TDaisyList, TDaisyFmxList:** a list of rows with title, subtitle and actions.
 - **TDaisyLoadingButton, TDaisyFmxLoadingButton:** a button that can show a spinner while work is in progress.
 - **TDaisyMainMenu, TDaisyFmxMainMenu:** a themed horizontal main menu bar.
 - **TDaisyMenu, TDaisyFmxMenu:** a vertical or horizontal menu with icons and nested items.
 - **TDaisyPageControl, TDaisyFmxPageControl:** a tabbed container.
+- **TDaisyPagination, TDaisyFmxPagination:** page buttons with previous/next, collapsed ranges and a highlighted current page, joined or separate.
 - **TDaisyPanel, TDaisyFmxPanel:** a plain themed container panel.
 - **TDaisyPopupMenu, TDaisyFmxPopupMenu:** a themed context menu.
 - **TDaisyProgress, TDaisyFmxProgress:** a horizontal progress bar, determinate or indeterminate.
@@ -70,6 +74,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyStack, TDaisyFmxStack:** layers child controls like a deck; click to bring the next one forward.
 - **TDaisyStat, TDaisyFmxStat:** a statistics panel showing titles, values and descriptions.
 - **TDaisyStatus, TDaisyFmxStatus:** a small status dot, optionally animated.
+- **TDaisySteps, TDaisyFmxSteps:** a process indicator with numbered or icon steps, horizontal or vertical, switching to vertical when too narrow.
 - **TDaisySVGImage, TDaisyFmxSVGImage:** displays an SVG image.
 - **TDaisySwap, TDaisyFmxSwap:** toggles between two (or three) states with a fade, rotate or flip effect.
 - **TDaisyTable, TDaisyFmxTable:** a data table with header, footer, zebra rows and hover.
@@ -87,8 +92,9 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 | `Source\Common` | Framework independent logic: themes, colours, items, calendars, ranges, SVG and more |
 | `Source\VCL` | VCL components and `Daisy.VCL.Reg.pas` registration |
 | `Source\FMX` | FMX components and `Daisy.FMX.Reg.pas` registration |
-| `Icons` | Component palette icons (shared by VCL and FMX) |
+| `Icons` | Component palette icons (shared by VCL and FMX) and the script that generates them |
 | `Demos` | Demo applications |
+| `Tests` | Automated tests, such as the IME tests (`Tests\RunTests.ps1`) |
 | `DaisyCommonpkg`, `DaisyVCLpkg`, `DaisyFMXpkg` | Runtime/design-time packages |
 | `DaisyUIGroup.groupproj` | Project group containing the packages |
 
@@ -105,7 +111,7 @@ Each demo exists as a VCL and an FMX application with identical content.
 
 | Demo | Content |
 | --- | --- |
-| `Basic-01` | Styles, sizes, cards, alerts, indicators, field sets, stacks, swaps, variants |
+| `Basic-01` | Styles, sizes, cards, alerts, indicators, field sets, stacks, swaps, variants, navigation (breadcrumbs, links, pagination, steps) and docks |
 | `Basic-02` | FAB, toasts, accordion, loading buttons, dropdown, rating, range, buttons |
 | `Basic-03` | Badges, styles, badge buttons, SVG icons |
 | `Basic-04` | Countdown, list, stat, chat, progress |
@@ -136,6 +142,7 @@ The VCL `TDaisyTextInput` and `TDaisyTextArea` support input method editors such
 ## Notes
 
 - Demos use components placed at design time; nothing is created on the fly.
+- Components that are not visual in both frameworks, such as `TDaisyFormStyler`, are registered so each designer only offers its own version.
 - Change shared behavior in `TDaisyControl` and the `Source\Common` units so both sets stay in step.
 
 # License
