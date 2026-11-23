@@ -127,6 +127,10 @@ Every Daisy control has published `BiDiMode` and `ParentBiDiMode` properties, as
 
 The demos have a "Right-to-left" check box to try it. See [Screenshots.md](Screenshots.md).
 
+## Input method (IME) support
+
+The VCL `TDaisyTextInput` and `TDaisyTextArea` support input method editors such as Korean, Japanese and Chinese. The in-progress composition is drawn inline at the caret, with an underline, instead of in a separate IME window. The IME's composition and candidate windows are placed at the caret, and the final text is inserted once, when the composition is committed. Thanks to IksuLee for the report and the approach (issue #6).
+
 ## Notes
 
 - Demos use components placed at design time; nothing is created on the fly.
