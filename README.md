@@ -12,10 +12,12 @@ These components are **not an exact copy** of daisyUI. They are *inspired by* it
 
 There is a VCL set and an FMX set, and **they are identical to each other** in appearance, properties and behavior.
 
-| Set | Palette page | Class prefix | Package |
-| --- | --- | --- | --- |
-| VCL | Daisy VCL | `TDaisy...` | `DaisyVCLpkg` |
-| FMX | Daisy FMX | `TDaisyFmx...` | `DaisyFMXpkg` |
+| Set | Class prefix | Package |
+| --- | --- | --- |
+| VCL | `TDaisy...` | `DaisyVCLpkg` |
+| FMX | `TDaisyFmx...` | `DaisyFMXpkg` |
+
+The palette pages follow the component groups on [daisyui.com](https://daisyui.com/components/). VCL uses **DaisyUI - Actions**, **DaisyUI - Display**, **DaisyUI - Feedback**, **DaisyUI - Input**, **DaisyUI - Navigation** and **DaisyUI - Layout**. FMX uses the same six groups as **DaisyUI FMX - Actions**, **DaisyUI FMX - Display** and so on.
 
 - Every VCL component descends from `TDaisyControl`; every FMX component descends from `TDaisyFmxControl`. These hold everything common: theme, variant, style, size, corner radius, shadow and padding.
 - VCL and FMX components share the same palette icon.
@@ -95,7 +97,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 1. Open `DaisyUIGroup.groupproj` in RAD Studio.
 2. Build `DaisyCommonpkg`, then install `DaisyVCLpkg` and/or `DaisyFMXpkg`.
 3. Add `Source\Common`, `Source\VCL` and/or `Source\FMX` to your library path.
-4. Drop components from the **Daisy VCL** or **Daisy FMX** palette pages onto a form.
+4. Drop components from the **DaisyUI - ...** (VCL) or **DaisyUI FMX - ...** (FMX) palette pages (Actions, Display, Feedback, Input, Navigation, Layout) onto a form.
 
 ## Demos
 

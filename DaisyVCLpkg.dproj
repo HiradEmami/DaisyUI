@@ -177,6 +177,11 @@
         <DCCReference Include="Source\VCL\Daisy.VCL.Rating.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.Swap.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.Stack.pas"/>
+        <DCCReference Include="Source\VCL\Daisy.VCL.Breadcrumbs.pas"/>
+        <DCCReference Include="Source\VCL\Daisy.VCL.Dock.pas"/>
+        <DCCReference Include="Source\VCL\Daisy.VCL.Link.pas"/>
+        <DCCReference Include="Source\VCL\Daisy.VCL.Pagination.pas"/>
+        <DCCReference Include="Source\VCL\Daisy.VCL.Steps.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.ThemeController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

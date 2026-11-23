@@ -76,6 +76,11 @@ contains
   Daisy.FMX.Rating in 'Source\FMX\Daisy.FMX.Rating.pas',
   Daisy.FMX.Swap in 'Source\FMX\Daisy.FMX.Swap.pas',
   Daisy.FMX.Stack in 'Source\FMX\Daisy.FMX.Stack.pas',
+  Daisy.FMX.Breadcrumbs in 'Source\FMX\Daisy.FMX.Breadcrumbs.pas',
+  Daisy.FMX.Dock in 'Source\FMX\Daisy.FMX.Dock.pas',
+  Daisy.FMX.Link in 'Source\FMX\Daisy.FMX.Link.pas',
+  Daisy.FMX.Pagination in 'Source\FMX\Daisy.FMX.Pagination.pas',
+  Daisy.FMX.Steps in 'Source\FMX\Daisy.FMX.Steps.pas',
   Daisy.FMX.ThemeController in 'Source\FMX\Daisy.FMX.ThemeController.pas';
 
 end.

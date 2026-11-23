@@ -177,6 +177,11 @@
         <DCCReference Include="Source\FMX\Daisy.FMX.Rating.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Swap.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Stack.pas"/>
+        <DCCReference Include="Source\FMX\Daisy.FMX.Breadcrumbs.pas"/>
+        <DCCReference Include="Source\FMX\Daisy.FMX.Dock.pas"/>
+        <DCCReference Include="Source\FMX\Daisy.FMX.Link.pas"/>
+        <DCCReference Include="Source\FMX\Daisy.FMX.Pagination.pas"/>
+        <DCCReference Include="Source\FMX\Daisy.FMX.Steps.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.ThemeController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

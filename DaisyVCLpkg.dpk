@@ -76,6 +76,11 @@ contains
   Daisy.VCL.Rating in 'Source\VCL\Daisy.VCL.Rating.pas',
   Daisy.VCL.Swap in 'Source\VCL\Daisy.VCL.Swap.pas',
   Daisy.VCL.Stack in 'Source\VCL\Daisy.VCL.Stack.pas',
+  Daisy.VCL.Breadcrumbs in 'Source\VCL\Daisy.VCL.Breadcrumbs.pas',
+  Daisy.VCL.Dock in 'Source\VCL\Daisy.VCL.Dock.pas',
+  Daisy.VCL.Link in 'Source\VCL\Daisy.VCL.Link.pas',
+  Daisy.VCL.Pagination in 'Source\VCL\Daisy.VCL.Pagination.pas',
+  Daisy.VCL.Steps in 'Source\VCL\Daisy.VCL.Steps.pas',
   Daisy.VCL.ThemeController in 'Source\VCL\Daisy.VCL.ThemeController.pas';
 
 end.

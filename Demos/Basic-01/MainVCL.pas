@@ -8,7 +8,9 @@ uses
   Daisy.Theme, Daisy.VCL.Control, Daisy.VCL.Button, Daisy.VCL.Panel, Daisy.VCL.Card, Daisy.VCL.Alert,
   Daisy.VCL.Select, Daisy.VCL.FormStyler, Daisy.VCL.PageControl, Daisy.VCL.CheckBox,
   Daisy.VCL.TextInput, Daisy.VCL.Indicator, Daisy.VCL.FieldSet,
-  Daisy.VCL.Swap, Daisy.VCL.Stack, Daisy.VCL.ThemeController, System.Actions;
+  Daisy.VCL.Swap, Daisy.VCL.Stack, Daisy.VCL.ThemeController, System.Actions,
+  Daisy.Navigation, Daisy.VCL.Breadcrumbs, Daisy.VCL.Dock, Daisy.VCL.Link, Daisy.VCL.Pagination,
+  Daisy.VCL.Steps;
 
 type
   TForm10 = class(TForm)
@@ -150,6 +152,55 @@ type
     alMain: TActionList;
     actBuyNow: TAction;
     chkRTL: TDaisyCheckBox;
+    tsNavigation: TDaisyTabSheet;
+    lblNavCrumbs: TLabel;
+    lblNavLink: TLabel;
+    lblNavPagination: TLabel;
+    lblNavSteps: TLabel;
+    lblNavResult: TLabel;
+    lblCrumbsScroll: TLabel;
+    lblStepsResponsive: TLabel;
+    crumbsIcons: TDaisyBreadcrumbs;
+    crumbsSlash: TDaisyBreadcrumbs;
+    crumbsScroll: TDaisyBreadcrumbs;
+    lnkDefault: TDaisyLink;
+    lnkPrimary: TDaisyLink;
+    lnkHover: TDaisyLink;
+    lnkAccent: TDaisyLink;
+    lnkSuccess: TDaisyLink;
+    lnkWarning: TDaisyLink;
+    lnkError: TDaisyLink;
+    lnkUrl: TDaisyLink;
+    pagBasic: TDaisyPagination;
+    pagSmall: TDaisyPagination;
+    pagPrevNext: TDaisyPagination;
+    pagSeparate: TDaisyPagination;
+    stepsIcons: TDaisySteps;
+    stepsColors: TDaisySteps;
+    stepsVertical: TDaisySteps;
+    stepsResponsive: TDaisySteps;
+    tsDock: TDaisyTabSheet;
+    lblDock: TLabel;
+    lblDockEven: TLabel;
+    lblDockNormal: TLabel;
+    lblDockSmall: TLabel;
+    lblDockLarge: TLabel;
+    lblDockLeft: TLabel;
+    lblDockLeftNormal: TLabel;
+    lblDockRight: TLabel;
+    lblDockRightNormal: TLabel;
+    lblDockResult: TLabel;
+    dockBottomEven: TDaisyDock;
+    dockBottomNormal: TDaisyDock;
+    dockSmall: TDaisyDock;
+    dockLarge: TDaisyDock;
+    dockLeft: TDaisyDock;
+    dockLeftNormal: TDaisyDock;
+    dockRight: TDaisyDock;
+    dockRightNormal: TDaisyDock;
+    procedure CrumbClick(Sender: TObject; AIndex: Integer);
+    procedure PageChange(Sender: TObject);
+    procedure DockChange(Sender: TObject);
     procedure RTLChange(Sender: TObject);
     procedure SwapChange(Sender: TObject);
     procedure ThemeControllerChange(Sender: TObject);
@@ -188,6 +239,27 @@ end;
 procedure TForm10.IndicatorItemClick(Sender: TObject);
 begin
   lblIndicatorResult.Caption := 'Inbox clicked at ' + FormatDateTime('hh:nn:ss', Now);
+end;
+
+procedure TForm10.CrumbClick(Sender: TObject; AIndex: Integer);
+var
+  LCrumbs: TDaisyBreadcrumbs;
+begin
+  LCrumbs := Sender as TDaisyBreadcrumbs;
+  lblNavResult.Caption := 'Breadcrumb "' + LCrumbs.Items[AIndex].Caption + '" clicked';
+end;
+
+procedure TForm10.PageChange(Sender: TObject);
+begin
+  lblNavResult.Caption := 'Page ' + IntToStr((Sender as TDaisyPagination).CurrentPage) + ' selected';
+end;
+
+procedure TForm10.DockChange(Sender: TObject);
+var
+  LDock: TDaisyDock;
+begin
+  LDock := Sender as TDaisyDock;
+  lblDockResult.Caption := LDock.Items[LDock.ItemIndex].Caption + ' selected in ' + LDock.Name;
 end;
 
 procedure TForm10.ThemeControllerChange(Sender: TObject);

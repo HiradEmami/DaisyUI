@@ -148,6 +148,7 @@
         <DCCReference Include="Source\Common\Daisy.Indicators.pas"/>
         <DCCReference Include="Source\Common\Daisy.Swap.pas"/>
         <DCCReference Include="Source\Common\Daisy.Stack.pas"/>
+        <DCCReference Include="Source\Common\Daisy.Navigation.pas"/>
         <DCCReference Include="Source\Common\Daisy.ThemeController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

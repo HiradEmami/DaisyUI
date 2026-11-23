@@ -8,9 +8,10 @@ implementation
 
 {$R Daisy.VCL.Reg.dcr}
 {$R Daisy.VCL.Reg2.dcr}
+{$R Daisy.VCL.Reg3.dcr}
 
 uses
-  System.Classes, Daisy.VCL.Control, Daisy.VCL.Button, Daisy.VCL.Card, Daisy.VCL.Alert,
+  System.Classes, Vcl.Controls, Daisy.VCL.Control, Daisy.VCL.Button, Daisy.VCL.Card, Daisy.VCL.Alert,
   Daisy.VCL.Progress, Daisy.VCL.RadialProgress, Daisy.VCL.Toast, Daisy.VCL.Calendar, Daisy.VCL.DatePicker,
   Daisy.VCL.IconButton, Daisy.VCL.LoadingButton, Daisy.VCL.Dropdown, Daisy.VCL.Fab,
   Daisy.VCL.Accordion, Daisy.VCL.Badge,
@@ -20,21 +21,36 @@ uses
   Daisy.VCL.TextInput, Daisy.VCL.TextArea, Daisy.VCL.Menu, Daisy.VCL.MainMenu,
   Daisy.VCL.PopupMenu, Daisy.VCL.CheckBox, Daisy.VCL.PageControl,
   Daisy.VCL.Indicator, Daisy.VCL.FieldSet, Daisy.VCL.Range, Daisy.VCL.Rating,
-  Daisy.VCL.Swap, Daisy.VCL.Stack, Daisy.VCL.ThemeController;
+  Daisy.VCL.Swap, Daisy.VCL.Stack, Daisy.VCL.ThemeController,
+  Daisy.VCL.Breadcrumbs, Daisy.VCL.Dock, Daisy.VCL.Link, Daisy.VCL.Pagination, Daisy.VCL.Steps;
+
+const
+  // Pages follow the component groups in the daisyUI documentation
+  CPageActions = 'DaisyUI - Actions';
+  CPageDisplay = 'DaisyUI - Display';
+  CPageFeedback = 'DaisyUI - Feedback';
+  CPageInput = 'DaisyUI - Input';
+  CPageNavigation = 'DaisyUI - Navigation';
+  CPageLayout = 'DaisyUI - Layout';
 
 procedure Register;
 begin
-  RegisterComponents('Daisy VCL', [TDaisyButton, TDaisyCard, TDaisyAlert,
-    TDaisySquareButton, TDaisyCircleButton, TDaisyLoadingButton, TDaisyAnimationButton,
-    TDaisyDropdownMenu, TDaisyFloatingActionButton, TDaisyAccordion,
-    TDaisyBadge, TDaisyBadgeButton,
-    TDaisyChatBubble, TDaisyCountdown, TDaisyList, TDaisyStat,
-    TDaisyPanel, TDaisyLabel, TDaisySVGImage, TDaisyStatus, TDaisyTable, TDaisySelect,
-    TDaisyFormStyler, TDaisyToggle, TDaisyTextInput, TDaisyTextArea,
-    TDaisyMenu, TDaisyMainMenu, TDaisyPopupMenu, TDaisyCheckBox,
-    TDaisyPageControl, TDaisyTabSheet, TDaisyProgress, TDaisyRadialProgress, TDaisyToast,
-    TDaisyCalendar, TDaisyDatePicker, TDaisyIndicator, TDaisyFieldSet, TDaisyRange,
-    TDaisyRating, TDaisySwap, TDaisyThemeController, TDaisyStack]);
+  // a plain TComponent is offered by every designer, so tie it to the VCL one
+  GroupDescendentsWith(TDaisyFormStyler, TControl);
+  RegisterComponents(CPageActions, [TDaisyButton, TDaisySquareButton, TDaisyCircleButton,
+    TDaisyLoadingButton, TDaisyAnimationButton, TDaisyBadgeButton, TDaisyDropdownMenu,
+    TDaisyFloatingActionButton, TDaisySwap, TDaisyThemeController]);
+  RegisterComponents(CPageDisplay, [TDaisyAccordion, TDaisyBadge, TDaisyCard, TDaisyChatBubble,
+    TDaisyCountdown, TDaisyList, TDaisyStat, TDaisyStatus, TDaisySVGImage, TDaisyTable]);
+  RegisterComponents(CPageFeedback, [TDaisyAlert, TDaisyProgress, TDaisyRadialProgress,
+    TDaisyToast]);
+  RegisterComponents(CPageInput, [TDaisyCalendar, TDaisyCheckBox, TDaisyDatePicker,
+    TDaisyFieldSet, TDaisyLabel, TDaisyRange, TDaisyRating, TDaisySelect, TDaisyTextArea,
+    TDaisyTextInput, TDaisyToggle]);
+  RegisterComponents(CPageNavigation, [TDaisyBreadcrumbs, TDaisyDock, TDaisyLink, TDaisyMainMenu,
+    TDaisyMenu, TDaisyPageControl, TDaisyPagination, TDaisyPopupMenu, TDaisySteps,
+    TDaisyTabSheet]);
+  RegisterComponents(CPageLayout, [TDaisyFormStyler, TDaisyIndicator, TDaisyPanel, TDaisyStack]);
 end;
 
 end.

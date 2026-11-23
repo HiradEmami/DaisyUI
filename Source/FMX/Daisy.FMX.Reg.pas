@@ -8,9 +8,10 @@ implementation
 
 {$R Daisy.FMX.Reg.dcr}
 {$R Daisy.FMX.Reg2.dcr}
+{$R Daisy.FMX.Reg3.dcr}
 
 uses
-  System.Classes, Daisy.FMX.Control, Daisy.FMX.Button, Daisy.FMX.Card, Daisy.FMX.Alert,
+  System.Classes, FMX.Types, Daisy.FMX.Control, Daisy.FMX.Button, Daisy.FMX.Card, Daisy.FMX.Alert,
   Daisy.FMX.Progress, Daisy.FMX.RadialProgress, Daisy.FMX.Toast, Daisy.FMX.Calendar, Daisy.FMX.DatePicker,
   Daisy.FMX.IconButton, Daisy.FMX.LoadingButton, Daisy.FMX.Dropdown, Daisy.FMX.Fab,
   Daisy.FMX.Accordion, Daisy.FMX.Badge,
@@ -20,23 +21,39 @@ uses
   Daisy.FMX.TextInput, Daisy.FMX.TextArea, Daisy.FMX.Menu, Daisy.FMX.MainMenu,
   Daisy.FMX.PopupMenu, Daisy.FMX.CheckBox, Daisy.FMX.PageControl,
   Daisy.FMX.Indicator, Daisy.FMX.FieldSet, Daisy.FMX.Range, Daisy.FMX.Rating,
-  Daisy.FMX.Swap, Daisy.FMX.Stack, Daisy.FMX.ThemeController;
+  Daisy.FMX.Swap, Daisy.FMX.Stack, Daisy.FMX.ThemeController,
+  Daisy.FMX.Breadcrumbs, Daisy.FMX.Dock, Daisy.FMX.Link, Daisy.FMX.Pagination, Daisy.FMX.Steps;
+
+const
+  // Pages follow the component groups in the daisyUI documentation
+  CPageActions = 'DaisyUI FMX - Actions';
+  CPageDisplay = 'DaisyUI FMX - Display';
+  CPageFeedback = 'DaisyUI FMX - Feedback';
+  CPageInput = 'DaisyUI FMX - Input';
+  CPageNavigation = 'DaisyUI FMX - Navigation';
+  CPageLayout = 'DaisyUI FMX - Layout';
 
 procedure Register;
 begin
-  RegisterComponents('Daisy FMX', [TDaisyFmxButton, TDaisyFmxCard, TDaisyFmxAlert,
-    TDaisyFmxSquareButton, TDaisyFmxCircleButton, TDaisyFmxLoadingButton, TDaisyFmxAnimationButton,
-    TDaisyFmxDropdownMenu, TDaisyFmxFloatingActionButton, TDaisyFmxAccordion,
-    TDaisyFmxBadge, TDaisyFmxBadgeButton,
-    TDaisyFmxChatBubble, TDaisyFmxCountdown, TDaisyFmxList, TDaisyFmxStat,
-    TDaisyFmxPanel, TDaisyFmxLabel, TDaisyFmxSVGImage, TDaisyFmxStatus, TDaisyFmxTable,
-    TDaisyFmxSelect,
-    TDaisyFmxFormStyler, TDaisyFmxToggle, TDaisyFmxTextInput, TDaisyFmxTextArea,
-    TDaisyFmxMenu, TDaisyFmxMainMenu, TDaisyFmxPopupMenu, TDaisyFmxCheckBox,
-    TDaisyFmxPageControl, TDaisyFmxTabSheet, TDaisyFmxProgress, TDaisyFmxRadialProgress,
-    TDaisyFmxToast, TDaisyFmxCalendar, TDaisyFmxDatePicker, TDaisyFmxIndicator,
-    TDaisyFmxFieldSet, TDaisyFmxRange, TDaisyFmxRating,
-    TDaisyFmxSwap, TDaisyFmxThemeController, TDaisyFmxStack]);
+  // a plain TComponent is offered by every designer, so tie it to the FMX one
+  GroupDescendentsWith(TDaisyFmxFormStyler, TFmxObject);
+  RegisterComponents(CPageActions, [TDaisyFmxButton, TDaisyFmxSquareButton,
+    TDaisyFmxCircleButton, TDaisyFmxLoadingButton, TDaisyFmxAnimationButton,
+    TDaisyFmxBadgeButton, TDaisyFmxDropdownMenu, TDaisyFmxFloatingActionButton, TDaisyFmxSwap,
+    TDaisyFmxThemeController]);
+  RegisterComponents(CPageDisplay, [TDaisyFmxAccordion, TDaisyFmxBadge, TDaisyFmxCard,
+    TDaisyFmxChatBubble, TDaisyFmxCountdown, TDaisyFmxList, TDaisyFmxStat, TDaisyFmxStatus,
+    TDaisyFmxSVGImage, TDaisyFmxTable]);
+  RegisterComponents(CPageFeedback, [TDaisyFmxAlert, TDaisyFmxProgress, TDaisyFmxRadialProgress,
+    TDaisyFmxToast]);
+  RegisterComponents(CPageInput, [TDaisyFmxCalendar, TDaisyFmxCheckBox, TDaisyFmxDatePicker,
+    TDaisyFmxFieldSet, TDaisyFmxLabel, TDaisyFmxRange, TDaisyFmxRating, TDaisyFmxSelect,
+    TDaisyFmxTextArea, TDaisyFmxTextInput, TDaisyFmxToggle]);
+  RegisterComponents(CPageNavigation, [TDaisyFmxBreadcrumbs, TDaisyFmxDock, TDaisyFmxLink,
+    TDaisyFmxMainMenu, TDaisyFmxMenu, TDaisyFmxPageControl, TDaisyFmxPagination,
+    TDaisyFmxPopupMenu, TDaisyFmxSteps, TDaisyFmxTabSheet]);
+  RegisterComponents(CPageLayout, [TDaisyFmxFormStyler, TDaisyFmxIndicator, TDaisyFmxPanel,
+    TDaisyFmxStack]);
 end;
 
 end.

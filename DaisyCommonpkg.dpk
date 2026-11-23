@@ -47,6 +47,7 @@ contains
   Daisy.Indicators in 'Source\Common\Daisy.Indicators.pas',
   Daisy.Swap in 'Source\Common\Daisy.Swap.pas',
   Daisy.Stack in 'Source\Common\Daisy.Stack.pas',
+  Daisy.Navigation in 'Source\Common\Daisy.Navigation.pas',
   Daisy.ThemeController in 'Source\Common\Daisy.ThemeController.pas';
 
 end.

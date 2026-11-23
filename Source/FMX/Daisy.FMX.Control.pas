@@ -33,6 +33,8 @@ type
     FParentBiDiMode: Boolean;
     FFlipGlyphs: Boolean;
     FUprightDepth: Integer;
+    FTrackedItem: Integer;
+    procedure SetTrackedItem(const Value: Integer);
     function GetBiDiMode: TBiDiMode;
     procedure SetBiDiMode(const Value: TBiDiMode);
     procedure SetParentBiDiMode(const Value: Boolean);
@@ -60,6 +62,7 @@ type
     procedure DoExit; override;
     procedure MouseDown(Button: TMouseButton; Shift: TShiftState; X, Y: Single); override;
     procedure MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: Single); override;
+    procedure MouseMove(Shift: TShiftState; X, Y: Single); override;
 
     { Hooks for descendants }
     function IsInteractive: Boolean; virtual;
@@ -101,6 +104,17 @@ type
     function ContentRect: TRectF;
     property Hot: Boolean read FHot;
     property Pressed: Boolean read FPressed write SetPressed;
+
+    { Item tracking for components made of several clickable items (the navigation components).
+      Descendants return the item under a point (left-to-right layout coordinates, -1 for none)
+      from TrackedItemAt; the base keeps TrackedItem on the item under the mouse. }
+    function TrackedItemAt(const APoint: TPointF): Integer; virtual;
+    procedure TrackedItemChanged; virtual;
+    property TrackedItem: Integer read FTrackedItem;
+    // Hand cursor while the mouse is over a clickable item, the default cursor otherwise
+    procedure SetItemCursor(AHand: Boolean);
+    // The keyboard focus outline drawn around one item
+    procedure DrawItemFocus(const ARect: TRectF; ARadius: Single);
 
     { Drawing helpers }
     procedure DrawText(const AText: string; const ARect: TRectF; AColor: TAlphaColor;
@@ -253,6 +267,7 @@ begin
   FContentPadding := -1;
   FCornerRadius := -1;
   FShadowSize := -1;
+  FTrackedItem := -1;
   FBiDiMode := bdLeftToRight;
   FParentBiDiMode := True;
   AutoCapture := True; // keeps the pressed state correct when the mouse leaves
@@ -1221,10 +1236,54 @@ begin
     Repaint;
 end;
 
+function TDaisyControl.TrackedItemAt(const APoint: TPointF): Integer;
+begin
+  Result := -1;
+end;
+
+procedure TDaisyControl.TrackedItemChanged;
+begin
+  Repaint;
+end;
+
+procedure TDaisyControl.SetItemCursor(AHand: Boolean);
+begin
+  if AHand then
+    Cursor := crHandPoint
+  else
+    Cursor := crDefault;
+end;
+
+procedure TDaisyControl.SetTrackedItem(const Value: Integer);
+begin
+  if FTrackedItem <> Value then
+  begin
+    FTrackedItem := Value;
+    TrackedItemChanged;
+  end;
+end;
+
+procedure TDaisyControl.DrawItemFocus(const ARect: TRectF; ARadius: Single);
+var
+  LRect: TRectF;
+begin
+  LRect := ARect;
+  LRect.Inflate(2, 2);
+  StrokeRound(LRect, ARadius + 2, DaisyWithAlpha(Theme.BaseContent, 0.6), 2, False);
+end;
+
+procedure TDaisyControl.MouseMove(Shift: TShiftState; X, Y: Single);
+begin
+  inherited;
+  if not (csDesigning in ComponentState) then
+    SetTrackedItem(TrackedItemAt(PointF(X, Y)));
+end;
+
 procedure TDaisyControl.DoMouseLeave;
 begin
   inherited;
   FHot := False;
+  SetTrackedItem(-1);
   if IsInteractive then
     Repaint;
 end;

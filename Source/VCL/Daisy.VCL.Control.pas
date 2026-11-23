@@ -30,6 +30,8 @@ type
     FPressed: Boolean;
     FShowFocus: Boolean;
     FFlipGlyphs: Boolean;
+    FTrackedItem: Integer;
+    procedure SetTrackedItem(const Value: Integer);
     procedure SetThemeKind(const Value: TDaisyThemeKind);
     procedure SetVariant(const Value: TDaisyVariant);
     procedure SetStyle(const Value: TDaisyStyle);
@@ -59,6 +61,7 @@ type
     procedure Loaded; override;
     procedure MouseDown(Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;
     procedure MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;
+    procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
 
     { Hooks for descendants }
     function IsInteractive: Boolean; virtual;
@@ -82,6 +85,17 @@ type
     function ContentRect: TRect;
     property Hot: Boolean read FHot;
     property Pressed: Boolean read FPressed write SetPressed;
+
+    { Item tracking for components made of several clickable items (the navigation components).
+      Descendants return the item under a point (left-to-right layout coordinates, -1 for none)
+      from TrackedItemAt; the base keeps TrackedItem on the item under the mouse. }
+    function TrackedItemAt(const APoint: TPoint): Integer; virtual;
+    procedure TrackedItemChanged; virtual;
+    property TrackedItem: Integer read FTrackedItem;
+    // Hand cursor while the mouse is over a clickable item, the default cursor otherwise
+    procedure SetItemCursor(AHand: Boolean);
+    // The keyboard focus outline drawn around one item
+    procedure DrawItemFocus(AGraphics: TGPGraphics; const ARect: TRectF; ARadius: Single);
 
     { Right-to-left support.
       Components lay out in left-to-right coordinates; when IsRTL is True everything drawn
@@ -273,6 +287,7 @@ begin
   FContentPadding := -1;
   FCornerRadius := -1;
   FShadowSize := -1;
+  FTrackedItem := -1;
   Font.Name := 'Segoe UI';
   DaisyThemes.AddListener(GlobalThemeChanged);
 end;
@@ -370,6 +385,59 @@ begin
     if IsInteractive then
       Invalidate;
   end;
+end;
+
+function TDaisyControl.TrackedItemAt(const APoint: TPoint): Integer;
+begin
+  Result := -1;
+end;
+
+procedure TDaisyControl.TrackedItemChanged;
+begin
+  Invalidate;
+end;
+
+procedure TDaisyControl.SetItemCursor(AHand: Boolean);
+var
+  LCursor: TCursor;
+begin
+  if AHand then
+    LCursor := crHandPoint
+  else
+    LCursor := crDefault;
+  if Cursor <> LCursor then
+  begin
+    Cursor := LCursor;
+    if HandleAllocated and not (csDesigning in ComponentState) then
+      Winapi.Windows.SetCursor(Screen.Cursors[Cursor]);
+  end;
+end;
+
+procedure TDaisyControl.SetTrackedItem(const Value: Integer);
+begin
+  if FTrackedItem <> Value then
+  begin
+    FTrackedItem := Value;
+    TrackedItemChanged;
+  end;
+end;
+
+procedure TDaisyControl.DrawItemFocus(AGraphics: TGPGraphics; const ARect: TRectF;
+  ARadius: Single);
+var
+  LRect: TRectF;
+begin
+  LRect := ARect;
+  LRect.Inflate(ScaleValue(2), ScaleValue(2));
+  StrokeRoundRect(AGraphics, LRect, ARadius + ScaleValue(2),
+    DaisyWithAlpha(Theme.BaseContent, 0.6), ScaleValue(2), False);
+end;
+
+procedure TDaisyControl.MouseMove(Shift: TShiftState; X, Y: Integer);
+begin
+  inherited MouseMove(Shift, X, Y);
+  if not (csDesigning in ComponentState) then
+    SetTrackedItem(TrackedItemAt(MirrorPoint(Point(X, Y))));
 end;
 
 procedure TDaisyControl.SetPressed(const Value: Boolean);
@@ -1264,6 +1332,7 @@ procedure TDaisyControl.CMMouseLeave(var Message: TMessage);
 begin
   inherited;
   SetHot(False);
+  SetTrackedItem(-1);
 end;
 
 procedure TDaisyControl.CMEnabledChanged(var Message: TMessage);

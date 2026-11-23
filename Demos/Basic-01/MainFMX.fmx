@@ -1446,6 +1446,841 @@ object Form11: TForm11
         Text = 'Error'
       end
     end
+    object tsNavigation: TDaisyFmxTabSheet
+      Position.X = 1
+      Position.Y = 41
+      Size.Width = 966
+      Size.Height = 470
+      Size.PlatformDefault = False
+      Text = 'Navigation'
+      object lblNavCrumbs: TLabel
+        AutoSize = True
+        StyledSettings = [Family, Other]
+        Position.X = 16
+        Position.Y = 8
+        Size.Width = 100
+        Size.Height = 22
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16
+        Text = 'Breadcrumbs'
+        TabOrder = 0
+      end
+      object lblNavLink: TLabel
+        AutoSize = True
+        StyledSettings = [Family, Other]
+        Position.X = 16
+        Position.Y = 176
+        Size.Width = 40
+        Size.Height = 22
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16
+        Text = 'Link'
+        TabOrder = 1
+      end
+      object lblNavPagination: TLabel
+        AutoSize = True
+        StyledSettings = [Family, Other]
+        Position.X = 480
+        Position.Y = 8
+        Size.Width = 90
+        Size.Height = 22
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16
+        Text = 'Pagination'
+        TabOrder = 2
+      end
+      object lblNavSteps: TLabel
+        AutoSize = True
+        StyledSettings = [Family, Other]
+        Position.X = 16
+        Position.Y = 280
+        Size.Width = 50
+        Size.Height = 22
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16
+        Text = 'Steps'
+        TabOrder = 3
+      end
+      object lblNavResult: TLabel
+        AutoSize = True
+        Position.X = 480
+        Position.Y = 232
+        Size.Width = 140
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Click a crumb or a page'
+        TabOrder = 4
+      end
+      object lblCrumbsScroll: TLabel
+        AutoSize = True
+        Position.X = 272
+        Position.Y = 128
+        Size.Width = 200
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Too wide: scroll with the mouse wheel'
+        WordWrap = False
+        TabOrder = 5
+      end
+      object lblStepsResponsive: TLabel
+        AutoSize = True
+        Position.X = 730
+        Position.Y = 240
+        Size.Width = 220
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Vertical because it is narrower than 300'
+        TabOrder = 6
+      end
+      object crumbsIcons: TDaisyFmxBreadcrumbs
+        Position.X = 16
+        Position.Y = 40
+        Size.Width = 440
+        Size.Height = 32
+        Size.PlatformDefault = False
+        TabOrder = 7
+        OnItemClick = CrumbClick
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Documents'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0' +
+                ' 1 -2 -2v-11a2 2 0 0 1 2 -2"/></svg>')
+          end
+          item
+            Caption = 'Add Document'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1' +
+                ' -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/></svg>')
+          end>
+      end
+      object crumbsSlash: TDaisyFmxBreadcrumbs
+        Position.X = 16
+        Position.Y = 80
+        Size.Width = 440
+        Size.Height = 32
+        Size.PlatformDefault = False
+        TabOrder = 8
+        Separator = dbsSlash
+        OnItemClick = CrumbClick
+        Items = <
+          item
+            Caption = 'Home'
+          end
+          item
+            Caption = 'Library'
+          end
+          item
+            Caption = 'Data'
+          end>
+      end
+      object crumbsScroll: TDaisyFmxBreadcrumbs
+        Variant = dvPrimary
+        Position.X = 16
+        Position.Y = 120
+        Size.Width = 240
+        Size.Height = 32
+        Size.PlatformDefault = False
+        TabOrder = 9
+        OnItemClick = CrumbClick
+        Items = <
+          item
+            Caption = 'Home'
+          end
+          item
+            Caption = 'Products'
+          end
+          item
+            Caption = 'Electronics'
+          end
+          item
+            Caption = 'Phones'
+          end
+          item
+            Caption = 'Details'
+          end>
+      end
+      object lnkDefault: TDaisyFmxLink
+        Position.X = 16
+        Position.Y = 208
+        Size.Width = 86
+        Size.Height = 24
+        Size.PlatformDefault = False
+        TabOrder = 10
+        Text = 'Default link'
+      end
+      object lnkPrimary: TDaisyFmxLink
+        Variant = dvPrimary
+        Position.X = 130
+        Position.Y = 208
+        Size.Width = 86
+        Size.Height = 24
+        Size.PlatformDefault = False
+        TabOrder = 11
+        Text = 'Primary link'
+      end
+      object lnkHover: TDaisyFmxLink
+        Variant = dvSecondary
+        Position.X = 260
+        Position.Y = 208
+        Size.Width = 120
+        Size.Height = 24
+        Size.PlatformDefault = False
+        TabOrder = 12
+        Text = 'Underline on hover'
+        Underline = dluHover
+      end
+      object lnkAccent: TDaisyFmxLink
+        Variant = dvAccent
+        Position.X = 400
+        Position.Y = 208
+        Size.Width = 86
+        Size.Height = 24
+        Size.PlatformDefault = False
+        TabOrder = 13
+        Text = 'Accent link'
+      end
+      object lnkSuccess: TDaisyFmxLink
+        Variant = dvSuccess
+        Position.X = 16
+        Position.Y = 240
+        Size.Width = 86
+        Size.Height = 24
+        Size.PlatformDefault = False
+        TabOrder = 14
+        Text = 'Success link'
+      end
+      object lnkWarning: TDaisyFmxLink
+        Variant = dvWarning
+        Position.X = 130
+        Position.Y = 240
+        Size.Width = 86
+        Size.Height = 24
+        Size.PlatformDefault = False
+        TabOrder = 15
+        Text = 'Warning link'
+      end
+      object lnkError: TDaisyFmxLink
+        Variant = dvError
+        Position.X = 260
+        Position.Y = 240
+        Size.Width = 86
+        Size.Height = 24
+        Size.PlatformDefault = False
+        TabOrder = 16
+        Text = 'Error link'
+      end
+      object lnkUrl: TDaisyFmxLink
+        Variant = dvInfo
+        Position.X = 400
+        Position.Y = 240
+        Size.Width = 100
+        Size.Height = 24
+        Size.PlatformDefault = False
+        TabOrder = 17
+        Text = 'Open daisyui.com'
+        URL = 'https://daisyui.com'
+      end
+      object pagBasic: TDaisyFmxPagination
+        Position.X = 480
+        Position.Y = 40
+        Size.Width = 470
+        Size.Height = 40
+        Size.PlatformDefault = False
+        TabOrder = 18
+        CurrentPage = 4
+        OnChange = PageChange
+      end
+      object pagSmall: TDaisyFmxPagination
+        Variant = dvPrimary
+        SizeKind = dzSM
+        Position.X = 480
+        Position.Y = 88
+        Size.Width = 470
+        Size.Height = 32
+        Size.PlatformDefault = False
+        TabOrder = 19
+        PageCount = 20
+        CurrentPage = 10
+        OnChange = PageChange
+      end
+      object pagPrevNext: TDaisyFmxPagination
+        Position.X = 480
+        Position.Y = 128
+        Size.Width = 300
+        Size.Height = 40
+        Size.PlatformDefault = False
+        TabOrder = 20
+        ShowPageNumbers = False
+        PrevCaption = 'Previous'
+        NextCaption = 'Next'
+        PageCount = 5
+        CurrentPage = 1
+        OnChange = PageChange
+      end
+      object pagSeparate: TDaisyFmxPagination
+        Variant = dvSecondary
+        Position.X = 480
+        Position.Y = 176
+        Size.Width = 470
+        Size.Height = 40
+        Size.PlatformDefault = False
+        TabOrder = 21
+        Joined = False
+        PageCount = 7
+        CurrentPage = 2
+        OnChange = PageChange
+      end
+      object stepsIcons: TDaisyFmxSteps
+        Position.X = 16
+        Position.Y = 312
+        Size.Width = 440
+        Size.Height = 64
+        Size.PlatformDefault = False
+        TabOrder = 22
+        ActiveStep = 2
+        Items = <
+          item
+            Caption = 'Register'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end
+          item
+            Caption = 'Choose plan'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Purchase'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
+                '9 6l9 -6"/></svg>')
+          end>
+      end
+      object stepsColors: TDaisyFmxSteps
+        Position.X = 16
+        Position.Y = 392
+        Size.Width = 440
+        Size.Height = 64
+        Size.PlatformDefault = False
+        TabOrder = 23
+        ActiveStep = 3
+        ActiveVariant = dvSecondary
+        Items = <
+          item
+            Caption = 'Step 1'
+            Content = '$'
+          end
+          item
+            Caption = 'Step 2'
+            Content = '?'
+          end
+          item
+            Caption = 'Step 3'
+            Content = '*'
+          end
+          item
+            Caption = 'Failed'
+            Content = '!'
+            Variant = dvError
+          end>
+      end
+      object stepsVertical: TDaisyFmxSteps
+        Position.X = 480
+        Position.Y = 264
+        Size.Width = 220
+        Size.Height = 192
+        Size.PlatformDefault = False
+        TabOrder = 24
+        Orientation = dsoVertical
+        ActiveStep = 2
+        ActiveVariant = dvAccent
+        Items = <
+          item
+            Caption = 'Register'
+          end
+          item
+            Caption = 'Choose plan'
+          end
+          item
+            Caption = 'Purchase'
+          end>
+      end
+      object stepsResponsive: TDaisyFmxSteps
+        Position.X = 730
+        Position.Y = 264
+        Size.Width = 220
+        Size.Height = 192
+        Size.PlatformDefault = False
+        TabOrder = 25
+        ActiveStep = 2
+        ActiveVariant = dvSuccess
+        BreakWidth = 300
+        Items = <
+          item
+            Caption = 'Cart'
+          end
+          item
+            Caption = 'Address'
+          end
+          item
+            Caption = 'Payment'
+          end>
+      end
+    end
+    object tsDock: TDaisyFmxTabSheet
+      Position.X = 1
+      Position.Y = 41
+      Size.Width = 966
+      Size.Height = 470
+      Size.PlatformDefault = False
+      Text = 'Dock'
+      object lblDock: TLabel
+        AutoSize = True
+        StyledSettings = [Family, Other]
+        Position.X = 16
+        Position.Y = 8
+        Size.Width = 40
+        Size.Height = 22
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16
+        Text = 'Dock'
+        TabOrder = 0
+      end
+      object lblDockEven: TLabel
+        AutoSize = True
+        Position.X = 16
+        Position.Y = 40
+        Size.Width = 140
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Bottom, evenly spaced'
+        TabOrder = 1
+      end
+      object lblDockNormal: TLabel
+        AutoSize = True
+        Position.X = 16
+        Position.Y = 144
+        Size.Width = 150
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Bottom, normal spacing'
+        TabOrder = 2
+      end
+      object lblDockSmall: TLabel
+        AutoSize = True
+        Position.X = 16
+        Position.Y = 248
+        Size.Width = 220
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Small (SM) with labels hidden, Primary'
+        TabOrder = 3
+      end
+      object lblDockLarge: TLabel
+        AutoSize = True
+        Position.X = 16
+        Position.Y = 340
+        Size.Width = 130
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Large (LG), Accent'
+        TabOrder = 4
+      end
+      object lblDockLeft: TLabel
+        AutoSize = True
+        Position.X = 520
+        Position.Y = 40
+        Size.Width = 70
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Left (even)'
+        TabOrder = 5
+      end
+      object lblDockLeftNormal: TLabel
+        AutoSize = True
+        Position.X = 620
+        Position.Y = 40
+        Size.Width = 85
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Left (normal)'
+        TabOrder = 6
+      end
+      object lblDockRight: TLabel
+        AutoSize = True
+        Position.X = 720
+        Position.Y = 40
+        Size.Width = 80
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Right (even)'
+        TabOrder = 7
+      end
+      object lblDockRightNormal: TLabel
+        AutoSize = True
+        Position.X = 820
+        Position.Y = 40
+        Size.Width = 90
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Right (normal)'
+        TabOrder = 8
+      end
+      object lblDockResult: TLabel
+        AutoSize = True
+        Position.X = 16
+        Position.Y = 444
+        Size.Width = 100
+        Size.Height = 17
+        Size.PlatformDefault = False
+        Text = 'Click a dock item'
+        TabOrder = 9
+      end
+      object dockBottomEven: TDaisyFmxDock
+        Position.X = 16
+        Position.Y = 64
+        Size.Width = 440
+        Size.Height = 64
+        Size.PlatformDefault = False
+        TabOrder = 10
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Inbox'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
+                '9 6l9 -6"/></svg>')
+          end
+          item
+            Caption = 'Settings'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<path d="M4 8h4m4 0h8"/><circle cx="10" cy="8" r="2"/><path d="M' +
+                '4 16h10m4 0h2"/><circle cx="16" cy="16" r="2"/></svg>')
+          end>
+      end
+      object dockBottomNormal: TDaisyFmxDock
+        Spacing = dspNormal
+        Position.X = 16
+        Position.Y = 168
+        Size.Width = 440
+        Size.Height = 64
+        Size.PlatformDefault = False
+        TabOrder = 11
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Inbox'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
+                '9 6l9 -6"/></svg>')
+          end>
+      end
+      object dockSmall: TDaisyFmxDock
+        Variant = dvPrimary
+        SizeKind = dzSM
+        Position.X = 16
+        Position.Y = 272
+        Size.Width = 300
+        Size.Height = 52
+        Size.PlatformDefault = False
+        TabOrder = 12
+        ShowLabels = False
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+      object dockLarge: TDaisyFmxDock
+        Variant = dvAccent
+        SizeKind = dzLG
+        Position.X = 16
+        Position.Y = 364
+        Size.Width = 440
+        Size.Height = 72
+        Size.PlatformDefault = False
+        TabOrder = 13
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Inbox'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
+                '9 6l9 -6"/></svg>')
+          end
+          item
+            Caption = 'Settings'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<path d="M4 8h4m4 0h8"/><circle cx="10" cy="8" r="2"/><path d="M' +
+                '4 16h10m4 0h2"/><circle cx="16" cy="16" r="2"/></svg>')
+          end>
+      end
+      object dockLeft: TDaisyFmxDock
+        Placement = ddpLeft
+        Position.X = 520
+        Position.Y = 64
+        Size.Width = 64
+        Size.Height = 300
+        Size.PlatformDefault = False
+        TabOrder = 14
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+      object dockLeftNormal: TDaisyFmxDock
+        Variant = dvSecondary
+        Placement = ddpLeft
+        Spacing = dspNormal
+        Position.X = 620
+        Position.Y = 64
+        Size.Width = 64
+        Size.Height = 300
+        Size.PlatformDefault = False
+        TabOrder = 15
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+      object dockRight: TDaisyFmxDock
+        Variant = dvInfo
+        Placement = ddpRight
+        Position.X = 720
+        Position.Y = 64
+        Size.Width = 64
+        Size.Height = 300
+        Size.PlatformDefault = False
+        TabOrder = 16
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+      object dockRightNormal: TDaisyFmxDock
+        Variant = dvSuccess
+        Placement = ddpRight
+        Spacing = dspNormal
+        Position.X = 820
+        Position.Y = 64
+        Size.Width = 64
+        Size.Height = 300
+        Size.PlatformDefault = False
+        TabOrder = 17
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+    end
   end
   object Styler: TDaisyFmxFormStyler
   end

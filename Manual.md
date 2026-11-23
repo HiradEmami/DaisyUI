@@ -1,6 +1,6 @@
 # Daisy UI Component Manual
 
-This manual describes every component in the Daisy UI VCL and FMX sets. The two sets are identical: each `TDaisyXxx` (VCL, palette page **Daisy VCL**) has an `TDaisyFmxXxx` twin (FMX, palette page **Daisy FMX**) with the same properties, events and behavior. Both share one palette icon.
+This manual describes every component in the Daisy UI VCL and FMX sets. The two sets are identical: each `TDaisyXxx` (VCL) has an `TDaisyFmxXxx` twin (FMX) with the same properties, events and behavior. Both appear on palette pages named after the daisyUI groups (VCL: **DaisyUI - Actions**, **Display**, **Feedback**, **Input**, **Navigation**, **Layout**; FMX: **DaisyUI FMX - Actions** and so on) and share one palette icon.
 
 The designs are inspired by [daisyUI](https://daisyui.com). They are not exact copies.
 

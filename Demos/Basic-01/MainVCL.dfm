@@ -1399,6 +1399,795 @@ object Form10: TForm10
         Caption = 'XL'
       end
     end
+    object tsNavigation: TDaisyTabSheet
+      Left = 1
+      Top = 41
+      Width = 966
+      Height = 470
+      TabOrder = 9
+      Caption = 'Navigation'
+      object lblNavCrumbs: TLabel
+        Left = 16
+        Top = 8
+        Width = 92
+        Height = 21
+        Caption = 'Breadcrumbs'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblNavLink: TLabel
+        Left = 16
+        Top = 176
+        Width = 31
+        Height = 21
+        Caption = 'Link'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblNavPagination: TLabel
+        Left = 480
+        Top = 8
+        Width = 75
+        Height = 21
+        Caption = 'Pagination'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblNavSteps: TLabel
+        Left = 16
+        Top = 280
+        Width = 38
+        Height = 21
+        Caption = 'Steps'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblNavResult: TLabel
+        Left = 480
+        Top = 232
+        Width = 125
+        Height = 15
+        Caption = 'Click a crumb or a page'
+      end
+      object crumbsIcons: TDaisyBreadcrumbs
+        Left = 16
+        Top = 40
+        Width = 440
+        Height = 32
+        OnItemClick = CrumbClick
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Documents'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0' +
+                ' 1 -2 -2v-11a2 2 0 0 1 2 -2"/></svg>')
+          end
+          item
+            Caption = 'Add Document'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1' +
+                ' -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/></svg>')
+          end>
+      end
+      object crumbsSlash: TDaisyBreadcrumbs
+        Left = 16
+        Top = 80
+        Width = 440
+        Height = 32
+        Separator = dbsSlash
+        OnItemClick = CrumbClick
+        Items = <
+          item
+            Caption = 'Home'
+          end
+          item
+            Caption = 'Library'
+          end
+          item
+            Caption = 'Data'
+          end>
+      end
+      object crumbsScroll: TDaisyBreadcrumbs
+        Left = 16
+        Top = 120
+        Width = 240
+        Height = 32
+        Variant = dvPrimary
+        OnItemClick = CrumbClick
+        Items = <
+          item
+            Caption = 'Home'
+          end
+          item
+            Caption = 'Products'
+          end
+          item
+            Caption = 'Electronics'
+          end
+          item
+            Caption = 'Phones'
+          end
+          item
+            Caption = 'Details'
+          end>
+      end
+      object lblCrumbsScroll: TLabel
+        Left = 272
+        Top = 128
+        Width = 188
+        Height = 15
+        Caption = 'Too wide: scroll with the mouse wheel'
+      end
+      object lnkDefault: TDaisyLink
+        Left = 16
+        Top = 208
+        Width = 86
+        Height = 24
+        TabOrder = 0
+        TabStop = True
+        Caption = 'Default link'
+      end
+      object lnkPrimary: TDaisyLink
+        Left = 130
+        Top = 208
+        Width = 86
+        Height = 24
+        Variant = dvPrimary
+        TabOrder = 1
+        TabStop = True
+        Caption = 'Primary link'
+      end
+      object lnkHover: TDaisyLink
+        Left = 260
+        Top = 208
+        Width = 120
+        Height = 24
+        Variant = dvSecondary
+        TabOrder = 2
+        TabStop = True
+        Caption = 'Underline on hover'
+        Underline = dluHover
+      end
+      object lnkAccent: TDaisyLink
+        Left = 400
+        Top = 208
+        Width = 86
+        Height = 24
+        Variant = dvAccent
+        TabOrder = 3
+        TabStop = True
+        Caption = 'Accent link'
+      end
+      object lnkSuccess: TDaisyLink
+        Left = 16
+        Top = 240
+        Width = 86
+        Height = 24
+        Variant = dvSuccess
+        TabOrder = 4
+        TabStop = True
+        Caption = 'Success link'
+      end
+      object lnkWarning: TDaisyLink
+        Left = 130
+        Top = 240
+        Width = 86
+        Height = 24
+        Variant = dvWarning
+        TabOrder = 5
+        TabStop = True
+        Caption = 'Warning link'
+      end
+      object lnkError: TDaisyLink
+        Left = 260
+        Top = 240
+        Width = 86
+        Height = 24
+        Variant = dvError
+        TabOrder = 6
+        TabStop = True
+        Caption = 'Error link'
+      end
+      object lnkUrl: TDaisyLink
+        Left = 400
+        Top = 240
+        Width = 100
+        Height = 24
+        Variant = dvInfo
+        TabOrder = 7
+        TabStop = True
+        Caption = 'Open daisyui.com'
+        URL = 'https://daisyui.com'
+      end
+      object pagBasic: TDaisyPagination
+        Left = 480
+        Top = 40
+        Width = 470
+        Height = 40
+        TabOrder = 8
+        TabStop = True
+        CurrentPage = 4
+        OnChange = PageChange
+      end
+      object pagSmall: TDaisyPagination
+        Left = 480
+        Top = 88
+        Width = 470
+        Height = 32
+        Variant = dvPrimary
+        SizeKind = dzSM
+        TabOrder = 9
+        TabStop = True
+        PageCount = 20
+        CurrentPage = 10
+        OnChange = PageChange
+      end
+      object pagPrevNext: TDaisyPagination
+        Left = 480
+        Top = 128
+        Width = 300
+        Height = 40
+        TabOrder = 10
+        TabStop = True
+        ShowPageNumbers = False
+        PrevCaption = 'Previous'
+        NextCaption = 'Next'
+        PageCount = 5
+        CurrentPage = 1
+        OnChange = PageChange
+      end
+      object pagSeparate: TDaisyPagination
+        Left = 480
+        Top = 176
+        Width = 470
+        Height = 40
+        Variant = dvSecondary
+        TabOrder = 11
+        TabStop = True
+        Joined = False
+        PageCount = 7
+        CurrentPage = 2
+        OnChange = PageChange
+      end
+      object stepsIcons: TDaisySteps
+        Left = 16
+        Top = 312
+        Width = 440
+        Height = 64
+        ActiveStep = 2
+        Items = <
+          item
+            Caption = 'Register'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end
+          item
+            Caption = 'Choose plan'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Purchase'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
+                '9 6l9 -6"/></svg>')
+          end>
+      end
+      object stepsColors: TDaisySteps
+        Left = 16
+        Top = 392
+        Width = 440
+        Height = 64
+        ActiveStep = 3
+        ActiveVariant = dvSecondary
+        Items = <
+          item
+            Caption = 'Step 1'
+            Content = '$'
+          end
+          item
+            Caption = 'Step 2'
+            Content = '?'
+          end
+          item
+            Caption = 'Step 3'
+            Content = '*'
+          end
+          item
+            Caption = 'Failed'
+            Content = '!'
+            Variant = dvError
+          end>
+      end
+      object stepsVertical: TDaisySteps
+        Left = 480
+        Top = 264
+        Width = 220
+        Height = 192
+        Orientation = dsoVertical
+        ActiveStep = 2
+        ActiveVariant = dvAccent
+        Items = <
+          item
+            Caption = 'Register'
+          end
+          item
+            Caption = 'Choose plan'
+          end
+          item
+            Caption = 'Purchase'
+          end>
+      end
+      object stepsResponsive: TDaisySteps
+        Left = 730
+        Top = 264
+        Width = 220
+        Height = 192
+        ActiveStep = 2
+        ActiveVariant = dvSuccess
+        BreakWidth = 300
+        Items = <
+          item
+            Caption = 'Cart'
+          end
+          item
+            Caption = 'Address'
+          end
+          item
+            Caption = 'Payment'
+          end>
+      end
+      object lblStepsResponsive: TLabel
+        Left = 730
+        Top = 240
+        Width = 211
+        Height = 15
+        Caption = 'Vertical because it is narrower than 300'
+      end
+    end
+    object tsDock: TDaisyTabSheet
+      Left = 1
+      Top = 41
+      Width = 966
+      Height = 470
+      TabOrder = 10
+      Caption = 'Dock'
+      object lblDock: TLabel
+        Left = 16
+        Top = 8
+        Width = 36
+        Height = 21
+        Caption = 'Dock'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblDockEven: TLabel
+        Left = 16
+        Top = 40
+        Width = 134
+        Height = 15
+        Caption = 'Bottom, evenly spaced'
+      end
+      object lblDockNormal: TLabel
+        Left = 16
+        Top = 144
+        Width = 142
+        Height = 15
+        Caption = 'Bottom, normal spacing'
+      end
+      object lblDockSmall: TLabel
+        Left = 16
+        Top = 248
+        Width = 209
+        Height = 15
+        Caption = 'Small (SM) with labels hidden, Primary'
+      end
+      object lblDockLarge: TLabel
+        Left = 16
+        Top = 340
+        Width = 119
+        Height = 15
+        Caption = 'Large (LG), Accent'
+      end
+      object lblDockLeft: TLabel
+        Left = 520
+        Top = 40
+        Width = 63
+        Height = 15
+        Caption = 'Left (even)'
+      end
+      object lblDockLeftNormal: TLabel
+        Left = 620
+        Top = 40
+        Width = 76
+        Height = 15
+        Caption = 'Left (normal)'
+      end
+      object lblDockRight: TLabel
+        Left = 720
+        Top = 40
+        Width = 69
+        Height = 15
+        Caption = 'Right (even)'
+      end
+      object lblDockRightNormal: TLabel
+        Left = 820
+        Top = 40
+        Width = 82
+        Height = 15
+        Caption = 'Right (normal)'
+      end
+      object lblDockResult: TLabel
+        Left = 16
+        Top = 444
+        Width = 94
+        Height = 15
+        Caption = 'Click a dock item'
+      end
+      object dockBottomEven: TDaisyDock
+        Left = 16
+        Top = 64
+        Width = 440
+        Height = 64
+        TabOrder = 0
+        TabStop = True
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Inbox'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
+                '9 6l9 -6"/></svg>')
+          end
+          item
+            Caption = 'Settings'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<path d="M4 8h4m4 0h8"/><circle cx="10" cy="8" r="2"/><path d="M' +
+                '4 16h10m4 0h2"/><circle cx="16" cy="16" r="2"/></svg>')
+          end>
+      end
+      object dockBottomNormal: TDaisyDock
+        Left = 16
+        Top = 168
+        Width = 440
+        Height = 64
+        Spacing = dspNormal
+        TabOrder = 1
+        TabStop = True
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Inbox'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
+                '9 6l9 -6"/></svg>')
+          end>
+      end
+      object dockSmall: TDaisyDock
+        Left = 16
+        Top = 272
+        Width = 300
+        Height = 52
+        Variant = dvPrimary
+        SizeKind = dzSM
+        TabOrder = 2
+        TabStop = True
+        ShowLabels = False
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+      object dockLarge: TDaisyDock
+        Left = 16
+        Top = 364
+        Width = 440
+        Height = 72
+        Variant = dvAccent
+        SizeKind = dzLG
+        TabOrder = 3
+        TabStop = True
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Inbox'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l' +
+                '9 6l9 -6"/></svg>')
+          end
+          item
+            Caption = 'Settings'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<path d="M4 8h4m4 0h8"/><circle cx="10" cy="8" r="2"/><path d="M' +
+                '4 16h10m4 0h2"/><circle cx="16" cy="16" r="2"/></svg>')
+          end>
+      end
+      object dockLeft: TDaisyDock
+        Left = 520
+        Top = 64
+        Width = 64
+        Height = 300
+        Placement = ddpLeft
+        TabOrder = 4
+        TabStop = True
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+      object dockLeftNormal: TDaisyDock
+        Left = 620
+        Top = 64
+        Width = 64
+        Height = 300
+        Placement = ddpLeft
+        Spacing = dspNormal
+        Variant = dvSecondary
+        TabOrder = 5
+        TabStop = True
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+      object dockRight: TDaisyDock
+        Left = 720
+        Top = 64
+        Width = 64
+        Height = 300
+        Placement = ddpRight
+        Variant = dvInfo
+        TabOrder = 6
+        TabStop = True
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+      object dockRightNormal: TDaisyDock
+        Left = 820
+        Top = 64
+        Width = 64
+        Height = 300
+        Placement = ddpRight
+        Spacing = dspNormal
+        Variant = dvSuccess
+        TabOrder = 7
+        TabStop = True
+        OnChange = DockChange
+        Items = <
+          item
+            Caption = 'Home'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M3 12l9 -9l9 9"/><path d="M5 10v10h14v-10"/></svg>')
+          end
+          item
+            Caption = 'Search'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-5 -5"/></svg>')
+          end
+          item
+            Caption = 'Profile'
+            Icon.SVG.Strings = (
+              
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok' +
+                'e-width="2" stroke-linecap="round" stroke-linejoin="round">'
+              
+                '<circle cx="12" cy="8" r="4"/><path d="M4 21c0 -4 4 -6 8 -6s8 2 ' +
+                '8 6"/></svg>')
+          end>
+      end
+    end
   end
   object alMain: TActionList
     Left = 720
