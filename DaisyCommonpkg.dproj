@@ -135,6 +135,7 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="Source\Common\Daisy.Theme.pas"/>
         <DCCReference Include="Source\Common\Daisy.Items.pas"/>
+        <DCCReference Include="Source\Common\Daisy.Charts.pas"/>
         <DCCReference Include="Source\Common\Daisy.Animation.pas"/>
         <DCCReference Include="Source\Common\Daisy.SVG.pas"/>
         <DCCReference Include="Source\Common\Daisy.Widgets.pas"/>

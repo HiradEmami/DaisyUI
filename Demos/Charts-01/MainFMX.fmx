@@ -1,0 +1,586 @@
+object FormCharts: TFormCharts
+  Left = 0
+  Top = 0
+  Caption = 'DaisyUI FMX demo - charts'
+  ClientHeight = 600
+  ClientWidth = 1280
+  Fill.Kind = Solid
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object lyTop: TLayout
+    Align = Top
+    Size.Width = 1280.000000000000000000
+    Size.Height = 60.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object lblTheme: TLabel
+      StyledSettings = [Family]
+      Position.X = 24.000000000000000000
+      Position.Y = 22.000000000000000000
+      Size.Width = 56.000000000000000000
+      Size.Height = 15.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'Theme:'
+      TabOrder = 1
+    end
+    object chkTitleBar: TDaisyFmxCheckBox
+      Cursor = crHandPoint
+      Position.X = 300.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 158.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Checked = True
+      Text = 'Theme the title bar'
+      OnChange = chkTitleBarChange
+    end
+    object chkRTL: TDaisyFmxCheckBox
+      Cursor = crHandPoint
+      Position.X = 470.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Right-to-left'
+      OnChange = RTLChange
+    end
+    object selTheme: TDaisyFmxSelect
+      Cursor = crHandPoint
+      Hint = ''
+      Position.X = 80.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Items.Strings = (
+        'Light'
+        'Dark'
+        'Cupcake'
+        'Dracula'
+        'Corporate'
+        'Pastel'
+        'Wireframe'
+        'CMYK'
+        'Winter'
+        'Dim'
+        'Nord'
+        'Silk'
+        'Bumblebee'
+        'Emerald'
+        'Halloween'
+        'Garden'
+        'Forest'
+        'Lofi'
+        'Fantasy'
+        'Autumn')
+      ItemIndex = 4
+      Placeholder = 'Pick one'
+      OnChange = ThemeSelectChange
+    end
+    object themeCtl: TDaisyFmxThemeController
+      Cursor = crHandPoint
+      Position.X = 1000.000000000000000000
+      Position.Y = 4.000000000000000000
+      Size.Width = 130.000000000000000000
+      Size.Height = 52.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Kind = tkRadio
+      OnChange = ThemeControllerChange
+    end
+  end
+  object pcMain: TDaisyFmxPageControl
+    Align = Client
+    Size.Width = 1280.000000000000000000
+    Size.Height = 540.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    ActivePageIndex = 0
+    object tsLine: TDaisyFmxTabSheet
+      Position.X = 1.000000000000000000
+      Position.Y = 41.000000000000000000
+      Size.Width = 1278.000000000000000000
+      Size.Height = 498.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Line'
+      object lblLine: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Line - two series'
+      end
+      object lblArea: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 652.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Line - area, no y axis'
+      end
+      object chLine: TDaisyFmxChart
+        Position.X = 24.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        ChartType = dctLine
+        Series = <
+          item
+            Name = 'Clicks'
+            Data = '6500, 6418, 6456, 6526, 6356, 6456'
+            Color = '#1A56DB'
+          end
+          item
+            Name = 'CPC'
+            Data = '6456, 6356, 6526, 6332, 6418, 6500'
+            Color = '#7E3AF2'
+          end>
+        Labels.Strings = (
+          '01 Feb'
+          '02 Feb'
+          '03 Feb'
+          '04 Feb'
+          '05 Feb'
+          '06 Feb')
+        LegendPosition = dlpBottom
+      end
+      object chArea: TDaisyFmxChart
+        Position.X = 652.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        ChartType = dctArea
+        Series = <
+          item
+            Name = 'New users'
+            Data = '6500, 6418, 6456, 6526, 6356, 6456'
+            Color = '#1A56DB'
+          end>
+        Labels.Strings = (
+          '01 Feb'
+          '02 Feb'
+          '03 Feb'
+          '04 Feb'
+          '05 Feb'
+          '06 Feb')
+        LegendPosition = dlpNone
+        ShowYAxis = False
+      end
+    end
+    object tsColumn: TDaisyFmxTabSheet
+      Position.X = 1.000000000000000000
+      Position.Y = 41.000000000000000000
+      Size.Width = 1278.000000000000000000
+      Size.Height = 498.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Column'
+      object lblColumn: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Column - two series'
+      end
+      object lblColumnStacked: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 652.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Column - stacked'
+      end
+      object chColumn: TDaisyFmxChart
+        Position.X = 24.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        ChartType = dctColumn
+        Series = <
+          item
+            Name = 'Organic'
+            Data = '231, 122, 63, 421, 122, 323, 111'
+            Color = '#1A56DB'
+          end
+          item
+            Name = 'Social media'
+            Data = '232, 113, 341, 224, 522, 411, 243'
+            Color = '#FDBA8C'
+          end>
+        Labels.Strings = (
+          'Mon'
+          'Tue'
+          'Wed'
+          'Thu'
+          'Fri'
+          'Sat'
+          'Sun')
+      end
+      object chColumnStacked: TDaisyFmxChart
+        Position.X = 652.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        ChartType = dctColumn
+        Series = <
+          item
+            Name = 'Organic'
+            Data = '231, 122, 63, 421, 122, 323, 111'
+            Color = '#1A56DB'
+          end
+          item
+            Name = 'Social media'
+            Data = '232, 113, 341, 224, 522, 411, 243'
+            Color = '#FDBA8C'
+          end>
+        Labels.Strings = (
+          'Mon'
+          'Tue'
+          'Wed'
+          'Thu'
+          'Fri'
+          'Sat'
+          'Sun')
+        Stacked = True
+      end
+    end
+    object tsBar: TDaisyFmxTabSheet
+      Position.X = 1.000000000000000000
+      Position.Y = 41.000000000000000000
+      Size.Width = 1278.000000000000000000
+      Size.Height = 498.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Bar'
+      object lblBar: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Bar - income and expense'
+      end
+      object lblBarLabels: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 652.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Bar - data labels'
+      end
+      object chBar: TDaisyFmxChart
+        Position.X = 24.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        ChartType = dctBar
+        Series = <
+          item
+            Name = 'Income'
+            Data = '1420, 1620, 1820, 1420, 1650, 2120'
+            Color = '#007A55'
+          end
+          item
+            Name = 'Expense'
+            Data = '788, 810, 866, 788, 1100, 1200'
+            Color = '#C70036'
+          end>
+        Labels.Strings = (
+          'Jul'
+          'Aug'
+          'Sep'
+          'Oct'
+          'Nov'
+          'Dec')
+        BarRadius = 6
+        ValuePrefix = '$'
+      end
+      object chBarLabels: TDaisyFmxChart
+        Position.X = 652.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        ChartType = dctBar
+        Series = <
+          item
+            Name = 'Visits'
+            Data = '420, 380, 290, 210, 160'
+            Color = '#1A56DB'
+          end>
+        Labels.Strings = (
+          'Direct'
+          'Google'
+          'Facebook'
+          'LinkedIn'
+          'Twitter')
+        DataLabels = True
+        LegendPosition = dlpNone
+        ShowGrid = False
+        ShowXAxis = False
+      end
+    end
+    object tsPie: TDaisyFmxTabSheet
+      Position.X = 1.000000000000000000
+      Position.Y = 41.000000000000000000
+      Size.Width = 1278.000000000000000000
+      Size.Height = 498.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Pie'
+      object lblPie: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Pie - data labels'
+      end
+      object lblPieRight: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 652.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Pie - legend on the right'
+      end
+      object chPie: TDaisyFmxChart
+        Position.X = 24.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        ChartType = dctPie
+        Series = <
+          item
+            Name = 'Traffic'
+            Data = '52.8, 26.8, 20.4'
+          end>
+        Labels.Strings = (
+          'Direct'
+          'Sponsor'
+          'Affiliate')
+        Colors.Strings = (
+          '#1C64F2'
+          '#16BDCA'
+          '#9061F9')
+        DataLabels = True
+        ValueSuffix = '%'
+      end
+      object chPieRight: TDaisyFmxChart
+        Position.X = 652.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        ChartType = dctPie
+        Series = <
+          item
+            Name = 'Browsers'
+            Data = '63, 20, 10, 7'
+          end>
+        Labels.Strings = (
+          'Chrome'
+          'Safari'
+          'Firefox'
+          'Edge')
+        LegendPosition = dlpRight
+        ValueSuffix = '%'
+      end
+    end
+    object tsDonut: TDaisyFmxTabSheet
+      Position.X = 1.000000000000000000
+      Position.Y = 41.000000000000000000
+      Size.Width = 1278.000000000000000000
+      Size.Height = 498.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Donut'
+      object lblDonut: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Donut - total in the centre'
+      end
+      object lblDonutThin: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 652.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Donut - thin ring, legend on the right'
+      end
+      object chDonut: TDaisyFmxChart
+        Position.X = 24.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        ChartType = dctDonut
+        Series = <
+          item
+            Name = 'Visitors'
+            Data = '3500, 2350, 240, 540'
+          end>
+        Labels.Strings = (
+          'Direct'
+          'Sponsor'
+          'Affiliate'
+          'Email marketing')
+        Colors.Strings = (
+          '#1C64F2'
+          '#16BDCA'
+          '#FDBA8C'
+          '#E74694')
+        TotalLabel = 'Unique visitors'
+      end
+      object chDonutThin: TDaisyFmxChart
+        Position.X = 652.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        ChartType = dctDonut
+        Series = <
+          item
+            Name = 'Devices'
+            Data = '58, 31, 11'
+          end>
+        Labels.Strings = (
+          'Desktop'
+          'Mobile'
+          'Tablet')
+        DataLabels = True
+        HoleSize = 80
+        LegendPosition = dlpRight
+        ShowTotal = False
+        ValueSuffix = '%'
+      end
+    end
+    object tsRadial: TDaisyFmxTabSheet
+      Position.X = 1.000000000000000000
+      Position.Y = 41.000000000000000000
+      Size.Width = 1278.000000000000000000
+      Size.Height = 498.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'Radial'
+      object lblRadial: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Radial - three rings'
+      end
+      object lblRadialSingle: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 652.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Radial - one ring'
+      end
+      object chRadial: TDaisyFmxChart
+        Position.X = 24.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        ChartType = dctRadial
+        Series = <
+          item
+            Name = 'Progress'
+            Data = '90, 85, 70'
+          end>
+        Labels.Strings = (
+          'Done tasks'
+          'In progress'
+          'To do')
+        Colors.Strings = (
+          '#1C64F2'
+          '#16BDCA'
+          '#FDBA8C')
+        TotalLabel = 'Average'
+        ValueSuffix = '%'
+      end
+      object chRadialSingle: TDaisyFmxChart
+        Position.X = 652.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        ChartType = dctRadial
+        Series = <
+          item
+            Name = 'Progress'
+            Data = '75'
+          end>
+        Labels.Strings = (
+          'Progress')
+        LegendPosition = dlpNone
+        TotalLabel = 'Progress'
+        ValueSuffix = '%'
+      end
+    end
+  end
+  object Styler: TDaisyFmxFormStyler
+    Theme = dtCorporate
+    Left = 1152
+    Top = 88
+  end
+end

@@ -67,6 +67,7 @@ contains
   Daisy.FMX.CheckBox in 'Source\FMX\Daisy.FMX.CheckBox.pas',
   Daisy.FMX.Radio in 'Source\FMX\Daisy.FMX.Radio.pas',
   Daisy.FMX.Loading in 'Source\FMX\Daisy.FMX.Loading.pas',
+  Daisy.FMX.Chart in 'Source\FMX\Daisy.FMX.Chart.pas',
   Daisy.FMX.PageControl in 'Source\FMX\Daisy.FMX.PageControl.pas',
   Daisy.FMX.Progress in 'Source\FMX\Daisy.FMX.Progress.pas',
   Daisy.FMX.RadialProgress in 'Source\FMX\Daisy.FMX.RadialProgress.pas',

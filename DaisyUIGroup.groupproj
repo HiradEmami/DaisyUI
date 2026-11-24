@@ -48,6 +48,12 @@
         <Projects Include="Demos\Edits-01\Edits01FMXDemo.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Demos\Charts-01\Charts01VCLDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Demos\Charts-01\Charts01FMXDemo.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -191,14 +197,32 @@
     <Target Name="Edits01FMXDemo:Make">
         <MSBuild Projects="Demos\Edits-01\Edits01FMXDemo.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Charts01VCLDemo">
+        <MSBuild Projects="Demos\Charts-01\Charts01VCLDemo.dproj"/>
+    </Target>
+    <Target Name="Charts01VCLDemo:Clean">
+        <MSBuild Projects="Demos\Charts-01\Charts01VCLDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Charts01VCLDemo:Make">
+        <MSBuild Projects="Demos\Charts-01\Charts01VCLDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Charts01FMXDemo">
+        <MSBuild Projects="Demos\Charts-01\Charts01FMXDemo.dproj"/>
+    </Target>
+    <Target Name="Charts01FMXDemo:Clean">
+        <MSBuild Projects="Demos\Charts-01\Charts01FMXDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Charts01FMXDemo:Make">
+        <MSBuild Projects="Demos\Charts-01\Charts01FMXDemo.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="DaisyCommonpkg;DaisyVCLpkg;DaisyFMXpkg;Basic01FMXDemo;Basic01VCLDemo;Basic02VCLDemo;Basic02FMXDemo;Basic03VCLDemo;Basic03FMXDemo;Basic04VCLDemo;Basic04FMXDemo;Basic05VCLDemo;Basic05FMXDemo;Edits01VCLDemo;Edits01FMXDemo"/>
+        <CallTarget Targets="DaisyCommonpkg;DaisyVCLpkg;DaisyFMXpkg;Basic01FMXDemo;Basic01VCLDemo;Basic02VCLDemo;Basic02FMXDemo;Basic03VCLDemo;Basic03FMXDemo;Basic04VCLDemo;Basic04FMXDemo;Basic05VCLDemo;Basic05FMXDemo;Edits01VCLDemo;Edits01FMXDemo;Charts01VCLDemo;Charts01FMXDemo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DaisyCommonpkg:Clean;DaisyVCLpkg:Clean;DaisyFMXpkg:Clean;Basic01FMXDemo:Clean;Basic01VCLDemo:Clean;Basic02VCLDemo:Clean;Basic02FMXDemo:Clean;Basic03VCLDemo:Clean;Basic03FMXDemo:Clean;Basic04VCLDemo:Clean;Basic04FMXDemo:Clean;Basic05VCLDemo:Clean;Basic05FMXDemo:Clean;Edits01VCLDemo:Clean;Edits01FMXDemo:Clean"/>
+        <CallTarget Targets="DaisyCommonpkg:Clean;DaisyVCLpkg:Clean;DaisyFMXpkg:Clean;Basic01FMXDemo:Clean;Basic01VCLDemo:Clean;Basic02VCLDemo:Clean;Basic02FMXDemo:Clean;Basic03VCLDemo:Clean;Basic03FMXDemo:Clean;Basic04VCLDemo:Clean;Basic04FMXDemo:Clean;Basic05VCLDemo:Clean;Basic05FMXDemo:Clean;Edits01VCLDemo:Clean;Edits01FMXDemo:Clean;Charts01VCLDemo:Clean;Charts01FMXDemo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DaisyCommonpkg:Make;DaisyVCLpkg:Make;DaisyFMXpkg:Make;Basic01FMXDemo:Make;Basic01VCLDemo:Make;Basic02VCLDemo:Make;Basic02FMXDemo:Make;Basic03VCLDemo:Make;Basic03FMXDemo:Make;Basic04VCLDemo:Make;Basic04FMXDemo:Make;Basic05VCLDemo:Make;Basic05FMXDemo:Make;Edits01VCLDemo:Make;Edits01FMXDemo:Make"/>
+        <CallTarget Targets="DaisyCommonpkg:Make;DaisyVCLpkg:Make;DaisyFMXpkg:Make;Basic01FMXDemo:Make;Basic01VCLDemo:Make;Basic02VCLDemo:Make;Basic02FMXDemo:Make;Basic03VCLDemo:Make;Basic03FMXDemo:Make;Basic04VCLDemo:Make;Basic04FMXDemo:Make;Basic05VCLDemo:Make;Basic05FMXDemo:Make;Edits01VCLDemo:Make;Edits01FMXDemo:Make;Charts01VCLDemo:Make;Charts01FMXDemo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

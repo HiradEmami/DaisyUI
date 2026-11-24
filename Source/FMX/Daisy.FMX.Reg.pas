@@ -23,7 +23,8 @@ uses
   Daisy.FMX.Indicator, Daisy.FMX.FieldSet, Daisy.FMX.Range, Daisy.FMX.Rating,
   Daisy.FMX.Swap, Daisy.FMX.Stack, Daisy.FMX.ThemeController,
   Daisy.FMX.Breadcrumbs, Daisy.FMX.Dock, Daisy.FMX.Link, Daisy.FMX.Pagination, Daisy.FMX.Steps,
-  Daisy.FMX.TitleBarPanel, Daisy.FMX.Loading, Daisy.FMX.Radio;
+  Daisy.FMX.TitleBarPanel, Daisy.FMX.Loading, Daisy.FMX.Radio,
+  Daisy.FMX.Chart;
 
 const
   // Pages follow the component groups in the daisyUI documentation
@@ -40,13 +41,14 @@ begin
   GroupDescendentsWith(TDaisyFmxFormStyler, TFmxObject);
   // the dock and the title bar panel always use the default (base) colours
   UnlistPublishedProperty(TDaisyFmxDock, 'Variant');
+  UnlistPublishedProperty(TDaisyFmxChart, 'Variant');
   UnlistPublishedProperty(TDaisyFmxTitleBarPanel, 'Variant');
   RegisterComponents(CPageActions, [TDaisyFmxButton, TDaisyFmxSquareButton,
     TDaisyFmxCircleButton, TDaisyFmxLoadingButton, TDaisyFmxAnimationButton,
     TDaisyFmxBadgeButton, TDaisyFmxDropdownMenu, TDaisyFmxFloatingActionButton, TDaisyFmxSwap,
     TDaisyFmxThemeController]);
   RegisterComponents(CPageDisplay, [TDaisyFmxAccordion, TDaisyFmxBadge, TDaisyFmxCard,
-    TDaisyFmxChatBubble, TDaisyFmxCountdown, TDaisyFmxLabel, TDaisyFmxList, TDaisyFmxStat,
+      TDaisyFmxChart, TDaisyFmxChatBubble, TDaisyFmxCountdown, TDaisyFmxLabel, TDaisyFmxList, TDaisyFmxStat,
     TDaisyFmxStatus, TDaisyFmxSVGImage, TDaisyFmxTable]);
   RegisterComponents(CPageFeedback, [TDaisyFmxAlert, TDaisyFmxLoading, TDaisyFmxProgress,
     TDaisyFmxRadialProgress, TDaisyFmxToast]);

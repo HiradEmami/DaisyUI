@@ -23,7 +23,8 @@ uses
   Daisy.VCL.Indicator, Daisy.VCL.FieldSet, Daisy.VCL.Range, Daisy.VCL.Rating,
   Daisy.VCL.Swap, Daisy.VCL.Stack, Daisy.VCL.ThemeController,
   Daisy.VCL.Breadcrumbs, Daisy.VCL.Dock, Daisy.VCL.Link, Daisy.VCL.Pagination, Daisy.VCL.Steps,
-  Daisy.VCL.TitleBarPanel, Daisy.VCL.Loading, Daisy.VCL.Radio;
+  Daisy.VCL.TitleBarPanel, Daisy.VCL.Loading, Daisy.VCL.Radio,
+  Daisy.VCL.Chart;
 
 const
   // Pages follow the component groups in the daisyUI documentation
@@ -40,11 +41,12 @@ begin
   GroupDescendentsWith(TDaisyFormStyler, TControl);
   // the dock always uses the default (base) colours
   UnlistPublishedProperty(TDaisyDock, 'Variant');
+  UnlistPublishedProperty(TDaisyChart, 'Variant');
   RegisterComponents(CPageActions, [TDaisyButton, TDaisySquareButton, TDaisyCircleButton,
     TDaisyLoadingButton, TDaisyAnimationButton, TDaisyBadgeButton, TDaisyDropdownMenu,
     TDaisyFloatingActionButton, TDaisySwap, TDaisyThemeController]);
-  RegisterComponents(CPageDisplay, [TDaisyAccordion, TDaisyBadge, TDaisyCard, TDaisyChatBubble,
-    TDaisyCountdown, TDaisyLabel, TDaisyList, TDaisyStat, TDaisyStatus, TDaisySVGImage,
+  RegisterComponents(CPageDisplay,   [TDaisyAccordion, TDaisyBadge, TDaisyCard, TDaisyChart,
+      TDaisyChatBubble, TDaisyCountdown, TDaisyLabel, TDaisyList, TDaisyStat, TDaisyStatus, TDaisySVGImage,
     TDaisyTable]);
   RegisterComponents(CPageFeedback, [TDaisyAlert, TDaisyLoading, TDaisyProgress,
     TDaisyRadialProgress, TDaisyToast]);
