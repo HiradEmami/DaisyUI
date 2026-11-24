@@ -107,6 +107,25 @@ A container with a title, body text and a soft shadow. It is a panel, so other c
 - `ShadowSize` adjusts the shadow.
 - Inherits everything from `TDaisyPanel`.
 
+### TDaisyChart, TDaisyFmxChart
+
+A chart in the style of Flowbite (ApexCharts). Drawing and layout are shared by the VCL and FMX versions. An empty chart shows sample data at design time.
+
+- `ChartType`: `dctLine`, `dctArea`, `dctColumn`, `dctBar`, `dctPie`, `dctDonut` or `dctRadial`.
+- `Series`: a collection of items with `Name`, `Data` (comma-separated numbers, such as `6500, 6418, 6456`) and `Color` (an HTML colour such as `#1C64F2`; empty uses the theme palette).
+- `Labels`: one category (or slice) name per line.
+- `DataLabels`: shows values on the bars and slices (percentages for pie and donut).
+- `ChartWidth`, `ChartHeight`: the size of the chart (the same as `Width` and `Height`).
+- `Colors`: palette for pie, donut and radial slices.
+- `Stacked`: stacks column and bar series.
+- `Curve`, `StrokeWidth`, `MarkerSize`: line style.
+- `BarRadius`, `HoleSize`: bar corner radius and donut hole size.
+- `ShowGrid`, `ShowXAxis`, `ShowYAxis`, `ShowTooltip`: parts of the chart.
+- `LegendPosition`: bottom, top, left, right or none.
+- `ShowTotal`, `TotalLabel`: the total (donut) or average (radial) shown in the centre.
+- `ValuePrefix`, `ValueSuffix`: text around the values, such as `$`.
+- With one series, pie, donut and radial charts use its values as the slices. With several series, each series is one slice using the sum of its values.
+
 ### TDaisyChatBubble, TDaisyFmxChatBubble
 
 A chat message in a bubble, on the left or right.

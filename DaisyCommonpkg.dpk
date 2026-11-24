@@ -34,6 +34,7 @@ requires
 contains
   Daisy.Theme in 'Source\Common\Daisy.Theme.pas',
   Daisy.Items in 'Source\Common\Daisy.Items.pas',
+  Daisy.Charts in 'Source\Common\Daisy.Charts.pas',
   Daisy.Animation in 'Source\Common\Daisy.Animation.pas',
   Daisy.SVG in 'Source\Common\Daisy.SVG.pas',
   Daisy.Widgets in 'Source\Common\Daisy.Widgets.pas',

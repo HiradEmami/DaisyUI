@@ -68,6 +68,7 @@ contains
   Daisy.VCL.CheckBox in 'Source\VCL\Daisy.VCL.CheckBox.pas',
   Daisy.VCL.Radio in 'Source\VCL\Daisy.VCL.Radio.pas',
   Daisy.VCL.Loading in 'Source\VCL\Daisy.VCL.Loading.pas',
+  Daisy.VCL.Chart in 'Source\VCL\Daisy.VCL.Chart.pas',
   Daisy.VCL.PageControl in 'Source\VCL\Daisy.VCL.PageControl.pas',
   Daisy.VCL.Progress in 'Source\VCL\Daisy.VCL.Progress.pas',
   Daisy.VCL.RadialProgress in 'Source\VCL\Daisy.VCL.RadialProgress.pas',

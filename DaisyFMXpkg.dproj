@@ -168,6 +168,7 @@
         <DCCReference Include="Source\FMX\Daisy.FMX.CheckBox.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Radio.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Loading.pas"/>
+        <DCCReference Include="Source\FMX\Daisy.FMX.Chart.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.PageControl.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.Progress.pas"/>
         <DCCReference Include="Source\FMX\Daisy.FMX.RadialProgress.pas"/>

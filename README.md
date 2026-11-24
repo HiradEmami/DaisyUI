@@ -44,6 +44,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyButton, TDaisyFmxButton:** the standard button, with variants, styles, sizes and an optional SVG icon.
 - **TDaisyCalendar, TDaisyFmxCalendar:** a month calendar with single date or date range selection.
 - **TDaisyCard, TDaisyFmxCard:** a titled container with body text and a soft shadow.
+- **TDaisyChart, TDaisyFmxChart:** line, area, column, bar, pie, donut and radial charts in the style of Flowbite (ApexCharts), driven by `ChartType`, `Series`, `Labels` and `DataLabels`, with `ChartWidth` and `ChartHeight`.
 - **TDaisyChatBubble, TDaisyFmxChatBubble:** a chat message bubble with avatar, header and footer.
 - **TDaisyCheckBox, TDaisyFmxCheckBox:** a check box with checked and indeterminate states.
 - **TDaisyCircleButton, TDaisyFmxCircleButton:** a round icon-only button.
@@ -120,6 +121,7 @@ Each demo exists as a VCL and an FMX application with identical content.
 | `Basic-04` | Countdown, list, stat, chat, progress |
 | `Basic-05` | Utilities, SVG, status, select, tables |
 | `Edits-01` | Menus, text input, text area, select, toggle, calendar and date picker |
+| `Charts-01` | Line, column, bar, pie, donut and radial charts, one tab per chart type |
 
 Every demo has a Theme Controller to switch between two themes.
 

@@ -147,6 +147,28 @@ Docks at the bottom, left and right, with evenly spaced and normally spaced item
 ### Select
 ![Select](Screenshots/Edits-01-VCL-Tab07.png)
 
+## Charts-01
+
+Line, column, bar, pie, donut and radial charts. Each tab shows two charts placed at design time.
+
+### Line
+![Line](Screenshots/Charts-01-VCL-Tab01.png)
+
+### Column
+![Column](Screenshots/Charts-01-VCL-Tab02.png)
+
+### Bar
+![Bar](Screenshots/Charts-01-VCL-Tab03.png)
+
+### Pie
+![Pie](Screenshots/Charts-01-VCL-Tab04.png)
+
+### Donut
+![Donut](Screenshots/Charts-01-VCL-Tab05.png)
+
+### Radial
+![Radial](Screenshots/Charts-01-VCL-Tab06.png)
+
 ## Dark Theme
 
 Selected tabs from the demos using the Dim theme.

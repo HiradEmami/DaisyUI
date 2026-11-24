@@ -234,6 +234,12 @@ $draw['Loading'] = {
     } }
     HL 8 9 11 $K; HL 8 9 12 $K; HL 11 12 11 $K; HL 11 12 12 $K; HL 14 15 11 $K; HL 14 15 12 $K
 }
+$draw['Chart'] = {
+    VL 2 3 20 $K; HL 2 21 20 $K
+    FRc 5 13 8 19 $D; Rc 11 9 14 19 $K; FRc 17 5 20 19 $D
+    Ln 4 11 9 7 $G; Ln 9 7 15 10 $G; Ln 15 10 20 3 $G
+    P 4 11 $K; P 9 7 $K; P 15 10 $K
+}
 $draw['Radio'] = {
     Ci 5.5 6 3.6 $K; FCi 5.5 6 1.6 $D; HL 12 20 5 $G; HL 12 17 7 $G
     Ci 5.5 16.5 3.6 $G; HL 12 20 15 $G; HL 12 18 17 $G
@@ -352,7 +358,7 @@ $groups = @(
         'Calendar', 'DatePicker', 'FieldSet', 'Indicator', 'Progress', 'RadialProgress', 'Range', 'Rating', 'Stack',
         'Swap', 'ThemeController', 'Toast') },
     @{ Vcl = 'Daisy.VCL.Reg3.dcr'; Fmx = 'Daisy.FMX.Reg3.dcr'; Items = @(
-        'Breadcrumbs', 'Dock', 'Link', 'Pagination', 'Steps', 'TitleBarPanel', 'Loading', 'Radio') }
+        'Breadcrumbs', 'Dock', 'Link', 'Pagination', 'Steps', 'TitleBarPanel', 'Loading', 'Radio', 'Chart') }
 )
 
 $images = [ordered]@{}
