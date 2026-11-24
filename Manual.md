@@ -33,6 +33,8 @@ Common behavior:
 - **Icons:** `SVG` properties take SVG markup; `Emoji` properties take a text character.
 - **Drawing:** all controls are drawn with anti-aliasing and no flicker.
 - **Visibility:** `Visible` is handled once in `TDaisyControl` (VCL: the control also hides at design time when `Visible` is False; FMX uses the native handling). Setting it back to True repaints the control. On a `TDaisyTabSheet`, `Visible` maps to `TabVisible`, which shows or hides the tab.
+- **Right-to-left:** every component publishes `BiDiMode` and `ParentBiDiMode`. With `bdRightToLeft` (or `bdRightToLeftReadingOnly` for text only) a control mirrors its drawing, text alignment, hit-testing, popups and drop-downs. Directional icons (chevrons, arrows) flip; check marks, logos and emoji stay upright. VCL: set `BiDiMode` on the form, then call `FlipChildren(True)` to mirror the layout. FMX: call `TDaisyControl.ApplyBiDiMode(Form, bdRightToLeft)`.
+- **Input methods (IME):** the VCL `TDaisyTextInput` and `TDaisyTextArea` support Korean, Japanese and Chinese input. The composition is drawn inline at the caret and the IME windows are placed beside it.
 - **Design time:** animations and timers are not started at design time.
 
 ## Components (A-Z)
@@ -79,6 +81,15 @@ A `TDaisyButton` with a badge attached to its top corner, for example an inbox b
 - `BadgeText`, `ShowBadge`: the badge content and visibility.
 - `BadgeVariant`, `BadgeStyle`, `BadgeSize`: the badge's own look.
 - `BadgeIcon`, `BadgeSVG`: optional badge icon.
+
+### TDaisyBreadcrumbs, TDaisyFmxBreadcrumbs
+
+A navigation trail (daisyUI "Breadcrumbs"), for example *Home > Documents > Add Document*. When the trail is wider than the control, the mouse wheel scrolls it.
+
+- `Items`: the crumbs. Each has a `Caption`, an optional `Icon` (SVG or emoji), `Enabled`, `Tag` and `OnClick`.
+- `Separator`: `dbsChevron` (default) or `dbsSlash`.
+- `AutoFit`: sizes the control to its crumbs.
+- `OnItemClick`: raised with the index of the clicked crumb.
 
 ### TDaisyButton, TDaisyFmxButton
 
@@ -176,6 +187,22 @@ A text input that opens a calendar popup. The picked date is written back into t
 - `OnDateChange`: raised when the date changes.
 - Also has the text input properties (`Placeholder`, `LabelText`, `Legend` and others).
 
+### TDaisyDock, TDaisyFmxDock
+
+A bar of icon buttons with labels (daisyUI "Dock"). It sits at the bottom by default and can also dock to the top, left or right. Left and right docks lay their items out vertically.
+
+- `Items`: the dock items (`Caption`, `Icon`, `Enabled`, `Tag`, `OnClick`).
+- `ItemIndex`: the selected item (default 0).
+- `Placement`: `ddpBottom` (default), `ddpTop`, `ddpLeft` or `ddpRight`.
+- `Spacing`: `dspEven` spreads the items over the whole dock; `dspNormal` packs them from the start with `IconSpacing` pixels between them.
+- `DirectionFlow`: the direction the items flow: `difTopToBottom`, `difBottomToTop`, `difLeftToRight` or `difRightToLeft`. A value for the other axis is converted to its equivalent.
+- `ShowLabels`: shows the captions under the icons.
+- `AutoThickness`: sizes the dock's thickness from `SizeKind`.
+- `VisibleBorder`: shows or hides the dock's border (default True).
+- `ShowExpandCollapse`: left and right docks show a `<` / `>` button that steps `VisibleState` between `vsExpanded` (the full `SizeKind` width), `vsCollapsed` (a narrow strip of icons without labels) and `vsFullyCollapsed` (a 16 pixel strip with only the expand button).
+- `OnChange`: raised when `ItemIndex` changes. `OnItemClick`: raised with the clicked index. `OnVisibleStateChange`: raised when `VisibleState` changes.
+- In a right-to-left layout the items run right to left and left and right docks swap sides.
+
 ### TDaisyDropdownMenu, TDaisyFmxDropdownMenu
 
 A button that opens a popup list of items when clicked.
@@ -228,6 +255,15 @@ A themed text label.
 
 - `Caption`, `Alignment`, `VerticalAlignment`, `WordWrap`, `AutoFit`.
 - `Muted`: uses a softer text colour.
+
+### TDaisyLink, TDaisyFmxLink
+
+A text link (daisyUI "Link"), coloured by `Variant`.
+
+- `Caption` (VCL) / `Text` (FMX): the link text.
+- `URL`: the address to open when the link is clicked (optional; use `OnClick` for your own action).
+- `Underline`: `dluAlways` (default) or `dluHover` (only while the mouse is over it).
+- `AutoFit`: sizes the control to its text (default True).
 
 ### TDaisyList, TDaisyFmxList
 
@@ -286,6 +322,18 @@ A tabbed container. Add pages with **New Page** at design time; each page is a `
 - `TabPosition`: tabs at the top or bottom.
 - `VisibleBorder`: draws the single line around the page area (default True).
 - `StretchBox`: with `dtsBox`, the box behind the tabs spans the whole control (default True); False wraps only the tabs. The box uses the page background colour.
+
+### TDaisyPagination, TDaisyFmxPagination
+
+Page buttons (daisyUI "Pagination") with previous and next buttons, a highlighted current page and collapsed ranges such as `1 ... 9 10 11 ... 20`.
+
+- `PageCount`, `CurrentPage`: the number of pages (default 10) and the current one (default 1). `OnChange` is raised when the current page changes.
+- `Siblings`: pages shown each side of the current page (default 1). `Boundary`: pages always shown at each end (default 1).
+- `ShowPageNumbers`, `ShowPrevNext`: show the page buttons and the previous/next buttons.
+- `PrevCaption`, `NextCaption`: texts for the previous and next buttons (when set they replace the arrows).
+- `Joined`: draws the buttons as one connected group (default True) instead of separate buttons.
+- `Alignment`: left, centre or right within the control.
+- `AutoFit`: sizes the control to its buttons.
 
 ### TDaisyPanel, TDaisyFmxPanel
 
@@ -399,6 +447,16 @@ A small dot showing a state, such as online or error.
 - `Animation`: none, ping or bounce.
 - `Emoji`, `SVG`: shows a glyph instead of a dot.
 - `AutoFit`.
+
+### TDaisySteps, TDaisyFmxSteps
+
+A process indicator (daisyUI "Steps"): a row or column of numbered or icon circles joined by lines, with the completed steps highlighted.
+
+- `Items`: the steps. Each has a `Caption`, an optional `Icon`, `Content` (text shown in the circle instead of its number), `Variant` (the step's own colour; `dvDefault` follows `ActiveStep`), `Enabled`, `Tag` and `OnClick`.
+- `ActiveStep`: the last completed step, counted from 1 (default 1). Steps up to it are drawn in `ActiveVariant`.
+- `ActiveVariant`: the colour of the completed steps.
+- `Orientation`: `dsoHorizontal` or `dsoVertical`.
+- `BreakWidth`: when the control is narrower than this many pixels (0 disables it), a horizontal steps control switches to vertical.
 
 ### TDaisySVGImage, TDaisyFmxSVGImage
 

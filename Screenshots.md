@@ -1,71 +1,83 @@
 # Screenshots
 
-Every tab of each VCL demo application, captured with the **Corporate** theme on Windows. The FMX demos have identical content.
+Every tab of each VCL demo application, captured with the **Corporate** theme on Windows. The FMX demos have identical content. Tabs are listed in the order they appear in each demo.
+
+| Demo | Shows |
+| --- | --- |
+| [Basic-01](#basic-01) | Buttons, field sets, cards, variants, indicators, navigation (breadcrumbs, links, pagination, steps), swaps, stacks, sizes, docks, alerts |
+| [Basic-02](#basic-02) | Toasts, accordions, loading indicators and buttons, dropdowns, ratings, ranges, buttons, FABs |
+| [Basic-03](#basic-03) | Badges and badge buttons |
+| [Basic-04](#basic-04) | Countdowns, lists, stats, chat bubbles, progress |
+| [Basic-05](#basic-05) | Selects, tables, utilities, SVG images, status |
+| [Edits-01](#edits-01) | Menus, text inputs, calendars, toggles, selects, text areas, radio buttons |
+| [Charts-01](#charts-01) | Line, column, bar, pie, donut and radial charts |
 
 ## Basic-01
 
 ### Styles
 ![Styles](Screenshots/Basic-01-VCL-Tab01.png)
 
-### Sizes
-![Sizes](Screenshots/Basic-01-VCL-Tab02.png)
+### FieldSet
+![FieldSet](Screenshots/Basic-01-VCL-Tab02.png)
 
 ### Cards
 ![Cards](Screenshots/Basic-01-VCL-Tab03.png)
 
-### Alerts
-![Alerts](Screenshots/Basic-01-VCL-Tab04.png)
+### Variants
+![Variants](Screenshots/Basic-01-VCL-Tab04.png)
 
 ### Indicator
 ![Indicator](Screenshots/Basic-01-VCL-Tab05.png)
 
-### FieldSet
-![FieldSet](Screenshots/Basic-01-VCL-Tab06.png)
-
-### Stack
-![Stack](Screenshots/Basic-01-VCL-Tab07.png)
-
-### Swap
-![Swap](Screenshots/Basic-01-VCL-Tab08.png)
-
-### Variants
-![Variants](Screenshots/Basic-01-VCL-Tab09.png)
-
 ### Navigation
 Breadcrumbs, links, pagination and steps.
 
-![Navigation](Screenshots/Basic-01-VCL-Tab10.png)
+![Navigation](Screenshots/Basic-01-VCL-Tab06.png)
+
+### Swap
+![Swap](Screenshots/Basic-01-VCL-Tab07.png)
+
+### Stack
+![Stack](Screenshots/Basic-01-VCL-Tab08.png)
+
+### Sizes
+![Sizes](Screenshots/Basic-01-VCL-Tab09.png)
 
 ### Dock
 Docks at the bottom, left and right, with evenly spaced and normally spaced items.
 
-![Dock](Screenshots/Basic-01-VCL-Tab11.png)
+![Dock](Screenshots/Basic-01-VCL-Tab10.png)
+
+### Alerts
+![Alerts](Screenshots/Basic-01-VCL-Tab11.png)
 
 ## Basic-02
 
-### FAB
-![FAB](Screenshots/Basic-02-VCL-Tab01.png)
-
 ### Toast
-![Toast](Screenshots/Basic-02-VCL-Tab02.png)
+![Toast](Screenshots/Basic-02-VCL-Tab01.png)
 
 ### Accordion
-![Accordion](Screenshots/Basic-02-VCL-Tab03.png)
+![Accordion](Screenshots/Basic-02-VCL-Tab02.png)
 
 ### Loading
-![Loading](Screenshots/Basic-02-VCL-Tab04.png)
+Loading buttons, animation buttons and the standalone `TDaisyLoading` indicator in every kind, size and variant.
+
+![Loading](Screenshots/Basic-02-VCL-Tab03.png)
 
 ### Dropdown
-![Dropdown](Screenshots/Basic-02-VCL-Tab05.png)
+![Dropdown](Screenshots/Basic-02-VCL-Tab04.png)
 
 ### Rating
-![Rating](Screenshots/Basic-02-VCL-Tab06.png)
+![Rating](Screenshots/Basic-02-VCL-Tab05.png)
 
 ### Range
-![Range](Screenshots/Basic-02-VCL-Tab07.png)
+![Range](Screenshots/Basic-02-VCL-Tab06.png)
 
 ### Buttons
-![Buttons](Screenshots/Basic-02-VCL-Tab08.png)
+![Buttons](Screenshots/Basic-02-VCL-Tab07.png)
+
+### FAB
+![FAB](Screenshots/Basic-02-VCL-Tab08.png)
 
 ## Basic-03
 
@@ -103,49 +115,54 @@ Docks at the bottom, left and right, with evenly spaced and normally spaced item
 
 ## Basic-05
 
-### Utilities
-![Utilities](Screenshots/Basic-05-VCL-Tab07.png)
-
-### SVG
-![SVG](Screenshots/Basic-05-VCL-Tab01.png)
-
-### Status
-![Status](Screenshots/Basic-05-VCL-Tab02.png)
-
 ### Select
-![Select](Screenshots/Basic-05-VCL-Tab03.png)
+![Select](Screenshots/Basic-05-VCL-Tab01.png)
 
 ### Tables
-![Tables](Screenshots/Basic-05-VCL-Tab04.png)
+![Tables](Screenshots/Basic-05-VCL-Tab02.png)
 
 ### Table features
-![Table features](Screenshots/Basic-05-VCL-Tab05.png)
+![Table features](Screenshots/Basic-05-VCL-Tab03.png)
 
 ### Table sizes
-![Table sizes](Screenshots/Basic-05-VCL-Tab06.png)
+![Table sizes](Screenshots/Basic-05-VCL-Tab04.png)
+
+### Utilities
+![Utilities](Screenshots/Basic-05-VCL-Tab05.png)
+
+### SVG
+![SVG](Screenshots/Basic-05-VCL-Tab06.png)
+
+### Status
+![Status](Screenshots/Basic-05-VCL-Tab07.png)
 
 ## Edits-01
 
-### Menu badges
-![Menu badges](Screenshots/Edits-01-VCL-Tab01.png)
-
-### Text area
-![Text area](Screenshots/Edits-01-VCL-Tab02.png)
-
 ### Menu
-![Menu](Screenshots/Edits-01-VCL-Tab03.png)
+![Menu](Screenshots/Edits-01-VCL-Tab01.png)
 
 ### Text input
-![Text input](Screenshots/Edits-01-VCL-Tab04.png)
+![Text input](Screenshots/Edits-01-VCL-Tab02.png)
 
 ### Calendar
-![Calendar](Screenshots/Edits-01-VCL-Tab05.png)
+![Calendar](Screenshots/Edits-01-VCL-Tab03.png)
 
 ### Toggle
-![Toggle](Screenshots/Edits-01-VCL-Tab06.png)
+![Toggle](Screenshots/Edits-01-VCL-Tab04.png)
 
 ### Select
-![Select](Screenshots/Edits-01-VCL-Tab07.png)
+![Select](Screenshots/Edits-01-VCL-Tab05.png)
+
+### Text area
+![Text area](Screenshots/Edits-01-VCL-Tab06.png)
+
+### Menu badges
+![Menu badges](Screenshots/Edits-01-VCL-Tab07.png)
+
+### Radio
+`TDaisyRadio` in groups, sizes, variants and disabled states.
+
+![Radio](Screenshots/Edits-01-VCL-Tab08.png)
 
 ## Charts-01
 
@@ -180,16 +197,22 @@ Selected tabs from the demos using the Dim theme.
 ![Cards (Dim)](Screenshots/Basic-01-VCL-Dark-Tab03.png)
 
 ### Basic-01 - Navigation
-![Navigation (Dim)](Screenshots/Basic-01-VCL-Dark-Tab10.png)
+![Navigation (Dim)](Screenshots/Basic-01-VCL-Dark-Tab06.png)
 
 ### Basic-01 - Dock
-![Dock (Dim)](Screenshots/Basic-01-VCL-Dark-Tab11.png)
+![Dock (Dim)](Screenshots/Basic-01-VCL-Dark-Tab10.png)
 
-### Basic-02 - FAB
-![FAB (Dim)](Screenshots/Basic-02-VCL-Dark-Tab01.png)
+### Basic-02 - Toast
+![Toast (Dim)](Screenshots/Basic-02-VCL-Dark-Tab01.png)
 
 ### Basic-02 - Accordion
-![Accordion (Dim)](Screenshots/Basic-02-VCL-Dark-Tab03.png)
+![Accordion (Dim)](Screenshots/Basic-02-VCL-Dark-Tab02.png)
+
+### Basic-02 - Loading
+![Loading (Dim)](Screenshots/Basic-02-VCL-Dark-Tab03.png)
+
+### Basic-02 - FAB
+![FAB (Dim)](Screenshots/Basic-02-VCL-Dark-Tab08.png)
 
 ### Basic-03 - Badges
 ![Badges (Dim)](Screenshots/Basic-03-VCL-Dark-Tab01.png)
@@ -204,10 +227,19 @@ Selected tabs from the demos using the Dim theme.
 ![Stat (Dim)](Screenshots/Basic-04-VCL-Dark-Tab03.png)
 
 ### Basic-05 - Utilities
-![Utilities (Dim)](Screenshots/Basic-05-VCL-Dark-Tab07.png)
+![Utilities (Dim)](Screenshots/Basic-05-VCL-Dark-Tab05.png)
 
 ### Basic-05 - Status
-![Status (Dim)](Screenshots/Basic-05-VCL-Dark-Tab02.png)
+![Status (Dim)](Screenshots/Basic-05-VCL-Dark-Tab07.png)
+
+### Edits-01 - Menu
+![Menu (Dim)](Screenshots/Edits-01-VCL-Dark-Tab01.png)
+
+### Edits-01 - Calendar
+![Calendar (Dim)](Screenshots/Edits-01-VCL-Dark-Tab03.png)
+
+### Edits-01 - Radio
+![Radio (Dim)](Screenshots/Edits-01-VCL-Dark-Tab08.png)
 
 ## Right-to-left (FMX)
 
