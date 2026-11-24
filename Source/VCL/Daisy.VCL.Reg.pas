@@ -23,7 +23,7 @@ uses
   Daisy.VCL.Indicator, Daisy.VCL.FieldSet, Daisy.VCL.Range, Daisy.VCL.Rating,
   Daisy.VCL.Swap, Daisy.VCL.Stack, Daisy.VCL.ThemeController,
   Daisy.VCL.Breadcrumbs, Daisy.VCL.Dock, Daisy.VCL.Link, Daisy.VCL.Pagination, Daisy.VCL.Steps,
-  Daisy.VCL.TitleBarPanel;
+  Daisy.VCL.TitleBarPanel, Daisy.VCL.Loading, Daisy.VCL.Radio;
 
 const
   // Pages follow the component groups in the daisyUI documentation
@@ -46,10 +46,10 @@ begin
   RegisterComponents(CPageDisplay, [TDaisyAccordion, TDaisyBadge, TDaisyCard, TDaisyChatBubble,
     TDaisyCountdown, TDaisyLabel, TDaisyList, TDaisyStat, TDaisyStatus, TDaisySVGImage,
     TDaisyTable]);
-  RegisterComponents(CPageFeedback, [TDaisyAlert, TDaisyProgress, TDaisyRadialProgress,
-    TDaisyToast]);
+  RegisterComponents(CPageFeedback, [TDaisyAlert, TDaisyLoading, TDaisyProgress,
+    TDaisyRadialProgress, TDaisyToast]);
   RegisterComponents(CPageInput, [TDaisyCalendar, TDaisyCheckBox, TDaisyDatePicker,
-    TDaisyFieldSet, TDaisyRange, TDaisyRating, TDaisySelect, TDaisyTextArea,
+    TDaisyFieldSet, TDaisyRadio, TDaisyRange, TDaisyRating, TDaisySelect, TDaisyTextArea,
     TDaisyTextInput, TDaisyToggle]);
   RegisterComponents(CPageNavigation, [TDaisyBreadcrumbs, TDaisyDock, TDaisyLink, TDaisyMainMenu,
     TDaisyMenu, TDaisyPageControl, TDaisyPagination, TDaisyPopupMenu, TDaisySteps,

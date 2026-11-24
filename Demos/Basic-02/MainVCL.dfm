@@ -562,6 +562,223 @@ object Form12: TForm12
         Duration = 1500
         OnAnimationFinished = AnimationFinished
       end
+      object lblLoadingCtl: TLabel
+        Left = 16
+        Top = 288
+        Width = 132
+        Height = 21
+        Caption = 'Loading indicators'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblLoadKinds: TLabel
+        Left = 16
+        Top = 376
+        Width = 30
+        Height = 15
+        Caption = 'Kinds'
+      end
+      object lblLoadSizes: TLabel
+        Left = 400
+        Top = 376
+        Width = 27
+        Height = 15
+        Caption = 'Sizes'
+      end
+      object lblLoadVariants: TLabel
+        Left = 700
+        Top = 376
+        Width = 44
+        Height = 15
+        Caption = 'Variants'
+      end
+      object ldSpinner: TDaisyLoading
+        Left = 16
+        Top = 324
+        Width = 40
+        Height = 40
+        Variant = dvPrimary
+        SizeKind = dzXL
+        TabOrder = 12
+      end
+      object ldRing: TDaisyLoading
+        Left = 72
+        Top = 324
+        Width = 40
+        Height = 40
+        Variant = dvPrimary
+        SizeKind = dzXL
+        TabOrder = 13
+        Kind = dlRing
+      end
+      object ldDots: TDaisyLoading
+        Left = 128
+        Top = 324
+        Width = 40
+        Height = 40
+        Variant = dvPrimary
+        SizeKind = dzXL
+        TabOrder = 14
+        Kind = dlDots
+      end
+      object ldBars: TDaisyLoading
+        Left = 184
+        Top = 324
+        Width = 40
+        Height = 40
+        Variant = dvPrimary
+        SizeKind = dzXL
+        TabOrder = 15
+        Kind = dlBars
+      end
+      object ldBall: TDaisyLoading
+        Left = 240
+        Top = 324
+        Width = 40
+        Height = 40
+        Variant = dvPrimary
+        SizeKind = dzXL
+        TabOrder = 16
+        Kind = dlBall
+      end
+      object ldInfinity: TDaisyLoading
+        Left = 296
+        Top = 324
+        Width = 40
+        Height = 40
+        Variant = dvPrimary
+        SizeKind = dzXL
+        TabOrder = 17
+        Kind = dlInfinity
+      end
+      object ldXs: TDaisyLoading
+        Left = 400
+        Top = 336
+        Width = 16
+        Height = 16
+        Variant = dvAccent
+        SizeKind = dzXS
+        TabOrder = 18
+      end
+      object ldSm: TDaisyLoading
+        Left = 456
+        Top = 334
+        Width = 20
+        Height = 20
+        Variant = dvAccent
+        SizeKind = dzSM
+        TabOrder = 19
+      end
+      object ldMd: TDaisyLoading
+        Left = 512
+        Top = 332
+        Width = 24
+        Height = 24
+        Variant = dvAccent
+        TabOrder = 20
+      end
+      object ldLg: TDaisyLoading
+        Left = 568
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvAccent
+        SizeKind = dzLG
+        TabOrder = 21
+      end
+      object ldXl: TDaisyLoading
+        Left = 624
+        Top = 324
+        Width = 40
+        Height = 40
+        Variant = dvAccent
+        SizeKind = dzXL
+        TabOrder = 22
+      end
+      object ldNeutral: TDaisyLoading
+        Left = 700
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvNeutral
+        SizeKind = dzLG
+        TabOrder = 23
+        Kind = dlBars
+      end
+      object ldPrimary: TDaisyLoading
+        Left = 736
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvPrimary
+        SizeKind = dzLG
+        TabOrder = 24
+        Kind = dlBars
+      end
+      object ldSecondary: TDaisyLoading
+        Left = 772
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvSecondary
+        SizeKind = dzLG
+        TabOrder = 25
+        Kind = dlBars
+      end
+      object ldAccent: TDaisyLoading
+        Left = 808
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvAccent
+        SizeKind = dzLG
+        TabOrder = 26
+        Kind = dlBars
+      end
+      object ldInfo: TDaisyLoading
+        Left = 844
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvInfo
+        SizeKind = dzLG
+        TabOrder = 27
+        Kind = dlBars
+      end
+      object ldSuccess: TDaisyLoading
+        Left = 880
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvSuccess
+        SizeKind = dzLG
+        TabOrder = 28
+        Kind = dlBars
+      end
+      object ldWarning: TDaisyLoading
+        Left = 916
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvWarning
+        SizeKind = dzLG
+        TabOrder = 29
+        Kind = dlBars
+      end
+      object ldError: TDaisyLoading
+        Left = 952
+        Top = 328
+        Width = 32
+        Height = 32
+        Variant = dvError
+        SizeKind = dzLG
+        TabOrder = 30
+        Kind = dlBars
+      end
     end
     object tsDropdown: TDaisyTabSheet
       Left = 1

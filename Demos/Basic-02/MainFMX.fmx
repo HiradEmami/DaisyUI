@@ -569,6 +569,229 @@ object Form13: TForm13
         Duration = 1500
         OnAnimationFinished = AnimationFinished
       end
+      object lblLoadingCtl: TLabel
+        AutoSize = True
+        StyledSettings = [Family]
+        Position.X = 16.000000000000000000
+        Position.Y = 300.000000000000000000
+        Size.Width = 200.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.VertAlign = Leading
+        Text = 'Loading indicators'
+      end
+      object lblLoadKinds: TLabel
+        AutoSize = True
+        Position.X = 16.000000000000000000
+        Position.Y = 392.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 16.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Kinds'
+      end
+      object lblLoadSizes: TLabel
+        AutoSize = True
+        Position.X = 400.000000000000000000
+        Position.Y = 392.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 16.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Sizes'
+      end
+      object lblLoadVariants: TLabel
+        AutoSize = True
+        Position.X = 700.000000000000000000
+        Position.Y = 392.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 16.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Variants'
+      end
+      object ldSpinner: TDaisyFmxLoading
+        Variant = dvPrimary
+        SizeKind = dzXL
+        Position.X = 16.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ldRing: TDaisyFmxLoading
+        Variant = dvPrimary
+        SizeKind = dzXL
+        Position.X = 72.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlRing
+      end
+      object ldDots: TDaisyFmxLoading
+        Variant = dvPrimary
+        SizeKind = dzXL
+        Position.X = 128.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlDots
+      end
+      object ldBars: TDaisyFmxLoading
+        Variant = dvPrimary
+        SizeKind = dzXL
+        Position.X = 184.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
+      object ldBall: TDaisyFmxLoading
+        Variant = dvPrimary
+        SizeKind = dzXL
+        Position.X = 240.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBall
+      end
+      object ldInfinity: TDaisyFmxLoading
+        Variant = dvPrimary
+        SizeKind = dzXL
+        Position.X = 296.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlInfinity
+      end
+      object ldXs: TDaisyFmxLoading
+        Variant = dvAccent
+        SizeKind = dzXS
+        Position.X = 400.000000000000000000
+        Position.Y = 348.000000000000000000
+        Size.Width = 16.000000000000000000
+        Size.Height = 16.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ldSm: TDaisyFmxLoading
+        Variant = dvAccent
+        SizeKind = dzSM
+        Position.X = 456.000000000000000000
+        Position.Y = 346.000000000000000000
+        Size.Width = 20.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ldMd: TDaisyFmxLoading
+        Variant = dvAccent
+        Position.X = 512.000000000000000000
+        Position.Y = 344.000000000000000000
+        Size.Width = 24.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ldLg: TDaisyFmxLoading
+        Variant = dvAccent
+        SizeKind = dzLG
+        Position.X = 568.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ldXl: TDaisyFmxLoading
+        Variant = dvAccent
+        SizeKind = dzXL
+        Position.X = 624.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object ldNeutral: TDaisyFmxLoading
+        Variant = dvNeutral
+        SizeKind = dzLG
+        Position.X = 700.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
+      object ldPrimary: TDaisyFmxLoading
+        Variant = dvPrimary
+        SizeKind = dzLG
+        Position.X = 736.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
+      object ldSecondary: TDaisyFmxLoading
+        Variant = dvSecondary
+        SizeKind = dzLG
+        Position.X = 772.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
+      object ldAccent: TDaisyFmxLoading
+        Variant = dvAccent
+        SizeKind = dzLG
+        Position.X = 808.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
+      object ldInfo: TDaisyFmxLoading
+        Variant = dvInfo
+        SizeKind = dzLG
+        Position.X = 844.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
+      object ldSuccess: TDaisyFmxLoading
+        Variant = dvSuccess
+        SizeKind = dzLG
+        Position.X = 880.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
+      object ldWarning: TDaisyFmxLoading
+        Variant = dvWarning
+        SizeKind = dzLG
+        Position.X = 916.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
+      object ldError: TDaisyFmxLoading
+        Variant = dvError
+        SizeKind = dzLG
+        Position.X = 952.000000000000000000
+        Position.Y = 340.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Kind = dlBars
+      end
     end
     object tsDropdown: TDaisyFmxTabSheet
       Position.X = 1.000000000000000000

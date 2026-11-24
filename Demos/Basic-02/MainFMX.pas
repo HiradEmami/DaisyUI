@@ -8,7 +8,7 @@ uses
   Daisy.Items, Daisy.FMX.Button, Daisy.FMX.IconButton, Daisy.FMX.LoadingButton, Daisy.FMX.Dropdown,
   Daisy.FMX.Fab, Daisy.FMX.Control, Daisy.FMX.Accordion, Daisy.FMX.Select, Daisy.FMX.FormStyler, Daisy.Theme, Daisy.FMX.PageControl,
   Daisy.FMX.CheckBox, Daisy.Toasts, Daisy.FMX.Toast, Daisy.FMX.Range, Daisy.FMX.Rating,
-  Daisy.FMX.ThemeController;
+  Daisy.FMX.ThemeController, Daisy.FMX.Loading;
 
 type
   TForm13 = class(TForm)
@@ -49,6 +49,29 @@ type
     btnAnimDots: TDaisyFmxAnimationButton;
     btnAnimBars: TDaisyFmxAnimationButton;
     btnAnimBall: TDaisyFmxAnimationButton;
+    lblLoadingCtl: TLabel;
+    lblLoadKinds: TLabel;
+    lblLoadSizes: TLabel;
+    lblLoadVariants: TLabel;
+    ldSpinner: TDaisyFmxLoading;
+    ldRing: TDaisyFmxLoading;
+    ldDots: TDaisyFmxLoading;
+    ldBars: TDaisyFmxLoading;
+    ldBall: TDaisyFmxLoading;
+    ldInfinity: TDaisyFmxLoading;
+    ldXs: TDaisyFmxLoading;
+    ldSm: TDaisyFmxLoading;
+    ldMd: TDaisyFmxLoading;
+    ldLg: TDaisyFmxLoading;
+    ldXl: TDaisyFmxLoading;
+    ldNeutral: TDaisyFmxLoading;
+    ldPrimary: TDaisyFmxLoading;
+    ldSecondary: TDaisyFmxLoading;
+    ldAccent: TDaisyFmxLoading;
+    ldInfo: TDaisyFmxLoading;
+    ldSuccess: TDaisyFmxLoading;
+    ldWarning: TDaisyFmxLoading;
+    ldError: TDaisyFmxLoading;
     ddMenu: TDaisyFmxDropdownMenu;
     ddEnd: TDaisyFmxDropdownMenu;
     ddTop: TDaisyFmxDropdownMenu;

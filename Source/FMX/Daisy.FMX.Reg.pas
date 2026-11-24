@@ -23,7 +23,7 @@ uses
   Daisy.FMX.Indicator, Daisy.FMX.FieldSet, Daisy.FMX.Range, Daisy.FMX.Rating,
   Daisy.FMX.Swap, Daisy.FMX.Stack, Daisy.FMX.ThemeController,
   Daisy.FMX.Breadcrumbs, Daisy.FMX.Dock, Daisy.FMX.Link, Daisy.FMX.Pagination, Daisy.FMX.Steps,
-  Daisy.FMX.TitleBarPanel;
+  Daisy.FMX.TitleBarPanel, Daisy.FMX.Loading, Daisy.FMX.Radio;
 
 const
   // Pages follow the component groups in the daisyUI documentation
@@ -48,10 +48,10 @@ begin
   RegisterComponents(CPageDisplay, [TDaisyFmxAccordion, TDaisyFmxBadge, TDaisyFmxCard,
     TDaisyFmxChatBubble, TDaisyFmxCountdown, TDaisyFmxLabel, TDaisyFmxList, TDaisyFmxStat,
     TDaisyFmxStatus, TDaisyFmxSVGImage, TDaisyFmxTable]);
-  RegisterComponents(CPageFeedback, [TDaisyFmxAlert, TDaisyFmxProgress, TDaisyFmxRadialProgress,
-    TDaisyFmxToast]);
+  RegisterComponents(CPageFeedback, [TDaisyFmxAlert, TDaisyFmxLoading, TDaisyFmxProgress,
+    TDaisyFmxRadialProgress, TDaisyFmxToast]);
   RegisterComponents(CPageInput, [TDaisyFmxCalendar, TDaisyFmxCheckBox, TDaisyFmxDatePicker,
-    TDaisyFmxFieldSet, TDaisyFmxRange, TDaisyFmxRating, TDaisyFmxSelect,
+    TDaisyFmxFieldSet, TDaisyFmxRadio, TDaisyFmxRange, TDaisyFmxRating, TDaisyFmxSelect,
     TDaisyFmxTextArea, TDaisyFmxTextInput, TDaisyFmxToggle]);
   RegisterComponents(CPageNavigation, [TDaisyFmxBreadcrumbs, TDaisyFmxDock, TDaisyFmxLink,
     TDaisyFmxMainMenu, TDaisyFmxMenu, TDaisyFmxPageControl, TDaisyFmxPagination,

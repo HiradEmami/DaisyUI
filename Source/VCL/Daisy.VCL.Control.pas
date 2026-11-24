@@ -302,7 +302,7 @@ end;
 constructor TDaisyControl.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  ControlStyle := ControlStyle - [csOpaque] + [csParentBackground];
+  ControlStyle := ControlStyle - [csOpaque] + [csParentBackground, csNoDesignVisible]; // Visible=False hides at design time too
   DoubleBuffered := True;
   FThemeKind := dtInherit;
   FVariant := dvDefault;

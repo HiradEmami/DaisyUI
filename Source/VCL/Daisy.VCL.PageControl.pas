@@ -45,6 +45,8 @@ type
     procedure SetSVG(const Value: TStrings);
     procedure IconChanged(Sender: TObject);
     procedure SetTabVisible(const Value: Boolean);
+    function GetSheetVisible: Boolean;
+    procedure SetSheetVisible(const Value: Boolean);
     function GetPageIndex: Integer;
     procedure SetPageIndex(const Value: Integer);
     procedure CMTextChanged(var Message: TMessage); message CM_TEXTCHANGED;
@@ -72,8 +74,9 @@ type
     property TabVisible: Boolean read FTabVisible write SetTabVisible default True;
     // Custom colour of the active tab (fill for box/lift, underline for border); clNone uses the theme
     property TabColor: TColor read FTabColor write SetTabColor default Vcl.Graphics.clNone;
-    // Only the active sheet is visible, so this is never streamed
-    property Visible stored False;
+    // False hides the sheet's tab (same as TabVisible); the page control shows only the active sheet,
+    // so this is never streamed
+    property Visible: Boolean read GetSheetVisible write SetSheetVisible stored False;
   end;
 
   TDaisyPageControl = class(TDaisyControl)
@@ -91,8 +94,12 @@ type
     FMaxScroll: Integer;
     FScrollToActive: Boolean;
     FDestroying: Boolean;
+    FVisibleBorder: Boolean;
+    FStretchBox: Boolean;
     FOnChange: TNotifyEvent;
     FOnChanging: TDaisyTabChangingEvent;
+    procedure SetVisibleBorder(const Value: Boolean);
+    procedure SetStretchBox(const Value: Boolean);
     procedure SetTabStyle(const Value: TDaisyTabStyle);
     procedure SetTabPosition(const Value: TDaisyTabPosition);
     procedure SetHotTab(const Value: Integer);
@@ -147,6 +154,10 @@ type
     property ActivePageIndex: Integer read GetActivePageIndex write SetActivePageIndex default -1;
     property TabStyle: TDaisyTabStyle read FTabStyle write SetTabStyle default dtsBorder;
     property TabPosition: TDaisyTabPosition read FTabPosition write SetTabPosition default dtpTop;
+    // The single line drawn around the page area
+    property VisibleBorder: Boolean read FVisibleBorder write SetVisibleBorder default True;
+    // dtsBox only: the box behind the tabs spans the whole control; False wraps just the tabs
+    property StretchBox: Boolean read FStretchBox write SetStretchBox default True;
     property OnChange: TNotifyEvent read FOnChange write FOnChange;
     property OnChanging: TDaisyTabChangingEvent read FOnChanging write FOnChanging;
   end;
@@ -315,6 +326,16 @@ begin
   end;
 end;
 
+function TDaisyTabSheet.GetSheetVisible: Boolean;
+begin
+  Result := FTabVisible;
+end;
+
+procedure TDaisyTabSheet.SetSheetVisible(const Value: Boolean);
+begin
+  SetTabVisible(Value);
+end;
+
 function TDaisyTabSheet.GetPageIndex: Integer;
 begin
   if FPageControl <> nil then
@@ -339,6 +360,8 @@ begin
   FLoadedIndex := -1;
   FHotTab := -1;
   FTabStyle := dtsBorder;
+  FVisibleBorder := True;
+  FStretchBox := True;
   FLayoutDirty := True;
   TabStop := True;
   SetBounds(Left, Top, 360, 240);
@@ -448,7 +471,7 @@ var
   LSheet: TDaisyTabSheet;
 begin
   for LSheet in FPages do
-    LSheet.Visible := LSheet = FActive;
+    TControl(LSheet).Visible := LSheet = FActive;
   if FActive <> nil then
     FActive.BringToFront;
   FScrollToActive := True;
@@ -461,6 +484,24 @@ begin
   begin
     FTabStyle := Value;
     UpdateSheetBounds;
+    Invalidate;
+  end;
+end;
+
+procedure TDaisyPageControl.SetVisibleBorder(const Value: Boolean);
+begin
+  if FVisibleBorder <> Value then
+  begin
+    FVisibleBorder := Value;
+    Invalidate;
+  end;
+end;
+
+procedure TDaisyPageControl.SetStretchBox(const Value: Boolean);
+begin
+  if FStretchBox <> Value then
+  begin
+    FStretchBox := Value;
     Invalidate;
   end;
 end;
@@ -489,13 +530,14 @@ begin
   if FPages.IndexOf(ASheet) >= 0 then
     Exit;
   FPages.Add(ASheet);
+  FLayoutDirty := True;
   if csLoading in ComponentState then
     Exit;
   UpdateSheetBounds;
   if (FActive = nil) or (csDesigning in ComponentState) then
     SetActivePage(ASheet)
   else
-    ASheet.Visible := False;
+    TControl(ASheet).Visible := False;
   Invalidate;
 end;
 
@@ -640,7 +682,7 @@ var
   I, LX, LTop, LBottom, LInset, LStripTop, LStripBottom, LTotal: Integer;
   LSheet: TDaisyTabSheet;
 begin
-  if not FLayoutDirty then
+  if (not FLayoutDirty) and (Length(FTabRects) = FPages.Count) then
     Exit;
   FLayoutDirty := False;
   SetLength(FTabRects, FPages.Count);
@@ -701,6 +743,8 @@ begin
     for I := 0 to High(FTabRects) do
       OffsetRect(FTabRects[I], -FScrollX, 0);
   FStripRect := Rect(0, LStripTop, Min(LTotal - FScrollX, ClientWidth), LStripBottom);
+  if FStretchBox and (FTabStyle = dtsBox) then
+    FStripRect.Right := ClientWidth;
 end;
 
 function TDaisyPageControl.TabAt(X, Y: Integer): Integer;
@@ -870,11 +914,12 @@ begin
   LGraphics := NewGraphics;
   try
     FillRoundRect(LGraphics, LBox, LRadius, DaisyWithAlpha(Theme.Base100, LFade));
-    StrokeRoundRect(LGraphics, LBox, LRadius, DaisyWithAlpha(Theme.BorderColor, LFade), LBorder, False);
+    if FVisibleBorder then
+      StrokeRoundRect(LGraphics, LBox, LRadius, DaisyWithAlpha(Theme.BorderColor, LFade), LBorder, False);
 
     if FTabStyle = dtsBox then
       FillRoundRect(LGraphics, TRectF.Create(FStripRect), LFieldRadius + ScaleValue(4),
-        DaisyWithAlpha(Theme.Base200, LFade));
+        DaisyWithAlpha(Theme.Base100, LFade));
 
     for I := 0 to FPages.Count - 1 do
     begin
@@ -906,13 +951,22 @@ begin
           end;
         dtsBorder:
           begin
+            // Only as wide as the caption, directly beside the text
             LExt := Max(2, ScaleValue(3));
+            LX := LTab.Left + ScaleValue(CTabPadding[SizeKind]);
+            LHalf := ScaleValue(LFont) * 0.55 + ScaleValue(2);
             if LTop then
-              FillRoundRect(LGraphics, RectF(LTab.Left, LTab.Bottom - LExt + LBorder, LTab.Right,
-                LTab.Bottom + LBorder), LExt / 2, DaisyWithAlpha(LTabTint, LFade))
+            begin
+              T := (LTab.Top + LTab.Bottom) / 2 + LHalf;
+              T := Min(T, LTab.Bottom - LExt);
+            end
             else
-              FillRoundRect(LGraphics, RectF(LTab.Left, LTab.Top - LBorder, LTab.Right,
-                LTab.Top + LExt - LBorder), LExt / 2, DaisyWithAlpha(LTabTint, LFade));
+            begin
+              T := (LTab.Top + LTab.Bottom) / 2 - LHalf - LExt;
+              T := Max(T, LTab.Top);
+            end;
+            FillRoundRect(LGraphics, RectF(LX, T, LTab.Right - ScaleValue(CTabPadding[SizeKind]), T + LExt),
+              LExt / 2, DaisyWithAlpha(LTabTint, LFade));
           end;
         dtsLift:
           begin

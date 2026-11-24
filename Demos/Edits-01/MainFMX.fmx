@@ -1314,6 +1314,329 @@ object FormEdits: TFormEdits
         Checked = True
       end
     end
+    object tsRadio: TDaisyFmxTabSheet
+      Position.X = 1.000000000000000000
+      Position.Y = 41.000000000000000000
+      Size.Width = 1278.000000000000000000
+      Size.Height = 454.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = 'Radio'
+      object lblRadioBasic: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 71.000000000000000000
+        Size.Height = 18.621093750000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Group'
+      end
+      object rbOptionA: TDaisyFmxRadio
+        Variant = dvPrimary
+        Cursor = crHandPoint
+        Position.X = 24.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Option A'
+        Checked = True
+        OnChange = RadioChange
+      end
+      object rbOptionB: TDaisyFmxRadio
+        Variant = dvPrimary
+        Cursor = crHandPoint
+        Position.X = 24.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Option B'
+        OnChange = RadioChange
+      end
+      object rbOptionC: TDaisyFmxRadio
+        Variant = dvPrimary
+        Cursor = crHandPoint
+        Position.X = 24.000000000000000000
+        Position.Y = 108.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Option C'
+        OnChange = RadioChange
+      end
+      object rbDisabled: TDaisyFmxRadio
+        Variant = dvPrimary
+        Enabled = False
+        Position.X = 24.000000000000000000
+        Position.Y = 144.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Text = 'Disabled'
+      end
+      object rbDisabledOn: TDaisyFmxRadio
+        Variant = dvPrimary
+        Enabled = False
+        Position.X = 24.000000000000000000
+        Position.Y = 180.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        GroupIndex = 5
+        Text = 'Disabled on'
+        Checked = True
+      end
+      object lblRadioSizes: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 260.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 71.000000000000000000
+        Size.Height = 18.621093750000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        Text = 'Sizes'
+      end
+      object rbXs: TDaisyFmxRadio
+        Variant = dvSecondary
+        SizeKind = dzXS
+        Cursor = crHandPoint
+        Position.X = 260.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 130.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 7
+        GroupIndex = 11
+        Text = 'Extra small'
+        Checked = True
+      end
+      object rbSm: TDaisyFmxRadio
+        Variant = dvSecondary
+        SizeKind = dzSM
+        Cursor = crHandPoint
+        Position.X = 260.000000000000000000
+        Position.Y = 70.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 8
+        GroupIndex = 12
+        Text = 'Small'
+        Checked = True
+      end
+      object rbMd: TDaisyFmxRadio
+        Variant = dvSecondary
+        Cursor = crHandPoint
+        Position.X = 260.000000000000000000
+        Position.Y = 108.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 9
+        GroupIndex = 13
+        Text = 'Medium'
+        Checked = True
+      end
+      object rbLg: TDaisyFmxRadio
+        Variant = dvSecondary
+        SizeKind = dzLG
+        Cursor = crHandPoint
+        Position.X = 260.000000000000000000
+        Position.Y = 148.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 10
+        GroupIndex = 14
+        Text = 'Large'
+        Checked = True
+      end
+      object rbXl: TDaisyFmxRadio
+        Variant = dvSecondary
+        SizeKind = dzXL
+        Cursor = crHandPoint
+        Position.X = 260.000000000000000000
+        Position.Y = 192.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 11
+        GroupIndex = 15
+        Text = 'Extra large'
+        Checked = True
+      end
+      object lblRadioVariants: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 520.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 71.000000000000000000
+        Size.Height = 18.621093750000000000
+        Size.PlatformDefault = False
+        TabOrder = 12
+        Text = 'Variants'
+      end
+      object rbNeutral: TDaisyFmxRadio
+        Variant = dvNeutral
+        Cursor = crHandPoint
+        Position.X = 520.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 13
+        GroupIndex = 21
+        Text = 'Neutral'
+        Checked = True
+      end
+      object rbPrimary: TDaisyFmxRadio
+        Variant = dvPrimary
+        Cursor = crHandPoint
+        Position.X = 520.000000000000000000
+        Position.Y = 70.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 14
+        GroupIndex = 22
+        Text = 'Primary'
+        Checked = True
+      end
+      object rbSecondary: TDaisyFmxRadio
+        Variant = dvSecondary
+        Cursor = crHandPoint
+        Position.X = 520.000000000000000000
+        Position.Y = 104.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 15
+        GroupIndex = 23
+        Text = 'Secondary'
+        Checked = True
+      end
+      object rbAccent: TDaisyFmxRadio
+        Variant = dvAccent
+        Cursor = crHandPoint
+        Position.X = 520.000000000000000000
+        Position.Y = 138.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 16
+        GroupIndex = 24
+        Text = 'Accent'
+        Checked = True
+      end
+      object rbInfo: TDaisyFmxRadio
+        Variant = dvInfo
+        Cursor = crHandPoint
+        Position.X = 520.000000000000000000
+        Position.Y = 172.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 17
+        GroupIndex = 25
+        Text = 'Info'
+        Checked = True
+      end
+      object rbSuccess: TDaisyFmxRadio
+        Variant = dvSuccess
+        Cursor = crHandPoint
+        Position.X = 520.000000000000000000
+        Position.Y = 206.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 18
+        GroupIndex = 26
+        Text = 'Success'
+        Checked = True
+      end
+      object rbWarning: TDaisyFmxRadio
+        Variant = dvWarning
+        Cursor = crHandPoint
+        Position.X = 520.000000000000000000
+        Position.Y = 240.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 19
+        GroupIndex = 27
+        Text = 'Warning'
+        Checked = True
+      end
+      object rbError: TDaisyFmxRadio
+        Variant = dvError
+        Cursor = crHandPoint
+        Position.X = 520.000000000000000000
+        Position.Y = 274.000000000000000000
+        Size.Width = 110.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 20
+        GroupIndex = 28
+        Text = 'Error'
+        Checked = True
+      end
+      object lblRadioPlan: TDaisyFmxLabel
+        HitTest = False
+        Position.X = 780.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 71.000000000000000000
+        Size.Height = 18.621093750000000000
+        Size.PlatformDefault = False
+        TabOrder = 21
+        Text = 'Plan'
+      end
+      object rbFree: TDaisyFmxRadio
+        Variant = dvSuccess
+        Cursor = crHandPoint
+        Position.X = 780.000000000000000000
+        Position.Y = 36.000000000000000000
+        Size.Width = 90.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 22
+        GroupIndex = 3
+        Text = 'Free'
+        Checked = True
+        OnChange = RadioChange
+      end
+      object rbPro: TDaisyFmxRadio
+        Variant = dvSuccess
+        Cursor = crHandPoint
+        Position.X = 780.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 90.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 23
+        GroupIndex = 3
+        Text = 'Pro'
+        OnChange = RadioChange
+      end
+      object rbTeam: TDaisyFmxRadio
+        Variant = dvSuccess
+        Cursor = crHandPoint
+        Position.X = 780.000000000000000000
+        Position.Y = 108.000000000000000000
+        Size.Width = 90.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 24
+        GroupIndex = 3
+        Text = 'Team'
+        OnChange = RadioChange
+      end
+    end
   end
   object alMain: TActionList
     Left = 1200

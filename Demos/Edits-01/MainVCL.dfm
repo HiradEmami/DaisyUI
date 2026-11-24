@@ -1320,6 +1320,320 @@ object FormEdits: TFormEdits
         OnItemClick = MenuItemClick
       end
     end
+    object tsRadio: TDaisyTabSheet
+      Left = 1
+      Top = 41
+      Width = 1282
+      Height = 460
+      TabOrder = 7
+      Caption = 'Radio'
+      object lblRadioBasic: TDaisyLabel
+        Left = 24
+        Top = 8
+        Width = 36
+        Height = 19
+        TabOrder = 0
+        Caption = 'Group'
+      end
+      object rbOptionA: TDaisyRadio
+        Left = 24
+        Top = 36
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvPrimary
+        TabOrder = 1
+        TabStop = True
+        Caption = 'Option A'
+        Checked = True
+        OnChange = RadioChange
+      end
+      object rbOptionB: TDaisyRadio
+        Left = 24
+        Top = 72
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvPrimary
+        TabOrder = 2
+        TabStop = True
+        Caption = 'Option B'
+        OnChange = RadioChange
+      end
+      object rbOptionC: TDaisyRadio
+        Left = 24
+        Top = 108
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvPrimary
+        TabOrder = 3
+        TabStop = True
+        Caption = 'Option C'
+        OnChange = RadioChange
+      end
+      object rbDisabled: TDaisyRadio
+        Left = 24
+        Top = 144
+        Width = 110
+        Height = 30
+        Variant = dvPrimary
+        Enabled = False
+        TabOrder = 4
+        TabStop = True
+        Caption = 'Disabled'
+      end
+      object rbDisabledOn: TDaisyRadio
+        Left = 24
+        Top = 180
+        Width = 140
+        Height = 30
+        Variant = dvPrimary
+        Enabled = False
+        GroupIndex = 5
+        TabOrder = 5
+        TabStop = True
+        Caption = 'Disabled on'
+        Checked = True
+      end
+      object lblRadioSizes: TDaisyLabel
+        Left = 260
+        Top = 8
+        Width = 30
+        Height = 19
+        TabOrder = 6
+        Caption = 'Sizes'
+      end
+      object rbXs: TDaisyRadio
+        Left = 260
+        Top = 36
+        Width = 130
+        Height = 22
+        Cursor = crHandPoint
+        Variant = dvSecondary
+        SizeKind = dzXS
+        GroupIndex = 11
+        TabOrder = 7
+        TabStop = True
+        Caption = 'Extra small'
+        Checked = True
+      end
+      object rbSm: TDaisyRadio
+        Left = 260
+        Top = 70
+        Width = 100
+        Height = 26
+        Cursor = crHandPoint
+        Variant = dvSecondary
+        SizeKind = dzSM
+        GroupIndex = 12
+        TabOrder = 8
+        TabStop = True
+        Caption = 'Small'
+        Checked = True
+      end
+      object rbMd: TDaisyRadio
+        Left = 260
+        Top = 108
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvSecondary
+        GroupIndex = 13
+        TabOrder = 9
+        TabStop = True
+        Caption = 'Medium'
+        Checked = True
+      end
+      object rbLg: TDaisyRadio
+        Left = 260
+        Top = 148
+        Width = 110
+        Height = 34
+        Cursor = crHandPoint
+        Variant = dvSecondary
+        SizeKind = dzLG
+        GroupIndex = 14
+        TabOrder = 10
+        TabStop = True
+        Caption = 'Large'
+        Checked = True
+      end
+      object rbXl: TDaisyRadio
+        Left = 260
+        Top = 192
+        Width = 140
+        Height = 38
+        Cursor = crHandPoint
+        Variant = dvSecondary
+        SizeKind = dzXL
+        GroupIndex = 15
+        TabOrder = 11
+        TabStop = True
+        Caption = 'Extra large'
+        Checked = True
+      end
+      object lblRadioVariants: TDaisyLabel
+        Left = 520
+        Top = 8
+        Width = 47
+        Height = 19
+        TabOrder = 12
+        Caption = 'Variants'
+      end
+      object rbNeutral: TDaisyRadio
+        Left = 520
+        Top = 36
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvNeutral
+        GroupIndex = 21
+        TabOrder = 13
+        TabStop = True
+        Caption = 'Neutral'
+        Checked = True
+      end
+      object rbPrimary: TDaisyRadio
+        Left = 520
+        Top = 70
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvPrimary
+        GroupIndex = 22
+        TabOrder = 14
+        TabStop = True
+        Caption = 'Primary'
+        Checked = True
+      end
+      object rbSecondary: TDaisyRadio
+        Left = 520
+        Top = 104
+        Width = 120
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvSecondary
+        GroupIndex = 23
+        TabOrder = 15
+        TabStop = True
+        Caption = 'Secondary'
+        Checked = True
+      end
+      object rbAccent: TDaisyRadio
+        Left = 520
+        Top = 138
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvAccent
+        GroupIndex = 24
+        TabOrder = 16
+        TabStop = True
+        Caption = 'Accent'
+        Checked = True
+      end
+      object rbInfo: TDaisyRadio
+        Left = 520
+        Top = 172
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvInfo
+        GroupIndex = 25
+        TabOrder = 17
+        TabStop = True
+        Caption = 'Info'
+        Checked = True
+      end
+      object rbSuccess: TDaisyRadio
+        Left = 520
+        Top = 206
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvSuccess
+        GroupIndex = 26
+        TabOrder = 18
+        TabStop = True
+        Caption = 'Success'
+        Checked = True
+      end
+      object rbWarning: TDaisyRadio
+        Left = 520
+        Top = 240
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvWarning
+        GroupIndex = 27
+        TabOrder = 19
+        TabStop = True
+        Caption = 'Warning'
+        Checked = True
+      end
+      object rbError: TDaisyRadio
+        Left = 520
+        Top = 274
+        Width = 110
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvError
+        GroupIndex = 28
+        TabOrder = 20
+        TabStop = True
+        Caption = 'Error'
+        Checked = True
+      end
+      object lblRadioPlan: TDaisyLabel
+        Left = 780
+        Top = 8
+        Width = 29
+        Height = 19
+        TabOrder = 21
+        Caption = 'Plan'
+      end
+      object rbFree: TDaisyRadio
+        Left = 780
+        Top = 36
+        Width = 90
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvSuccess
+        GroupIndex = 3
+        TabOrder = 22
+        TabStop = True
+        Caption = 'Free'
+        Checked = True
+        OnChange = RadioChange
+      end
+      object rbPro: TDaisyRadio
+        Left = 780
+        Top = 72
+        Width = 90
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvSuccess
+        GroupIndex = 3
+        TabOrder = 23
+        TabStop = True
+        Caption = 'Pro'
+        OnChange = RadioChange
+      end
+      object rbTeam: TDaisyRadio
+        Left = 780
+        Top = 108
+        Width = 90
+        Height = 30
+        Cursor = crHandPoint
+        Variant = dvSuccess
+        GroupIndex = 3
+        TabOrder = 24
+        TabStop = True
+        Caption = 'Team'
+        OnChange = RadioChange
+      end
+    end
   end
   object alMain: TActionList
     Left = 1200

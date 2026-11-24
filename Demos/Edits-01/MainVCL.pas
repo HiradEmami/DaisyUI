@@ -9,7 +9,7 @@ uses
   Daisy.VCL.Select, Daisy.VCL.Toggle, Daisy.VCL.TextInput, Daisy.VCL.TextArea, Daisy.VCL.MenuPopup,
   Daisy.VCL.Menu, Daisy.VCL.MainMenu, Daisy.VCL.PopupMenu, Daisy.VCL.CheckBox,
   Daisy.VCL.PageControl, Daisy.VCL.Button, Daisy.Calendars, Daisy.VCL.Calendar, Daisy.VCL.DatePicker,
-  Daisy.VCL.ThemeController, System.Actions;
+  Daisy.VCL.ThemeController, Daisy.VCL.Radio, System.Actions;
 
 type
   TFormEdits = class(TForm)
@@ -104,6 +104,33 @@ type
     dpCalendar: TDaisyDatePicker;
     lblPlacement: TDaisyLabel;
     selPlacement: TDaisySelect;
+    tsRadio: TDaisyTabSheet;
+    lblRadioBasic: TDaisyLabel;
+    lblRadioSizes: TDaisyLabel;
+    lblRadioVariants: TDaisyLabel;
+    lblRadioPlan: TDaisyLabel;
+    rbOptionA: TDaisyRadio;
+    rbOptionB: TDaisyRadio;
+    rbOptionC: TDaisyRadio;
+    rbDisabled: TDaisyRadio;
+    rbDisabledOn: TDaisyRadio;
+    rbXs: TDaisyRadio;
+    rbSm: TDaisyRadio;
+    rbMd: TDaisyRadio;
+    rbLg: TDaisyRadio;
+    rbXl: TDaisyRadio;
+    rbNeutral: TDaisyRadio;
+    rbPrimary: TDaisyRadio;
+    rbSecondary: TDaisyRadio;
+    rbAccent: TDaisyRadio;
+    rbInfo: TDaisyRadio;
+    rbSuccess: TDaisyRadio;
+    rbWarning: TDaisyRadio;
+    rbError: TDaisyRadio;
+    rbFree: TDaisyRadio;
+    rbPro: TDaisyRadio;
+    rbTeam: TDaisyRadio;
+    procedure RadioChange(Sender: TObject);
     procedure CalendarChange(Sender: TObject);
     procedure DatePickerChange(Sender: TObject);
     procedure DatePlacementChange(Sender: TObject);
@@ -195,6 +222,15 @@ procedure TFormEdits.ToggleActionExecute(Sender: TObject);
 begin
   lblStatusLine.Caption := Format('%s: %s', [(Sender as TAction).Name,
     BoolToStr((Sender as TAction).Checked, True)]);
+end;
+
+procedure TFormEdits.RadioChange(Sender: TObject);
+var
+  LRadio: TDaisyRadio;
+begin
+  LRadio := Sender as TDaisyRadio;
+  if LRadio.Checked then
+    lblStatusLine.Caption := Format('%s: "%s" selected', [LRadio.Name, LRadio.Caption]);
 end;
 
 procedure TFormEdits.MenuActionExecute(Sender: TObject);

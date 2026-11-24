@@ -8,7 +8,7 @@ uses
   Daisy.VCL.IconButton, Daisy.VCL.LoadingButton, Daisy.VCL.Dropdown, Daisy.VCL.Fab,
   Daisy.VCL.Control, Daisy.VCL.Accordion, Daisy.VCL.Select, Daisy.VCL.FormStyler, Daisy.Theme,
   Daisy.VCL.PageControl, Daisy.VCL.CheckBox, Daisy.Toasts, Daisy.VCL.Toast, Daisy.VCL.Range,
-  Daisy.VCL.Rating, Daisy.VCL.ThemeController, System.Actions;
+  Daisy.VCL.Rating, Daisy.VCL.ThemeController, Daisy.VCL.Loading, System.Actions;
 
 type
   TForm12 = class(TForm)
@@ -49,6 +49,29 @@ type
     btnAnimDots: TDaisyAnimationButton;
     btnAnimBars: TDaisyAnimationButton;
     btnAnimBall: TDaisyAnimationButton;
+    lblLoadingCtl: TLabel;
+    lblLoadKinds: TLabel;
+    lblLoadSizes: TLabel;
+    lblLoadVariants: TLabel;
+    ldSpinner: TDaisyLoading;
+    ldRing: TDaisyLoading;
+    ldDots: TDaisyLoading;
+    ldBars: TDaisyLoading;
+    ldBall: TDaisyLoading;
+    ldInfinity: TDaisyLoading;
+    ldXs: TDaisyLoading;
+    ldSm: TDaisyLoading;
+    ldMd: TDaisyLoading;
+    ldLg: TDaisyLoading;
+    ldXl: TDaisyLoading;
+    ldNeutral: TDaisyLoading;
+    ldPrimary: TDaisyLoading;
+    ldSecondary: TDaisyLoading;
+    ldAccent: TDaisyLoading;
+    ldInfo: TDaisyLoading;
+    ldSuccess: TDaisyLoading;
+    ldWarning: TDaisyLoading;
+    ldError: TDaisyLoading;
     ddMenu: TDaisyDropdownMenu;
     ddEnd: TDaisyDropdownMenu;
     ddTop: TDaisyDropdownMenu;

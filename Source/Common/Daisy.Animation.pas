@@ -20,7 +20,7 @@ uses
   System.Diagnostics, System.Generics.Collections;
 
 type
-  TDaisyLoadingKind = (dlSpinner, dlRing, dlDots, dlBars, dlBall);
+  TDaisyLoadingKind = (dlSpinner, dlRing, dlDots, dlBars, dlBall, dlInfinity);
 
   TDaisyIndicatorPosition = (ipLeft, ipRight, ipReplace);
 
@@ -318,6 +318,20 @@ begin
   Result := Prim(AKind, ACX - ARadius, ACY - ARadius, ACX + ARadius, ACY + ARadius, AAlpha, AStroke);
 end;
 
+const
+  CInfinityTrack = 48;
+  CInfinityComet = 16;
+
+// A point of the lemniscate of Bernoulli (stretched vertically) as a dot
+function InfinityDot(AAngle: Double; ARadius, AAlpha: Single): TDaisyPrim;
+var
+  LSin, LCos, LDen: Double;
+begin
+  SinCos(AAngle, LSin, LCos);
+  LDen := 1 + LSin * LSin;
+  Result := Circle(12 + 10.2 * LCos / LDen, 12 + 17 * LSin * LCos / LDen, ARadius, AAlpha, pkEllipseFill);
+end;
+
 function DaisyLoadingPrims(AKind: TDaisyLoadingKind; ATime: Double): TDaisyPrims;
 var
   I: Integer;
@@ -366,6 +380,20 @@ begin
         Result[0] := Prim(pkEllipseFill, 12 - (5 - 3 * LLift), 20.4, 12 + (5 - 3 * LLift), 22.8,
           0.08 + 0.17 * (1 - LLift));
         Result[1] := Circle(12, 17 - 12 * LLift, 3.4, 1, pkEllipseFill);
+      end;
+    dlInfinity:
+      begin
+        // A figure of eight: a faint track of dots with a bright, fading comet running round it
+        SetLength(Result, CInfinityTrack + CInfinityComet);
+        for I := 0 to CInfinityTrack - 1 do
+        begin
+          LPhase := 2 * Pi * I / CInfinityTrack;
+          Result[I] := InfinityDot(LPhase, 1.25, 0.2);
+        end;
+        LPhase := Frac(ATime / 1.6) * 2 * Pi;
+        for I := 0 to CInfinityComet - 1 do
+          Result[CInfinityTrack + I] := InfinityDot(LPhase - I * 2 * Pi / CInfinityTrack * 0.8,
+            2 - 0.8 * I / CInfinityComet, 1 - I / CInfinityComet);
       end;
   end;
 end;

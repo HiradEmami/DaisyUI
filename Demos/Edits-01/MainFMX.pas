@@ -10,7 +10,7 @@ uses
   Daisy.FMX.Toggle, Daisy.FMX.TextInput, Daisy.FMX.TextArea, Daisy.FMX.MenuPopup, Daisy.FMX.Menu,
   Daisy.FMX.MainMenu, Daisy.FMX.PopupMenu, Daisy.FMX.CheckBox, Daisy.FMX.PageControl,
   Daisy.FMX.Button, Daisy.Calendars, Daisy.FMX.Calendar, Daisy.FMX.DatePicker,
-  Daisy.FMX.ThemeController;
+  Daisy.FMX.ThemeController, Daisy.FMX.Radio;
 
 type
   TFormEdits = class(TForm)
@@ -105,6 +105,33 @@ type
     dpCalendar: TDaisyFmxDatePicker;
     lblPlacement: TDaisyFmxLabel;
     selPlacement: TDaisyFmxSelect;
+    tsRadio: TDaisyFmxTabSheet;
+    lblRadioBasic: TDaisyFmxLabel;
+    lblRadioSizes: TDaisyFmxLabel;
+    lblRadioVariants: TDaisyFmxLabel;
+    lblRadioPlan: TDaisyFmxLabel;
+    rbOptionA: TDaisyFmxRadio;
+    rbOptionB: TDaisyFmxRadio;
+    rbOptionC: TDaisyFmxRadio;
+    rbDisabled: TDaisyFmxRadio;
+    rbDisabledOn: TDaisyFmxRadio;
+    rbXs: TDaisyFmxRadio;
+    rbSm: TDaisyFmxRadio;
+    rbMd: TDaisyFmxRadio;
+    rbLg: TDaisyFmxRadio;
+    rbXl: TDaisyFmxRadio;
+    rbNeutral: TDaisyFmxRadio;
+    rbPrimary: TDaisyFmxRadio;
+    rbSecondary: TDaisyFmxRadio;
+    rbAccent: TDaisyFmxRadio;
+    rbInfo: TDaisyFmxRadio;
+    rbSuccess: TDaisyFmxRadio;
+    rbWarning: TDaisyFmxRadio;
+    rbError: TDaisyFmxRadio;
+    rbFree: TDaisyFmxRadio;
+    rbPro: TDaisyFmxRadio;
+    rbTeam: TDaisyFmxRadio;
+    procedure RadioChange(Sender: TObject);
     procedure CalendarChange(Sender: TObject);
     procedure DatePickerChange(Sender: TObject);
     procedure DatePlacementChange(Sender: TObject);
@@ -194,6 +221,15 @@ procedure TFormEdits.ToggleActionExecute(Sender: TObject);
 begin
   lblStatusLine.Text := Format('%s: %s', [(Sender as TAction).Name,
     BoolToStr((Sender as TAction).Checked, True)]);
+end;
+
+procedure TFormEdits.RadioChange(Sender: TObject);
+var
+  LRadio: TDaisyFmxRadio;
+begin
+  LRadio := Sender as TDaisyFmxRadio;
+  if LRadio.Checked then
+    lblStatusLine.Text := Format('%s: "%s" selected', [LRadio.Name, LRadio.Text]);
 end;
 
 procedure TFormEdits.MenuActionExecute(Sender: TObject);

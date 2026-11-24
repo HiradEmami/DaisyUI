@@ -59,6 +59,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyLink, TDaisyFmxLink:** a text link coloured by variant, underlined always or only on hover, with an optional URL.
 - **TDaisyList, TDaisyFmxList:** a list of rows with title, subtitle and actions.
 - **TDaisyLoadingButton, TDaisyFmxLoadingButton:** a button that can show a spinner while work is in progress.
+- **TDaisyLoading, TDaisyFmxLoading:** a standalone loading animation: spinner, ring, dots, bars, ball or infinity.
 - **TDaisyMainMenu, TDaisyFmxMainMenu:** a themed horizontal main menu bar.
 - **TDaisyMenu, TDaisyFmxMenu:** a vertical or horizontal menu with icons and nested items.
 - **TDaisyPageControl, TDaisyFmxPageControl:** a tabbed container.
@@ -67,6 +68,7 @@ Listed alphabetically. See [Manual.md](Manual.md) for full detail.
 - **TDaisyPopupMenu, TDaisyFmxPopupMenu:** a themed context menu.
 - **TDaisyProgress, TDaisyFmxProgress:** a horizontal progress bar, determinate or indeterminate.
 - **TDaisyRadialProgress, TDaisyFmxRadialProgress:** a circular progress indicator.
+- **TDaisyRadio, TDaisyFmxRadio:** a radio button, exclusive within its parent and `GroupIndex`.
 - **TDaisyRange, TDaisyFmxRange:** a slider with optional ticks and labels.
 - **TDaisyRating, TDaisyFmxRating:** a star or heart rating control.
 - **TDaisySelect, TDaisyFmxSelect:** a drop-down selection box.

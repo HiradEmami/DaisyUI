@@ -66,6 +66,8 @@ contains
   Daisy.VCL.MainMenu in 'Source\VCL\Daisy.VCL.MainMenu.pas',
   Daisy.VCL.PopupMenu in 'Source\VCL\Daisy.VCL.PopupMenu.pas',
   Daisy.VCL.CheckBox in 'Source\VCL\Daisy.VCL.CheckBox.pas',
+  Daisy.VCL.Radio in 'Source\VCL\Daisy.VCL.Radio.pas',
+  Daisy.VCL.Loading in 'Source\VCL\Daisy.VCL.Loading.pas',
   Daisy.VCL.PageControl in 'Source\VCL\Daisy.VCL.PageControl.pas',
   Daisy.VCL.Progress in 'Source\VCL\Daisy.VCL.Progress.pas',
   Daisy.VCL.RadialProgress in 'Source\VCL\Daisy.VCL.RadialProgress.pas',

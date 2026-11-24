@@ -167,6 +167,8 @@
         <DCCReference Include="Source\VCL\Daisy.VCL.MainMenu.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.PopupMenu.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.CheckBox.pas"/>
+        <DCCReference Include="Source\VCL\Daisy.VCL.Radio.pas"/>
+        <DCCReference Include="Source\VCL\Daisy.VCL.Loading.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.PageControl.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.Progress.pas"/>
         <DCCReference Include="Source\VCL\Daisy.VCL.RadialProgress.pas"/>

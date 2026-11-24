@@ -65,6 +65,8 @@ contains
   Daisy.FMX.MainMenu in 'Source\FMX\Daisy.FMX.MainMenu.pas',
   Daisy.FMX.PopupMenu in 'Source\FMX\Daisy.FMX.PopupMenu.pas',
   Daisy.FMX.CheckBox in 'Source\FMX\Daisy.FMX.CheckBox.pas',
+  Daisy.FMX.Radio in 'Source\FMX\Daisy.FMX.Radio.pas',
+  Daisy.FMX.Loading in 'Source\FMX\Daisy.FMX.Loading.pas',
   Daisy.FMX.PageControl in 'Source\FMX\Daisy.FMX.PageControl.pas',
   Daisy.FMX.Progress in 'Source\FMX\Daisy.FMX.Progress.pas',
   Daisy.FMX.RadialProgress in 'Source\FMX\Daisy.FMX.RadialProgress.pas',

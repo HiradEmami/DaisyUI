@@ -32,6 +32,7 @@ Common behavior:
 - **AutoFit / AutoHeight:** on components that have it, the control sizes itself to its content.
 - **Icons:** `SVG` properties take SVG markup; `Emoji` properties take a text character.
 - **Drawing:** all controls are drawn with anti-aliasing and no flicker.
+- **Visibility:** `Visible` is handled once in `TDaisyControl` (VCL: the control also hides at design time when `Visible` is False; FMX uses the native handling). Setting it back to True repaints the control. On a `TDaisyTabSheet`, `Visible` maps to `TabVisible`, which shows or hides the tab.
 - **Design time:** animations and timers are not started at design time.
 
 ## Components (A-Z)
@@ -220,12 +221,21 @@ A list of rows, each with an image or icon, title, subtitle and optional action 
 - `AutoHeight`: sizes to the number of rows.
 - `OnItemClick`: raised when a row or action is clicked.
 
+### TDaisyLoading, TDaisyFmxLoading
+
+A standalone loading animation (daisyUI "Loading").
+
+- `Kind`: `dlSpinner` (default), `dlRing`, `dlDots`, `dlBars`, `dlBall` or `dlInfinity`.
+- `Active`: runs the animation (default True); a stopped indicator is not drawn.
+- `AutoFit`: sizes the control from `SizeKind` (16, 20, 24, 32 or 40 pixels).
+- `Variant`: colours the animation (default is the text colour).
+
 ### TDaisyLoadingButton, TDaisyFmxLoadingButton
 
 A button that can show a loading indicator while work is running.
 
 - `Loading`: shows or hides the indicator (the button ignores clicks while loading).
-- `LoadingKind`: spinner, ring, dots, bars or ball.
+- `LoadingKind`: spinner, ring, dots, bars, ball or infinity.
 - `IndicatorPosition`: before or after the caption.
 - `LoadingCaption`: text shown while loading.
 
@@ -252,6 +262,11 @@ A menu that can be vertical or horizontal, with icons, separators, titles and ne
 ### TDaisyPageControl, TDaisyFmxPageControl
 
 A tabbed container. Add pages with **New Page** at design time; each page is a `TDaisyTabSheet` / `TDaisyFmxTabSheet`. Tab headers are styled by `Variant`, `Style` and `SizeKind`. Pages can be selected at design time by clicking them.
+
+- `TabStyle`: `dtsNone`, `dtsBox`, `dtsBorder` (default) or `dtsLift`. With `dtsBorder` the bar sits directly under the tab caption and is only as long as the caption.
+- `TabPosition`: tabs at the top or bottom.
+- `VisibleBorder`: draws the single line around the page area (default True).
+- `StretchBox`: with `dtsBox`, the box behind the tabs spans the whole control (default True); False wraps only the tabs. The box uses the page background colour.
 
 ### TDaisyPanel, TDaisyFmxPanel
 
@@ -283,6 +298,17 @@ A circular progress indicator.
 - `Thickness`: ring width.
 - `ShowValue`, `DisplayText`: text shown in the centre.
 - `Filled`: fills the centre.
+
+### TDaisyRadio, TDaisyFmxRadio
+
+A radio button (daisyUI "Radio"): a circle with a dot when checked, plus a caption.
+
+- `Checked`: selects this radio; the others in its group are cleared.
+- `GroupIndex`: radios with the same parent and `GroupIndex` are mutually exclusive (default 0). Give each group on a shared parent its own index.
+- `Caption` (VCL) / `Text` (FMX): the label.
+- `SizeKind`: circle size (16, 20, 24, 28 or 32 pixels). `Variant`: colour when checked.
+- `AutoFit`: sizes to the circle and caption.
+- `OnChange`: raised when `Checked` changes. Space selects the radio; the arrow keys move to the previous or next radio in the group.
 
 ### TDaisyRange, TDaisyFmxRange
 
@@ -389,7 +415,7 @@ A data table drawn from `Columns` and `Rows`.
 
 ### TDaisyTabSheet, TDaisyFmxTabSheet
 
-A single page of a `TDaisyPageControl`. Place the page's controls on it. Use its `Caption` for the tab text. It is created by the page control and can be selected at design time.
+A single page of a `TDaisyPageControl`. Place the page's controls on it. Use its `Caption` (`Text` in FMX) for the tab text. It is created by the page control and can be selected at design time. `Visible` maps to `TabVisible`: False hides the tab (and the page) without removing it.
 
 ### TDaisyTextArea, TDaisyFmxTextArea
 

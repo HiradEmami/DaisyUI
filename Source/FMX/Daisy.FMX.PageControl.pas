@@ -40,6 +40,8 @@ type
     procedure SetSVG(const Value: TStrings);
     procedure IconChanged(Sender: TObject);
     procedure SetTabVisible(const Value: Boolean);
+    function GetSheetVisible: Boolean;
+    procedure SetSheetVisible(const Value: Boolean);
     function GetPageIndex: Integer;
     procedure SetPageIndex(const Value: Integer);
   protected
@@ -66,8 +68,9 @@ type
     property TabVisible: Boolean read FTabVisible write SetTabVisible default True;
     // Custom colour of the active tab (fill for box/lift, underline for border); Null uses the theme
     property TabColor: TAlphaColor read FTabColor write SetTabColor default TAlphaColors.Null;
-    // Only the active sheet is visible, so this is never streamed
-    property Visible stored False;
+    // False hides the sheet's tab (same as TabVisible); the page control shows only the active sheet,
+    // so this is never streamed
+    property Visible: Boolean read GetSheetVisible write SetSheetVisible stored False;
   end;
 
   TDaisyFmxPageControl = class(TDaisyControl)
@@ -85,8 +88,12 @@ type
     FMaxScroll: Single;
     FScrollToActive: Boolean;
     FDestroying: Boolean;
+    FVisibleBorder: Boolean;
+    FStretchBox: Boolean;
     FOnChange: TNotifyEvent;
     FOnChanging: TDaisyFmxTabChangingEvent;
+    procedure SetVisibleBorder(const Value: Boolean);
+    procedure SetStretchBox(const Value: Boolean);
     procedure SetTabStyle(const Value: TDaisyTabStyle);
     procedure SetTabPosition(const Value: TDaisyTabPosition);
     procedure SetHotTab(const Value: Integer);
@@ -139,6 +146,10 @@ type
     property ActivePageIndex: Integer read GetActivePageIndex write SetActivePageIndex default -1;
     property TabStyle: TDaisyTabStyle read FTabStyle write SetTabStyle default dtsBorder;
     property TabPosition: TDaisyTabPosition read FTabPosition write SetTabPosition default dtpTop;
+    // The single line drawn around the page area
+    property VisibleBorder: Boolean read FVisibleBorder write SetVisibleBorder default True;
+    // dtsBox only: the box behind the tabs spans the whole control; False wraps just the tabs
+    property StretchBox: Boolean read FStretchBox write SetStretchBox default True;
     property OnChange: TNotifyEvent read FOnChange write FOnChange;
     property OnChanging: TDaisyFmxTabChangingEvent read FOnChanging write FOnChanging;
   end;
@@ -302,6 +313,16 @@ begin
   end;
 end;
 
+function TDaisyFmxTabSheet.GetSheetVisible: Boolean;
+begin
+  Result := FTabVisible;
+end;
+
+procedure TDaisyFmxTabSheet.SetSheetVisible(const Value: Boolean);
+begin
+  SetTabVisible(Value);
+end;
+
 function TDaisyFmxTabSheet.GetPageIndex: Integer;
 begin
   if FPageControl <> nil then
@@ -325,6 +346,8 @@ begin
   FLoadedIndex := -1;
   FHotTab := -1;
   FTabStyle := dtsBorder;
+  FVisibleBorder := True;
+  FStretchBox := True;
   FLayoutDirty := True;
   CanFocus := True;
   TabStop := True;
@@ -433,7 +456,7 @@ var
   LSheet: TDaisyFmxTabSheet;
 begin
   for LSheet in FPages do
-    LSheet.Visible := LSheet = FActive;
+    TControl(LSheet).Visible := LSheet = FActive;
   if FActive <> nil then
     FActive.BringToFront;
   FScrollToActive := True;
@@ -447,6 +470,24 @@ begin
   begin
     FTabStyle := Value;
     UpdateSheetBounds;
+    PageChanged;
+  end;
+end;
+
+procedure TDaisyFmxPageControl.SetVisibleBorder(const Value: Boolean);
+begin
+  if FVisibleBorder <> Value then
+  begin
+    FVisibleBorder := Value;
+    PageChanged;
+  end;
+end;
+
+procedure TDaisyFmxPageControl.SetStretchBox(const Value: Boolean);
+begin
+  if FStretchBox <> Value then
+  begin
+    FStretchBox := Value;
     PageChanged;
   end;
 end;
@@ -475,13 +516,14 @@ begin
   if FPages.IndexOf(ASheet) >= 0 then
     Exit;
   FPages.Add(ASheet);
+  FLayoutDirty := True;
   if csLoading in ComponentState then
     Exit;
   UpdateSheetBounds;
   if (FActive = nil) or (csDesigning in ComponentState) then
     SetActivePage(ASheet)
   else
-    ASheet.Visible := False;
+    TControl(ASheet).Visible := False;
   PageChanged;
 end;
 
@@ -627,7 +669,7 @@ var
   LX, LTop, LBottom, LInset, LStripTop, LStripBottom, LTotal: Single;
   LSheet: TDaisyFmxTabSheet;
 begin
-  if not FLayoutDirty then
+  if (not FLayoutDirty) and (Length(FTabRects) = FPages.Count) then
     Exit;
   FLayoutDirty := False;
   SetLength(FTabRects, FPages.Count);
@@ -687,6 +729,8 @@ begin
     for I := 0 to High(FTabRects) do
       FTabRects[I].Offset(-FScrollX, 0);
   FStripRect := RectF(0, LStripTop, Min(LTotal - FScrollX, Width), LStripBottom);
+  if FStretchBox and (FTabStyle = dtsBox) then
+    FStripRect.Right := Width;
 end;
 
 function TDaisyFmxPageControl.TabAt(X, Y: Single): Integer;
@@ -834,10 +878,11 @@ begin
   LFont := DaisyFontSize(SizeKind);
 
   FillRound(LBox, LBoxRadius, DaisyWithAlpha(Theme.Base100, LFade));
-  StrokeRound(LBox, LBoxRadius, DaisyWithAlpha(Theme.BorderColor, LFade), LBorder, False);
+  if FVisibleBorder then
+    StrokeRound(LBox, LBoxRadius, DaisyWithAlpha(Theme.BorderColor, LFade), LBorder, False);
 
   if FTabStyle = dtsBox then
-    FillRound(FStripRect, LFieldRadius + 4, DaisyWithAlpha(Theme.Base200, LFade));
+    FillRound(FStripRect, LFieldRadius + 4, DaisyWithAlpha(Theme.Base100, LFade));
 
   LSaved := Canvas.SaveState;
   Canvas.IntersectClipRect(RectF(0, 0, Width, Height));
@@ -868,11 +913,15 @@ begin
         end;
       dtsBorder:
         begin
-          LBar := Max(2, 3);
+          // Only as wide as the caption, directly beside the text
+          LBar := 3;
+          LX := LTab.Left + CTabPadding[SizeKind];
+          LHalf := LFont * 0.55 + 2;
           if LTop then
-            LRect := RectF(LTab.Left, LTab.Bottom - LBar + LBorder, LTab.Right, LTab.Bottom + LBorder)
+            LHalf := Min((LTab.Top + LTab.Bottom) / 2 + LHalf, LTab.Bottom - LBar)
           else
-            LRect := RectF(LTab.Left, LTab.Top - LBorder, LTab.Right, LTab.Top + LBar - LBorder);
+            LHalf := Max((LTab.Top + LTab.Bottom) / 2 - LHalf - LBar, LTab.Top);
+          LRect := RectF(LX, LHalf, LTab.Right - CTabPadding[SizeKind], LHalf + LBar);
           FillRound(LRect, LBar / 2, DaisyWithAlpha(LTabTint, LFade));
         end;
       dtsLift:

@@ -224,6 +224,20 @@ $draw['Progress'] = {
     HL 3 8 5 $G; HL 17 20 5 $G; RRc 2 8 21 14 $K; FRc 4 10 12 12 $D
     foreach ($x in 3, 7, 11, 15, 19) { P $x 17 $G }
 }
+$draw['Loading'] = {
+    for ($y = 0; $y -lt 24; $y++) { for ($x = 0; $x -lt 24; $x++) {
+        $dx = $x - 11.5; $dy = $y - 11.5
+        $dist = [Math]::Sqrt($dx * $dx + $dy * $dy)
+        $a = [Math]::Atan2($dx, -$dy); if ($a -lt 0) { $a += 2 * [Math]::PI }
+        if ($dist -ge 7.4 -and $dist -lt 10 -and $a -le 1.8) { P $x $y $D }
+        elseif ($dist -ge 8.6 -and $dist -lt 9.8) { P $x $y $G }
+    } }
+    HL 8 9 11 $K; HL 8 9 12 $K; HL 11 12 11 $K; HL 11 12 12 $K; HL 14 15 11 $K; HL 14 15 12 $K
+}
+$draw['Radio'] = {
+    Ci 5.5 6 3.6 $K; FCi 5.5 6 1.6 $D; HL 12 20 5 $G; HL 12 17 7 $G
+    Ci 5.5 16.5 3.6 $G; HL 12 20 15 $G; HL 12 18 17 $G
+}
 $draw['RadialProgress'] = {
     for ($y = 0; $y -lt 24; $y++) { for ($x = 0; $x -lt 24; $x++) {
         $dx = $x - 11.5; $dy = $y - 11.5
@@ -338,7 +352,7 @@ $groups = @(
         'Calendar', 'DatePicker', 'FieldSet', 'Indicator', 'Progress', 'RadialProgress', 'Range', 'Rating', 'Stack',
         'Swap', 'ThemeController', 'Toast') },
     @{ Vcl = 'Daisy.VCL.Reg3.dcr'; Fmx = 'Daisy.FMX.Reg3.dcr'; Items = @(
-        'Breadcrumbs', 'Dock', 'Link', 'Pagination', 'Steps', 'TitleBarPanel') }
+        'Breadcrumbs', 'Dock', 'Link', 'Pagination', 'Steps', 'TitleBarPanel', 'Loading', 'Radio') }
 )
 
 $images = [ordered]@{}
